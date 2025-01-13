@@ -1,0 +1,5 @@
+- **Maintain open communication** with team members and seek assistance when needed.
+- **Distribute tasks fairly** among team members to ensure an even workload.
+- **Avoid direct edits to the main branch**; ensure all changes are reviewed and approved by other team members before pushing.
+- **Track team progress** and conduct regular check-ins with team members.
+- **Avoid procrastination** by staying on top of tasks and not leaving work until the last minute.
