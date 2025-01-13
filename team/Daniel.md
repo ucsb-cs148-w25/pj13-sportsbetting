@@ -1,0 +1,1 @@
+Hello everyone! I'm Daniel Hwang, a 4th-year Computer Science student with a strong focus on full-stack iOS development. For this project, I would like to make an engaging for people to be involved in sports betting without the need to bet real money. I plan on getting the odds for real-time games through an external api, and develop our idea on a webpage for clearer structure.
