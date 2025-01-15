@@ -1,5 +1,5 @@
 # Project: BetBuddies
-Mentor: Unknown
+Mentor: Will, Samuel
 
 Meeting Time: lect03
 
