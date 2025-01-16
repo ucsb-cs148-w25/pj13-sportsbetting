@@ -16,4 +16,4 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Deployment
 
-https://helloworld-6nnqahxbh-brycewanggs-projects.vercel.app/
+https://helloworld-gold-delta.vercel.app/
