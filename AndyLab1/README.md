@@ -12,7 +12,9 @@ To run the project locally, follow these steps:
 ### **1️⃣ Clone the Repository**
 ```sh
 git clone https://github.com/ucsb-cs148-w25/pj13-sportsbetting.git
+cd pj13-sportsbetting
 git checkout AndyJin-HelloWorld
+cd AndyLab1
 cd lab1
 npm install
 npm start
