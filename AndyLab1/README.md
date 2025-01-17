@@ -9,7 +9,7 @@ The React app is **deployed with Amazon Web Services (AWS)** and can be accessed
 ## 🛠️ Running the Project Locally
 To run the project locally, follow these steps:
 
-### **1️⃣ Clone the Repository**
+### **1️⃣ Copy & Paste into a Terminal and hit ENTER**
 ```sh
 git clone https://github.com/ucsb-cs148-w25/pj13-sportsbetting.git
 cd pj13-sportsbetting
