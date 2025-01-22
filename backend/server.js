@@ -1,18 +1,22 @@
-// Import the HTTP module
-const http = require('http');
+import express from 'express';
+import dotenv from 'dotenv';
+import Routes from './routes/list.route.js';
+import { connectDB } from './config/db.js';
+import cors from 'cors';
 
-// Create a server
-const server = http.createServer((req, res) => {
-    res.statusCode = 200; // HTTP status for OK
-    res.setHeader('Content-Type', 'text/plain'); // Content type
-    res.end('Hello, World!\n'); // Response
-});
+dotenv.config();
+const app = express();
 
-// Specify the port and host
-const PORT = 3000;
-const HOST = '127.0.0.1';
+app.use( cors({
+    origin: "http://localhost:5173", // Frontend origin
+    methods: ["GET", "POST", "PUT", "DELETE"], // HTTP methods to allow
+  }));
 
-// Start the server
-server.listen(PORT, HOST, () => {
-    console.log(`Server running at http://${HOST}:${PORT}/`);
+app.use(express.json());
+
+app.use("/api", Routes);
+
+app.listen(process.env.PORT, () => {
+    connectDB();
+    console.log(`Server is running on http://localhost:${process.env.PORT}`);
 });

@@ -1,5 +1,6 @@
 {
   "name": "pj13-sportsbetting",
+  "type": "module",
   "version": "1.0.0",
   "description": "### Project Description **BetBuddies** is a competitive sports betting app where users compete against friends using *fake money* to see who’s the best sports bettor. This app simulates real-world sports betting scenarios while keeping it fun and risk-free. The goal is to create an engaging platform where friends can enjoy sports events and friendly competition without financial stakes.",
   "main": "index.js",
@@ -13,7 +14,6 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
   "bugs": {
     "url": "https://github.com/ucsb-cs148-w25/pj13-sportsbetting/issues"
   },
