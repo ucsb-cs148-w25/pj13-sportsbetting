@@ -1,0 +1,79 @@
+/*App.css*/
+/* General Styling */
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: #1e1e2f;
+  color: #fff;
+  text-align: center;
+}
+
+/* Welcome Container */
+.welcome-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+/* Title Styling */
+.welcome-title {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #4caf50;
+  margin-bottom: 20px;
+}
+
+/* Description Styling */
+.welcome-description {
+  font-size: 1.2rem;
+  margin: 20px 0;
+  max-width: 600px;
+  line-height: 1.5;
+}
+/* Input Fields (Username and Password) */
+.login-form input {
+  width: 100%; /* Matches the button's width */
+  padding: 10px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  box-sizing: border-box; /* Ensures padding doesn't affect width */
+  height: 50px; /* Ensures the height matches the button */
+}
+
+.login-form input:focus {
+  outline: 2px solid #4caf50;
+}
+
+/* Log In Button */
+.login-button {
+  width: 100%; /* Same width as input fields */
+  padding: 10px;
+  height: 50px; /* Matches input height */
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.login-button:hover {
+  background-color: #45a049;
+}
+
+.create-account-button {
+  background-color: transparent;
+  color: #4caf50;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.create-account-button:hover {
+  color: #3e8e41;
+}
