@@ -1,5 +1,4 @@
 import React from "react"
-import { Link } from 'react-router-dom';
 import './styles/heroStyle.css'
 const HeroSection = () => (
   <section className="bg-blue-700 text-white py-20">
