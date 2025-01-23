@@ -16,3 +16,9 @@
 | Thomas So | Tommygithubaccount123   |
 | Bryce Wang | brycewangg   |
 | Ryan Vo | ryanvo504   |
+
+# Set up
+
+1. `npm install`
+2. `npm install react-router-dom`
+3. `npm start`
