@@ -1,5 +1,5 @@
 // GET POST PUT DELETE
-import model from "../models/model.js";
+import model from "../models/models.js";
 
 export async function getList(req, res) {
     console.log("get Function")
