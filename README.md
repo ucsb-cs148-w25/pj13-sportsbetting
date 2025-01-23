@@ -6,12 +6,12 @@
 ---
 ### Web App Tech Stack
 
-React, Node.js, Firebase 
+React, Node.js, Firebase
 
 ---
 ### User Roles
 
-Our app will only have 2 kinds of user, sports bettors and admins to oversee the individual groups that people will compete in. Admins can invite people to groups or kick them out, as well as set all the rules for that group such as start and end time, starting money, etc. 
+Our app will only have 2 kinds of user, sports bettors and admins to oversee the individual groups that people will compete in. Admins can invite people to groups or kick them out, as well as set all the rules for that group such as start and end time, starting money, etc.
 
 ---
 
@@ -38,3 +38,7 @@ Our app will only have 2 kinds of user, sports bettors and admins to oversee the
 1. `cd betbuddies`
 2. `npm install`
 3. `npm start`
+
+# Database set up
+
+1. Follow README in backend/config folder

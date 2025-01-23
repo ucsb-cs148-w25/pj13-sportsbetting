@@ -27,4 +27,4 @@ desktop.ini
 .vscode
 *.env
 .idea
-config/
+backend/config/serviceAccountKey.json
