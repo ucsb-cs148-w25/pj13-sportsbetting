@@ -1,6 +1,6 @@
 import React from 'react';
 import LandingPage from './components/landing_page/LandingPage';
-import SignIn from "./SignIn";
+import SignIn from "./components/SignIn/SignIn";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 
