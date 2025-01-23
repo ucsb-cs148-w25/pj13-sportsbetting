@@ -1,0 +1,3 @@
+- As a sports bettor I can bet on today's parlay so that I can make fake money
+- As a sports bettor I can compare my total winnings with my friends to see who is the best bettor
+- As a sports bettor I can compare my total winnings with the global leaderboard to see who is the best bettor
