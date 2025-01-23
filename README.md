@@ -15,6 +15,12 @@ Our app will only have 2 kinds of user, sports bettors and admins to oversee the
 
 ---
 
+### Documentation
+
+[Link](https://docs.google.com/document/d/11tE5cdFQMYGccgxjDcKdH57ia8Lq5kfZL-AACeqZlQw/edit?usp=sharing)
+
+---
+
 ### Team Members
 
 | Name            | GitHub ID       |
@@ -26,3 +32,9 @@ Our app will only have 2 kinds of user, sports bettors and admins to oversee the
 | Thomas So | Tommygithubaccount123   |
 | Bryce Wang | brycewangg   |
 | Ryan Vo | ryanvo504   |
+
+# Set up
+
+1. `cd betbuddies`
+2. `npm install`
+3. `npm start`

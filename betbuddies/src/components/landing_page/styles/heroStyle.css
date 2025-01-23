@@ -1,0 +1,19 @@
+.welcome {
+    color: white;
+    letter-spacing: -.2rem;
+    text-transform: uppercase;
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-family: aktiv-grotesk-extended, sans-serif;
+    font-size: 6.25rem;
+    font-weight: 800;
+    line-height: 0.8;
+}
+.welcome2 {
+    font-family: aktiv-grotesk-extended, sans-serif;
+    font-size: 1.5rem;
+    line-height: .9;
+}
+.welcome-container {
+
+}
