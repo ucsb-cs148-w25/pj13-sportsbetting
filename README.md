@@ -19,6 +19,6 @@
 
 # Set up
 
-1. `npm install`
-2. `npm install react-router-dom`
+1. `cd betbuddies`
+2. `npm install`
 3. `npm start`
