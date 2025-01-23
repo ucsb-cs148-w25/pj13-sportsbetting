@@ -1,6 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import Routes from './routes/list.route.js';
+import Routes from './routes/routes.js';
 import { connectDB } from './config/db.js';
 import cors from 'cors';
 
@@ -15,8 +15,8 @@ app.use( cors({
 app.use(express.json());
 
 app.use("/api", Routes);
-
-app.listen(process.env.PORT, () => {
-    connectDB();
-    console.log(`Server is running on http://localhost:${process.env.PORT}`);
+const PORT = process.env.PORT || 5000; // Default to port 5000 if not defined
+app.listen(PORT, async () => {
+    await connectDB();
+    console.log(`Server is running on http://localhost:${PORT}`);
 });

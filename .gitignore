@@ -5,3 +5,4 @@ desktop.ini
 *.env
 .idea
 config/
+node_modules/
