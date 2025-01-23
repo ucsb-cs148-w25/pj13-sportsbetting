@@ -1,36 +1,46 @@
-import React, { useState } from "react"
-import MobileMenu from "./MobileMenu"
+import React, { useState } from "react";
+import MobileMenu from "./MobileMenu";
+import "./styles/headerStyle.css";
+import {Link} from "react-router-dom";
 
 const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <>
-      <header className="bg-blue-600 text-white p-4">
-        <div className="container mx-auto flex justify-between items-center">
-          <div className="flex items-center space-x-4">
-            <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-white focus:outline-none">
-              {isMenuOpen ? "X" : "☰"}
-            </button>
-            <h1 className="text-2xl font-bold">PrizeBets</h1>
+      <>
+        <header className="header">
+          <div className="header-container">
+            <div className="header-title">
+              <button
+                  onClick={() => setIsMenuOpen(!isMenuOpen)}
+                  className="menu-button"
+              >
+                {isMenuOpen ? "X" : "☰"}
+              </button>
+              <h1>BetBuddies</h1>
+            </div>
+            <nav className={`navbar ${!isMenuOpen ? "md-visible" : ""}`}>
+              <a href="/#" className="nav-link">
+                Sportsbook
+              </a>
+              <a href="/#" className="nav-link">
+                Live
+              </a>
+              <a href="/#" className="nav-link">
+                Leaderboard
+              </a>
+              <Link
+                  to="/signin"
+                  className="sign-in-button"
+              >
+                Sign In
+              </Link>
+            </nav>
           </div>
-          <nav className="hidden md:flex space-x-4">
-            <a href="/#" className="hover:text-blue-200">
-              Sports
-            </a>
-            <a href="/#" className="hover:text-blue-200">
-              Live
-            </a>
-            <a href="/#" className="hover:text-blue-200">
-              Promotions
-            </a>
-          </nav>
-        </div>
-      </header>
-      {isMenuOpen && <MobileMenu />}
-    </>
-  )
-}
+        </header>
+        {isMenuOpen && <MobileMenu />}
+      </>
+  );
+};
 
-export default Header
-
+export default Header;
