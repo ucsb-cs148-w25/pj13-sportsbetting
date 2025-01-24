@@ -1,4 +1,10 @@
 // GET POST PUT DELETE
+
+// GENERAL TEMPLATE FOR ALL THE CONTROLLRS HERE
+
+
+
+
 import { connectDB } from "../config/db.js"
 const db = connectDB();
 export async function getList(req, res) {
