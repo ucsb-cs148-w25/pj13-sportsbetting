@@ -10,21 +10,24 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+let db;
 export async function connectDB() {
-    try {
-        // Initialize Firestore
-        admin.initializeApp({
-            credential: admin.credential.cert('./backend/config/serviceAccountKey.json'),
-            // databaseURL: process.env.FIREBASE_DATABASE_URL, // Optional for Firestore
-        });
+    if (!db) {
+        try {
+            // Initialize Firestore
+            admin.initializeApp({
+                credential: admin.credential.cert('./backend/config/serviceAccountKey.json'),
+                // databaseURL: process.env.FIREBASE_DATABASE_URL, // Optional for Firestore
+            });
 
-        const db = admin.firestore(); // Create a Firestore instance
-        console.log("Connected to Firestore database");
-        return db; // Return the Firestore instance for further use
-    } catch (error) {
-        console.log("Error connecting to Firestore:", error.message);
-        process.exit(1); // Exit the process on failure
+            db = admin.firestore(); // Create a Firestore instance
+            console.log("Connected to Firestore database");
+        } catch (error) {
+            console.error("Error connecting to Firestore:", error.message);
+            process.exit(1); // Exit the process on failure
+        }
     }
+    return db; // Return the existing Firestore instance
 }
 
 
