@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './SignIn.css';
 
 function SignIn() {
   const [form, setForm] = useState({ username: '', password: '' });
+  const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -16,21 +18,15 @@ function SignIn() {
   };
 
   const handleCreateAccount = () => {
-    alert('Redirecting to account creation...');
-    // Add account creation logic here
+    navigate('/signup'); // Navigate to signup page
   };
 
   return (
     <div className="welcome-container">
-      {/* Welcome Title */}
       <h1 className="welcome-title">BetBuddies</h1>
-
-      {/* Description */}
       <p className="welcome-description">
-        Compete with your friends to see who's the ultimate sports bettor! Place bets with virtual money and climb the leaderboard to prove your skills.
+        Compete with your friends to see who's the ultimate sports bettor!
       </p>
-
-      {/* Login Form */}
       <div className="login-form">
         <h2>Sign In</h2>
         <form onSubmit={handleLogin}>
@@ -52,8 +48,6 @@ function SignIn() {
           />
           <button type="submit" className="login-button">Log In</button>
         </form>
-
-        {/* Create Account Button */}
         <p>
           Don't have an account?{' '}
           <button onClick={handleCreateAccount} className="create-account-button">

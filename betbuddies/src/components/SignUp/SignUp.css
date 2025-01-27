@@ -1,0 +1,99 @@
+/* General Styling */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #2563eb; /* Updated background color */
+    color: #fff;
+    text-align: center;
+  }
+  
+  /* General Container */
+  .signup-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+  }
+  
+  /* Header Styling */
+  .signup-container h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #ffffff; /* White for contrast */
+    margin-bottom: 20px;
+  }
+  
+  /* Form Styling */
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    background: #ffffff; /* White form background */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Input Fields */
+  form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    box-sizing: border-box;
+    height: 50px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  
+  form input:focus {
+    border: 2px solid #2563eb; /* Matches theme */
+    box-shadow: 0 0 8px rgba(37, 99, 235, 0.5); /* Subtle glow effect */
+    outline: none;
+  }
+  
+  /* Sign Up Button */
+  .signup-button {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    background-color: #ffffff; /* White button */
+    color: #2563eb; /* Primary theme color for text */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  .signup-button:hover {
+    background-color: #e0e7ff; /* Lighter hover effect */
+  }
+  
+  .signup-button:active {
+    transform: scale(0.98); /* Press effect */
+  }
+  
+  /* Optional Link or Additional Text */
+  form p {
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: #ffffff; /* Light text for contrast */
+    text-align: center;
+  }
+  
+  form p a {
+    color: #ffffff; /* White links */
+    text-decoration: underline;
+    font-weight: bold;
+  }
+  
+  form p a:hover {
+    color: #e0e7ff; /* Hover effect for links */
+  }
+  

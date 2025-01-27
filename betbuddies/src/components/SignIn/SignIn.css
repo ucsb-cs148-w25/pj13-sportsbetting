@@ -1,9 +1,8 @@
-/*SignIn.css*/
 /* General Styling */
 body {
   margin: 0;
   font-family: 'Arial', sans-serif;
-  background-color: #1e1e2f;
+  background-color: #2563eb; /* Updated background color */
   color: #fff;
   text-align: center;
 }
@@ -21,7 +20,7 @@ body {
 .welcome-title {
   font-size: 3rem;
   font-weight: bold;
-  color: #4caf50;
+  color: #ffffff; /* White for contrast */
   margin-bottom: 20px;
 }
 
@@ -31,43 +30,55 @@ body {
   margin: 20px 0;
   max-width: 600px;
   line-height: 1.5;
+  color: #e0e7ff; /* Subtle light color for description */
 }
+
 /* Input Fields (Username and Password) */
 .login-form input {
-  width: 100%; /* Matches the button's width */
+  width: 100%;
   padding: 10px;
   margin: 10px 0;
-  border: none;
+  border: 2px solid #ffffff; /* Always visible outline */
   border-radius: 5px;
   font-size: 1rem;
-  box-sizing: border-box; /* Ensures padding doesn't affect width */
-  height: 50px; /* Ensures the height matches the button */
+  box-sizing: border-box;
+  height: 50px;
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 .login-form input:focus {
-  outline: 2px solid #4caf50;
+  border-color: #2563eb; /* Optional: Slightly brighter border on focus */
+  box-shadow: 0 0 8px rgba(37, 99, 235, 0.5); /* Optional glow effect */
+  outline: none;
 }
 
 /* Log In Button */
 .login-button {
-  width: 100%; /* Same width as input fields */
+  width: 100%;
   padding: 10px;
-  height: 50px; /* Matches input height */
-  background-color: #4caf50;
-  color: white;
+  height: 50px;
+  background-color: #ffffff; /* White button for contrast */
+  color: #2563eb; /* Primary theme color for text */
   border: none;
   font-size: 1rem;
+  font-weight: bold;
   border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
 }
 
 .login-button:hover {
-  background-color: #45a049;
+  background-color: #e0e7ff; /* Lighter hover effect */
 }
 
+.login-button:active {
+  transform: scale(0.98); /* Press effect */
+}
+
+/* Create Account Button */
 .create-account-button {
   background-color: transparent;
-  color: #4caf50;
+  color: #ffffff;
   border: none;
   font-size: 1rem;
   cursor: pointer;
@@ -75,5 +86,5 @@ body {
 }
 
 .create-account-button:hover {
-  color: #3e8e41;
+  color: #e0e7ff; /* Hover color for button */
 }
