@@ -1,29 +1,159 @@
-// Users Controller
-export const getUser = (req, res) => {
-    console.log("getUser Function");
-    res.send("Get all users");
-  };
-  
-  export const getUserById = (req, res) => {
-    console.log("getUserById Function");
-    const { id } = req.params;
-    res.send(`Get user with ID: ${id}`);
-  };
-  
-  export const postUser = (req, res) => {
-    console.log("postUser Function");
-    res.send("Create a new user");
-  };
-  
-  export const putUser = (req, res) => {
-    console.log("putUser Function");
-    const { id } = req.params;
-    res.send(`Update user with ID: ${id}`);
-  };
-  
-  export const deleteUser = (req, res) => {
-    console.log("deleteUser Function");
-    const { id } = req.params;
-    res.send(`Delete user with ID: ${id}`);
-  };
-  
+import { connectDB } from "../config/db.js";
+
+// Initialize Firestore instance
+const db = await connectDB();
+
+// GET ALL USERS
+export async function getUsers(req, res) {
+  try {
+    const usersRef = db.collection("users");
+    const snapshot = await usersRef.get();
+
+    if (snapshot.empty) {
+      return res.status(200).json({ success: true, data: [] });
+    }
+
+    const users = snapshot.docs.map((doc) => ({ 
+      id: doc.id,
+      ...doc.data(),
+    }));
+    res.status(200).json({ success: true, data: users });
+  } catch (error) {
+    console.error("Error getting users: ", error.message);
+    res.status(500).json({ success: false, message: "Server Error" });
+  }
+}
+
+// GET USER BY ID
+export async function getUserById(req, res) {
+  try {
+    const { id } = req.params; // User ID from the route
+    const userRef = db.collection("users").doc(id);
+    const doc = await userRef.get();
+
+    if (!doc.exists) {
+      return res.status(404).json({ success: false, message: "User not found" });
+    }
+
+    res.status(200).json({ success: true, data: { id: doc.id, ...doc.data() } });
+  } catch (error) {
+    console.error("Error getting user by ID: ", error.message);
+    res.status(500).json({ success: false, message: "Server Error" });
+  }
+}
+
+// CREATE NEW USER
+export async function postUser(req, res) {
+  try {
+    const { username, email, balance, totalWinnings, groupIds } = req.body;
+    const id = req.params.id; // User ID from the route
+
+    // Validate required fields
+    if (
+      !username ||
+      !email ||
+      typeof balance !== "number" ||
+      typeof totalWinnings !== "number" ||
+      !Array.isArray(groupIds)
+    ) {
+      return res.status(400).json({
+        success: false,
+        message:
+          "Required fields: username (string), email (string), balance (number), totalWinnings (number), groupIds (array of strings)",
+      });
+    }
+
+    // Prepare the user data
+    const newUser = { username, email, balance, totalWinnings, groupIds };
+
+    // Create or overwrite the user document
+    const userRef = db.collection("users").doc(id);
+    await userRef.set(newUser);
+
+    res.status(201).json({
+      success: true,
+      id: id,
+      data: newUser,
+    });
+  } catch (error) {
+    console.error("Error creating user: ", error.message);
+    res.status(500).json({ success: false, message: "Server Error" });
+  }
+}
+
+// UPDATE USER BY ID
+export async function putUser(req, res) {
+  try {
+    const { id } = req.params; // User ID from the route
+    const { username, email, balance, totalWinnings, groupIds } = req.body;
+
+    // Validate at least one field exists for update
+    if (
+      username === undefined &&
+      email === undefined &&
+      balance === undefined &&
+      totalWinnings === undefined &&
+      groupIds === undefined
+    ) {
+      return res.status(400).json({
+        success: false,
+        message: "At least one field must be provided for update.",
+      });
+    }
+
+    // Prepare the fields for update
+    const updatedData = {};
+    if (username) updatedData.username = username;
+    if (email) updatedData.email = email;
+    if (balance !== undefined) updatedData.balance = balance;
+    if (totalWinnings !== undefined) updatedData.totalWinnings = totalWinnings;
+    if (groupIds) {
+      if (!Array.isArray(groupIds)) {
+        return res.status(400).json({
+          success: false,
+          message: "groupIds must be an array of strings.",
+        });
+      }
+      updatedData.groupIds = groupIds;
+    }
+
+    const userRef = db.collection("users").doc(id);
+    const doc = await userRef.get();
+
+    if (!doc.exists) {
+      return res.status(404).json({ success: false, message: "User not found" });
+    }
+
+    await userRef.update(updatedData);
+
+    res.status(200).json({
+      success: true,
+      message: "User updated successfully",
+      data: updatedData,
+    });
+  } catch (error) {
+    console.error("Error updating user: ", error.message);
+    res.status(500).json({ success: false, message: "Server Error" });
+  }
+}
+
+// DELETE USER BY ID
+export async function deleteUser(req, res) {
+  try {
+    const { id } = req.params; // User ID from the route
+
+    const userRef = db.collection("users").doc(id);
+    const doc = await userRef.get();
+
+    if (!doc.exists) {
+      return res.status(404).json({ success: false, message: "User not found" });
+    }
+
+    await userRef.delete();
+
+    res.status(200).json({ success: true, message: "User deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting user: ", error.message);
+    res.status(500).json({ success: false, message: "Server Error" });
+  }
+}

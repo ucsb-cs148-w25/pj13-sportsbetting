@@ -1,6 +1,6 @@
 import express from "express";
 import {
-  getGroup,
+  getGroups,
   getGroupById,
   postGroup,
   putGroup,
@@ -10,7 +10,7 @@ import {
 const router = express.Router();
 
 // Group routes
-router.get("/", getGroup); // Get all groups
+router.get("/", getGroups); // Get all groups
 router.get("/:id", getGroupById); // Get a specific group by ID
 router.post("/", postGroup); // Create a new group
 router.put("/:id", putGroup); // Update a group by ID
