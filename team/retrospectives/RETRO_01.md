@@ -22,6 +22,6 @@
 
 ## Experiment/Change
 
-* A brief description of what constitutes your change/experiment
-* A brief assessment of how its results (did it improve things? move the needle at all?)
-* A decision going forward: keep the change, revert to previous procedure, make a new change? 
+* Everyone is assigned a task now on the Kanban board that they are currently working on.
+* This helped us make faster developments since everyone has something to work on.
+* We will keep the change so that we can continue to make good progress.
