@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import MobileMenu from "./MobileMenu";
+import { Link } from "react-router-dom";
 import "./styles/headerStyle.css";
-import {Link} from "react-router-dom";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -17,22 +17,24 @@ const Header = () => {
               >
                 {isMenuOpen ? "X" : "☰"}
               </button>
-              <h1>BetBuddies</h1>
+              <Link to="/" className="logo">
+                <h1>BetBuddies</h1>
+              </Link>
             </div>
             <nav className={`navbar ${!isMenuOpen ? "md-visible" : ""}`}>
-              <a href="/#" className="nav-link">
+              <Link to="/sportsbook" className="logo">
                 Sportsbook
-              </a>
-              <a href="/#" className="nav-link">
+              </Link>
+              <Link to="/live" className="logo">
                 Live
-              </a>
-              <a href="/#" className="nav-link">
+              </Link>
+              <Link to="/leaderboard" className="logo">
                 Leaderboard
-              </a>
-              <Link
-                  to="/signin"
-                  className="sign-in-button"
-              >
+              </Link>
+              <Link to="/group" className="logo">
+                FriendGroup
+              </Link>
+              <Link to="/signin" className="logo">
                 Sign In
               </Link>
             </nav>

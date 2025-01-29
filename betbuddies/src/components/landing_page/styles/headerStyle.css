@@ -1,4 +1,12 @@
 /* Header Styles */
+@import url('https://fonts.googleapis.com/css2?family=Honk&display=swap');
+.logo {
+    font-family: 'Honk', sans-serif;
+    font-size: 2rem; /* Optional; to customize appearance */
+    color: #333; /* Optional; set a color */
+}
+
+
 .header {
     background-color: #2563eb; /* Tailwind's bg-blue-600 */
     color: white;
