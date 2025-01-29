@@ -36,6 +36,8 @@ Tracks betting events between two teams.
   - `endTime`: timestamp
   - `winner`: string (either `team1`, `team2`, or `null` if undecided)
   - `betStatus`: string (`open`, `closed`, `completed`)
+  - `team1_price`: number (odds for team 1)
+  - `team2_price`: number (odds for team 2)
 
 ---
 
