@@ -45,29 +45,41 @@ export async function getBetById(req, res) {
 // CREATE NEW BET
 export async function postBet(req, res) {
   try {
-    const { team1, team2, startTime, endTime, winner, betStatus } = req.body;
-    const id = req.params.id; // Bet ID from the route
+    const { bet_id, team1, team2, startTime, endTime, winner, betStatus, team1_price, team2_price } = req.body;
+    const id = req.params.id || db.collection("bets").doc().id; // Bet ID from the route or generate a new one
 
     // Validate required fields
     if (
+      !bet_id ||
       !team1 ||
       !team2 ||
       !startTime ||
       !endTime ||
       !["team1", "team2", null].includes(winner) ||
-      !["open", "closed", "completed"].includes(betStatus)
+      !["open", "closed", "completed"].includes(betStatus) ||
+      !team1_price ||
+      !team2_price
     ) {
       return res.status(400).json({
         success: false,
         message:
-          "Required fields: team1 (string), team2 (string), startTime (timestamp), endTime (timestamp), winner (team1, team2, or null), betStatus (open, closed, completed).",
+          "Required fields: bet_id (string), team1 (string), team2 (string), startTime (timestamp), endTime (timestamp), winner (team1, team2, or null), betStatus (open, closed, completed), team1_price (double), team2_price (double).",
+      });
+    }
+
+    // Check if bet_id already exists
+    const existingBetSnapshot = await db.collection("bets").where("bet_id", "==", bet_id).get();
+    if (!existingBetSnapshot.empty) {
+      return res.status(409).json({
+        success: false,
+        message: "Bet with this bet_id already exists.",
       });
     }
 
     // Prepare the bet data
-    const newBet = { team1, team2, startTime, endTime, winner, betStatus };
+    const newBet = { bet_id, team1, team2, startTime, endTime, winner, betStatus, team1_price, team2_price };
 
-    // Create or overwrite the bet document
+    // Create the bet document
     const betRef = db.collection("bets").doc(id);
     await betRef.set(newBet);
 
