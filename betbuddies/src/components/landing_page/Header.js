@@ -29,6 +29,12 @@ const Header = () => {
               <a href="/#" className="nav-link">
                 Leaderboard
               </a>
+              <Link 
+                  to="/injuries" 
+                  className="nav-link"
+                  >
+              Injuries
+              </Link>
               <Link
                   to="/signin"
                   className="sign-in-button"
