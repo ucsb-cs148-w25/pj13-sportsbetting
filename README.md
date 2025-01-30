@@ -40,9 +40,11 @@ Our app will only have 2 kinds of user, sports bettors and admins to oversee the
     - Fill in the values in the `.env` file
     - [ODDS_API_KEY](https://ucsb-cs148-w25.slack.com/archives/C088RQFCDLY/p1737585688948609)
     - BACKEND_SERVER_PORT is for the backend server.
-1. `cd betbuddies`
-2. `npm install`
-3. `npm start`
+  
+2. `npm run dev` for back-end server
+3. `cd betbuddies`
+4. `npm install`
+5. `npm start`
 
 # Database set up
 
