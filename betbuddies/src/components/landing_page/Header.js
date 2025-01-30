@@ -34,7 +34,7 @@ const Header = () => {
               <Link to="/group" className="nav-link">
                 FriendGroup
               </Link>
-              <Link to="/signin" className="nav-link">
+              <Link to="/signin" className="sign-in-button">
                 Sign In
               </Link>
             </nav>

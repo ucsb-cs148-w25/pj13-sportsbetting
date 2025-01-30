@@ -102,7 +102,7 @@ const GroupPage = () => {
             <Header isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
             <MobileMenu isMenuOpen={isMenuOpen} />
             <main className="flex flex-col items-center justify-center p-6">
-                <h2 className="logo">Your Groups</h2>
+                <h2 className="nav-link2">FriendGroups</h2>
 
                 {groups.length > 0 ? (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full max-w-4xl">
