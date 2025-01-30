@@ -19,6 +19,8 @@ Ex: call http://localhost:3000/api/users/ to get all users
 
 ## How to run the backend server
 
+1. Follow README in config folder
+
 1. `npm install`
 
-2. `node server.js`
+2. `node server.js` or `npm run dev` in root folder to run server
