@@ -91,15 +91,20 @@ const GroupPage = () => {
         }
     };
 
-    const handleLeaveGroup = async () => {
+    const handleLeaveGroup = async (groupId, userId) => {
         try {
-            const response = await axios.put(`${API_BASE_URL}/${joinGroupId}`,
-                { leaveUserId: hardcodedUser.uid }
-            );
-        } catch(error){
+            const url = `${API_BASE_URL}/${groupId}/users/${userId || hardcodedUser.uid}`;
+            console.log("Leaving group with URL:", url);
+            const response = await axios.delete(url);
+
+            alert(response.data.message);
+            await fetchGroups(); // Refresh the list after leaving
+        } catch (error) {
             console.error("Error leaving group:", error);
+            alert(error.response?.data?.message || "Failed to leave group.");
         }
-    }
+    };
+
 
     return (
         <div className="min-h-screen flex flex-col bg-gray-100">
@@ -112,7 +117,8 @@ const GroupPage = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full max-w-4xl">
                         {groups.map((group) => (
                             <div key={group.id} className="bg-white shadow-md rounded-lg p-4">
-                                <button onClick={handleLeaveGroup} className="text-red-500">Leave Group</button>
+                                {/* TODO: NEED TO PASS IN USERID IN HANDLELEAVEGROUP() */}
+                                <button onClick={() => handleLeaveGroup(group.id, )} className="text-red-500">Leave Group</button>
                                 <h3 className="text-lg font-semibold text-gray-800">{group.groupName}</h3>
                                 <p className="text-gray-600">Group ID: {group.id}</p>
                             </div>

@@ -85,3 +85,18 @@ export async function deleteGroup(req, res) {
     res.status(500).json({ success: false, message: "Server Error" });
   }
 }
+
+// Delete a user from a group
+export async function deleteUserFromGroup(req, res) {
+  try {
+    const { groupId, userId } = req.params;
+    const success = await groupService.deleteUserFromGroup(groupId, userId);
+    if (!success) {
+      return res.status(404).json({ success: false, message: "Group or user not found" });
+    }
+    res.status(200).json({ success: true, message: "User deleted from group successfully" });
+  } catch (error) {
+    console.error("Error deleting user from group: ", error.message);
+    res.status(500).json({ success: false, message: "Server Error" });
+  }
+}
