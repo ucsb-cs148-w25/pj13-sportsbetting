@@ -17,24 +17,24 @@ const Header = () => {
               >
                 {isMenuOpen ? "X" : "☰"}
               </button>
-              <Link to="/" className="logo">
+              <Link to="/" className="nav-link">
                 <h1>BetBuddies</h1>
               </Link>
             </div>
             <nav className={`navbar ${!isMenuOpen ? "md-visible" : ""}`}>
-              <Link to="/sportsbook" className="logo">
+              <Link to="/sportsbook" className="nav-link">
                 Sportsbook
               </Link>
-              <Link to="/live" className="logo">
+              <Link to="/live" className="nav-link">
                 Live
               </Link>
-              <Link to="/leaderboard" className="logo">
+              <Link to="/leaderboard" className="nav-link">
                 Leaderboard
               </Link>
-              <Link to="/group" className="logo">
+              <Link to="/group" className="nav-link">
                 FriendGroup
               </Link>
-              <Link to="/signin" className="logo">
+              <Link to="/signin" className="nav-link">
                 Sign In
               </Link>
             </nav>

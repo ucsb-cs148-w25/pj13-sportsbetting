@@ -87,6 +87,16 @@ const GroupPage = () => {
         }
     };
 
+    const handleLeaveGroup = async () => {
+        try {
+            const response = await axios.put(`${API_BASE_URL}/${joinGroupId}`,
+                { leaveUserId: hardcodedUser.uid }
+            );
+        } catch(error){
+            console.error("Error leaving group:", error);
+        }
+    }
+
     return (
         <div className="min-h-screen flex flex-col bg-gray-100">
             <Header isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
@@ -98,7 +108,8 @@ const GroupPage = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full max-w-4xl">
                         {groups.map((group) => (
                             <div key={group.id} className="bg-white shadow-md rounded-lg p-4">
-                                <h3 className="text-lg font-semibold">{group.groupName}</h3>
+                                <button onClick={handleLeaveGroup} className="text-red-500">Leave Group</button>
+                                <h3 className="text-lg font-semibold text-gray-800">{group.groupName}</h3>
                                 <p className="text-gray-600">Group ID: {group.id}</p>
                             </div>
                         ))}
