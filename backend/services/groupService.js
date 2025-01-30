@@ -50,3 +50,16 @@ export async function deleteGroup(id) {
     await groupRef.delete();
     return true;
 }
+
+// delete a user from a group
+export async function deleteUserFromGroup(groupId, userId) {
+    const groupRef = groupsRef.doc(groupId);
+    const doc = await groupRef.get();
+    if (!doc.exists) return null;
+
+    const updatedData = doc.data();
+    updatedData.memberIds = updatedData.memberIds.filter((id) => id !== userId);
+
+    await groupRef.update({ memberIds: updatedData.memberIds });
+    return { id: groupId, ...updatedData };
+}
