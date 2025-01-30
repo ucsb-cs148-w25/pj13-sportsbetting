@@ -4,7 +4,11 @@ import Header from "../landing_page/Header";
 import MobileMenu from "../landing_page/MobileMenu";
 import "../landing_page/styles/headerStyle.css";
 
-const API_BASE_URL = "http://localhost:5000/api/groups"; // Update if needed
+
+
+const BACKEND_SERVER_PORT = process.env.REACT_APP_BACKEND_SERVER_PORT;
+const BACKEND_SERVER_HOST = process.env.REACT_APP_BACKEND_SERVER_HOST;
+const API_BASE_URL = `${BACKEND_SERVER_HOST}:${BACKEND_SERVER_PORT}/api/groups`; // Update if needed
 
 // Hardcoded user data for testing
 const hardcodedUser = {
