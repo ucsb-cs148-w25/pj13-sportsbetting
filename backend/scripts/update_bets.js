@@ -80,6 +80,8 @@ async function script() {
     for (const pair of new_bet_winner_pairs) {
         total_updated += await update_winner(pair.bet_id, pair.winner);
     }
+    console.log("Number of fetched bets: ", new_bet_winner_pairs.length);
+    console.log(new_bet_winner_pairs);
     console.log('Updated ', total_updated, ' bets');
 }
 
