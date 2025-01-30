@@ -7,7 +7,7 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 // Load environment variables from the .env file
-dotenv.config({ path: path.resolve(__dirname, '../../.env') });
+dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
 const ODDS_API_URL_NBA = 'https://api.the-odds-api.com/v4/sports/basketball_nba/scores/'
 const ODDS_API_KEY = process.env.ODDS_API_KEY;
