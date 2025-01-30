@@ -133,12 +133,17 @@ export async function putBet(req, res) {
       updatedData.betStatus = betStatus;
     }
 
-    const betRef = db.collection("bets").doc(id);
-    const doc = await betRef.get();
+     // Query the bets collection for the document with the given bet_id
+     const betsRef = db.collection("bets").where("bet_id", "==", id);
+     const snapshot = await betsRef.get();
 
-    if (!doc.exists) {
-      return res.status(404).json({ success: false, message: "Bet not found" });
-    }
+     if (snapshot.empty) {
+       return res.status(404).json({ success: false, message: "Bet not found" });
+     }
+
+     // Assuming bet_id is unique, we take the first document
+     const doc = snapshot.docs[0];
+     const betRef = doc.ref;
 
     await betRef.update(updatedData);
 
