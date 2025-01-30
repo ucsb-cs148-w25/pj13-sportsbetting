@@ -28,12 +28,17 @@ export async function getBets(req, res) {
 export async function getBetById(req, res) {
   try {
     const { id } = req.params; // Bet ID from the route
-    const betRef = db.collection("bets").doc(id);
-    const doc = await betRef.get();
 
-    if (!doc.exists) {
+    // Query the bets collection for the document with the given bet_id
+    const betsRef = db.collection("bets").where("bet_id", "==", id);
+    const snapshot = await betsRef.get();
+
+    if (snapshot.empty) {
       return res.status(404).json({ success: false, message: "Bet not found" });
     }
+
+    // Assuming bet_id is unique, we take the first document
+    const doc = snapshot.docs[0];
 
     res.status(200).json({ success: true, data: { id: doc.id, ...doc.data() } });
   } catch (error) {
@@ -163,12 +168,17 @@ export async function deleteBet(req, res) {
   try {
     const { id } = req.params; // Bet ID from the route
 
-    const betRef = db.collection("bets").doc(id);
-    const doc = await betRef.get();
+    // Query the bets collection for the document with the given bet_id
+    const betsRef = db.collection("bets").where("bet_id", "==", id);
+    const snapshot = await betsRef.get();
 
-    if (!doc.exists) {
+    if (snapshot.empty) {
       return res.status(404).json({ success: false, message: "Bet not found" });
     }
+
+    // Assuming bet_id is unique, we take the first document
+    const doc = snapshot.docs[0];
+    const betRef = doc.ref;
 
     await betRef.delete();
 
