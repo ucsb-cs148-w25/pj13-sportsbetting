@@ -121,15 +121,8 @@ export async function putBet(req, res) {
     if (team2) updatedData.team2 = team2;
     if (startTime) updatedData.startTime = startTime;
     if (endTime) updatedData.endTime = endTime;
-    if (winner !== undefined) {
-      if (!["team1", "team2", null].includes(winner)) {
-        return res.status(400).json({
-          success: false,
-          message: "Winner must be team1, team2, or null.",
-        });
-      }
-      updatedData.winner = winner;
-    }
+    if (winner) updatedData.winner = winner;
+
     if (betStatus) {
       if (!["open", "closed", "completed"].includes(betStatus)) {
         return res.status(400).json({

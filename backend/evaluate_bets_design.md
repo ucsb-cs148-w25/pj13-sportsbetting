@@ -18,6 +18,8 @@ Need a script to update our bet results in firebase. Bets currently are set to n
 
 - CAN ONLY GET 3 DAYS OF DATA
 
+- team1 is away team, team2 is home team
+
 <details>
     <summary>Click to expand</summary>
 
