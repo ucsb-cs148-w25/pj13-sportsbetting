@@ -11,6 +11,8 @@ User: /users/
 - Update user: PUT /users/:id
 - Delete user: DELETE /users/:id
 
+Note: bets urls use bet_id instead of id
+
 
 Ex: call http://localhost:3000/api/users/ to get all users
 
