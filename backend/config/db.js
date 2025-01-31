@@ -16,8 +16,11 @@ export async function connectDB() {
         try {
             // Initialize Firestore
             admin.initializeApp({
+                // production path:
                 credential: admin.credential.cert('/etc/secrets/serviceAccountKey.json'),
-                // databaseURL: process.env.FIREBASE_DATABASE_URL, // Optional for Firestore
+
+                // local dev path:
+                // credential: admin.credential.cert('backend/config/serviceAccountKey.json')
             });
 
             db = admin.firestore(); // Create a Firestore instance
