@@ -11,3 +11,11 @@ Jonathon and Ryan have experience working on projects with React, Node.js, and F
 * Colin commits to watching videos and reading the documentation on React. 
 * Jonathon commits to reading the Firebase documentation to learn how to use the database. 
 * Bryce commits to watching a Youtube tutorial video on Node.js.
+
+# Help Channel
+
+Jonathan posted on [**js.help**](https://ucsb-cs148-w25.slack.com/archives/C088GMZRF0A/p1738016325909259)
+Daniel posted on [**js.help**](https://ucsb-cs148-w25.slack.com/archives/C088GMZRF0A/p1738017463189379?thread_ts=1738016103.777059&cid=C088GMZRF0A)
+Bryce posted on [**js.help**](https://ucsb-cs148-w25.slack.com/archives/C088GMZRF0A/p1738017587112119?thread_ts=1738016369.244889&cid=C088GMZRF0A)
+
+

@@ -1,22 +1,9 @@
-import { connectDB } from "../config/db.js";
-
-// Initialize Firestore instance
-const db = await connectDB();
+import * as groupService from "../services/groupService.js";
 
 // GET ALL GROUPS
 export async function getGroups(req, res) {
   try {
-    const groupsRef = db.collection("groups");
-    const snapshot = await groupsRef.get();
-
-    if (snapshot.empty) {
-      return res.status(200).json({ success: true, data: [] });
-    }
-
-    const groups = snapshot.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data(),
-    }));
+    const groups = await groupService.getAllGroups();
     res.status(200).json({ success: true, data: groups });
   } catch (error) {
     console.error("Error getting groups: ", error.message);
@@ -27,15 +14,11 @@ export async function getGroups(req, res) {
 // GET GROUP BY ID
 export async function getGroupById(req, res) {
   try {
-    const { id } = req.params; // Group ID from the route
-    const groupRef = db.collection("groups").doc(id);
-    const doc = await groupRef.get();
-
-    if (!doc.exists) {
+    const group = await groupService.getGroupById(req.params.id);
+    if (!group) {
       return res.status(404).json({ success: false, message: "Group not found" });
     }
-
-    res.status(200).json({ success: true, data: { id: doc.id, ...doc.data() } });
+    res.status(200).json({ success: true, data: group });
   } catch (error) {
     console.error("Error getting group by ID: ", error.message);
     res.status(500).json({ success: false, message: "Server Error" });
@@ -46,131 +29,74 @@ export async function getGroupById(req, res) {
 export async function postGroup(req, res) {
   try {
     const { groupName, creatorId, memberIds, leaderboard } = req.body;
-    // const id = req.params.id; // Group ID from the route
-
-    // Validate required fields
-    if (
-      !groupName ||
-      !creatorId ||
-      !Array.isArray(memberIds) ||
-      !Array.isArray(leaderboard) ||
-      !leaderboard.every(
-        (entry) =>
-          typeof entry.userId === "string" && typeof entry.groupWinnings === "number"
-      )
-    ) {
-      return res.status(400).json({
-        success: false,
-        message:
-          "Required fields: groupName (string), creatorId (string), memberIds (array of strings), leaderboard (array of objects with userId (string) and groupWinnings (number))",
-      });
+    if (!groupName || !creatorId || !Array.isArray(memberIds) || !Array.isArray(leaderboard)) {
+      return res.status(400).json({ success: false, message: "Invalid input" });
     }
 
-    // Prepare the group data
-    const newGroup = { groupName, creatorId, memberIds, leaderboard };
-
-    // Create or overwrite the group document
-    const groupsRef = db.collection("groups");
-    const groupDoc = await groupsRef.add(newGroup); // Automatically generates an ID
-
-    res.status(201).json({
-      success: true,
-      id: groupDoc.id,
-      data: newGroup,
-    });
+    const newGroup = await groupService.createGroup({ groupName, creatorId, memberIds, leaderboard });
+    res.status(201).json({ success: true, id: newGroup.id, data: newGroup });
   } catch (error) {
     console.error("Error creating group: ", error.message);
     res.status(500).json({ success: false, message: "Server Error" });
   }
 }
 
-// UPDATE GROUP BY ID
+// UPDATE GROUP
 export async function putGroup(req, res) {
   try {
-    const { id } = req.params; // Group ID from the route
-    const { groupName, creatorId, memberIds, leaderboard } = req.body;
+    const { id } = req.params;
+    const { groupName, creatorId, memberIds, leaderboard, joinUserId } = req.body;
 
-    // Validate at least one field exists for update
-    if (
-      groupName === undefined &&
-      creatorId === undefined &&
-      memberIds === undefined &&
-      leaderboard === undefined
-    ) {
-      return res.status(400).json({
-        success: false,
-        message: "At least one field must be provided for update.",
-      });
-    }
+    // Build update object
+    const updateFields = {};
+    if (groupName) updateFields.groupName = groupName;
+    if (creatorId) updateFields.creatorId = creatorId;
+    if (memberIds) updateFields.memberIds = memberIds;
+    if (leaderboard) updateFields.leaderboard = leaderboard;
 
-    // Prepare the fields for update
-    const updatedData = {};
-    if (groupName) updatedData.groupName = groupName;
-    if (creatorId) updatedData.creatorId = creatorId;
-    if (memberIds) {
-      if (!Array.isArray(memberIds)) {
-        return res.status(400).json({
-          success: false,
-          message: "memberIds must be an array of strings.",
-        });
-      }
-      updatedData.memberIds = memberIds;
-    }
-    if (leaderboard) {
-      if (
-        !Array.isArray(leaderboard) ||
-        !leaderboard.every(
-          (entry) =>
-            typeof entry.userId === "string" &&
-            typeof entry.groupWinnings === "number"
-        )
-      ) {
-        return res.status(400).json({
-          success: false,
-          message:
-            "leaderboard must be an array of objects with userId (string) and groupWinnings (number).",
-        });
-      }
-      updatedData.leaderboard = leaderboard;
-    }
+    const updatedGroup = await groupService.updateGroup(id, updateFields, joinUserId);
 
-    const groupRef = db.collection("groups").doc(id);
-    const doc = await groupRef.get();
-
-    if (!doc.exists) {
+    if (!updatedGroup) {
       return res.status(404).json({ success: false, message: "Group not found" });
     }
 
-    await groupRef.update(updatedData);
-
     res.status(200).json({
       success: true,
-      message: "Group updated successfully",
-      data: updatedData,
+      message: joinUserId ? "User joined the group successfully" : "Group updated successfully",
+      data: updatedGroup
     });
+
   } catch (error) {
     console.error("Error updating group: ", error.message);
+    res.status(400).json({ success: false, message: error.message || "Server Error" });
+  }
+}
+
+// DELETE GROUP
+export async function deleteGroup(req, res) {
+  try {
+    const success = await groupService.deleteGroup(req.params.id);
+    if (!success) {
+      return res.status(404).json({ success: false, message: "Group not found" });
+    }
+    res.status(200).json({ success: true, message: "Group deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting group: ", error.message);
     res.status(500).json({ success: false, message: "Server Error" });
   }
 }
 
-// DELETE GROUP BY ID
-export async function deleteGroup(req, res) {
+// Delete a user from a group
+export async function deleteUserFromGroup(req, res) {
   try {
-    const { id } = req.params; // Group ID from the route
-
-    const groupRef = db.collection("groups").doc(id);
-    const doc = await groupRef.get();
-
-    if (!doc.exists) {
-      return res.status(404).json({ success: false, message: "Group not found" });
+    const { groupId, userId } = req.params;
+    const success = await groupService.deleteUserFromGroup(groupId, userId);
+    if (!success) {
+      return res.status(404).json({ success: false, message: "Group or user not found" });
     }
-
-    await groupRef.delete();
-
-    res.status(200).json({ success: true, message: "Group deleted successfully" });
+    res.status(200).json({ success: true, message: "User deleted from group successfully" });
   } catch (error) {
-    console.error("Error deleting group: ", error.message);
+    console.error("Error deleting user from group: ", error.message);
     res.status(500).json({ success: false, message: "Server Error" });
   }
 }

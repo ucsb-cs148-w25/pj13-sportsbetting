@@ -1,6 +1,6 @@
 import express from "express";
 import {
-  getUserBet,
+  getUserBets,
   getUserBetById,
   postUserBet,
   putUserBet,
@@ -10,7 +10,7 @@ import {
 const router = express.Router();
 
 // User Bet routes
-router.get("/", getUserBet); // Get all user bets
+router.get("/", getUserBets); // Get all user bets
 router.get("/:id", getUserBetById); // Get a specific user bet by ID
 router.post("/", postUserBet); // Create a new user bet
 router.put("/:id", putUserBet); // Update a user bet by ID
