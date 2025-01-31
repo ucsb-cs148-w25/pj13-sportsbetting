@@ -6,7 +6,7 @@ import FeaturedBets from './FeaturedBets';
 import CallToAction from './CallToAction';
 import Footer from './Footer';
 
-function LandingPage() {
+const LandingPage = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
   return (

@@ -1,31 +1,26 @@
 import express from 'express';
 import dotenv from 'dotenv';
+
+dotenv.config({ path: './backend/.env' }); // Explicitly load from backend directory
+
 import Routes from './routes/routes.js';
 import { connectDB } from './config/db.js';
 import cors from 'cors';
-import { fileURLToPath } from 'url';
-import path from 'path';
-
-dotenv.config();
-// Get the directory name of the current module
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-// Load environment variables from the .env file
-dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
 const app = express();
+const PORT = process.env.PORT || 5000;
+const HOST = process.env.BACKEND_SERVER_HOST || "http://localhost"; // Default if undefined
 
-app.use( cors({
-    origin: "http://localhost:5173", // Frontend origin
-    methods: ["GET", "POST", "PUT", "DELETE"], // HTTP methods to allow
-  }));
+app.use(cors({
+    origin: ["http://localhost:5173", "http://localhost:3001","http://localhost:3000","https://pj13-sportsbetting-1-frontend.onrender.com"], // Allow frontend URLs
+    methods: ["GET", "POST", "PUT", "DELETE"],
+}));
 
 app.use(express.json());
 
 app.use("/api", Routes);
 
-app.listen(process.env.BACKEND_SERVER_PORT, () => {
+app.listen(PORT, () => {
     connectDB();
-    console.log(`Server is running on http://localhost:${process.env.BACKEND_SERVER_PORT}`);
+    console.log(`🚀 Server is running on ${HOST}:${PORT}`);
 });

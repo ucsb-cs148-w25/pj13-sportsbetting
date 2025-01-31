@@ -10,3 +10,7 @@
 - Run `node add_new_bets.js` to add new bets to the database.
 
 Should be run (everyday?) to update the database with new bets.
+
+### `evaluate_bets.js`
+
+- Updates the bets in firebase with the correct winner.
