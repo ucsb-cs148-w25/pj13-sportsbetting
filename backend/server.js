@@ -8,7 +8,7 @@ import { connectDB } from './config/db.js';
 import cors from 'cors';
 
 const app = express();
-const PORT = process.env.BACKEND_SERVER_PORT || 5000;
+const PORT = process.env.PORT || 5000;
 const HOST = process.env.BACKEND_SERVER_HOST || "http://localhost"; // Default if undefined
 
 app.use(cors({
