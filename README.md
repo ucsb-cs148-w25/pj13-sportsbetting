@@ -91,11 +91,11 @@ Our app will only have 2 kinds of user, sports bettors and admins to oversee the
   - Copy env templates:
     - `cp .env-template backend/.env`
     - `cp .env-frontend-template betbuddies/.env`
-    - `cd backend/config`
-    - change line 19 to `credential: admin.credential.cert('/etc/secrets/serviceAccountKey.json')`(for local dev)
+    - `cd backend/config/db.js`
+    - comment out line 19 to `credential: admin.credential.cert('/backend/config/serviceAccountKey.json')`(for local dev)
     - Fill in the values in the `.env` file
     - [ODDS_API_KEY](https://ucsb-cs148-w25.slack.com/archives/C088RQFCDLY/p1737585688948609)
-    - BACKEND_SERVER_PORT is for the backend server.
+    - PORT is for the backend server.
     - For the frontend .env file, make sure that variable names are prefixed with `REACT_APP_` for example `REACT_APP_BACKEND_SERVER_PORT=5001`
 
 - **Follow README in backend folder to set up Firebase**

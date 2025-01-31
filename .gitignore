@@ -29,3 +29,4 @@ desktop.ini
 .idea
 backend/config/serviceAccountKey.json
 backend/config/*.json
+backend/config/

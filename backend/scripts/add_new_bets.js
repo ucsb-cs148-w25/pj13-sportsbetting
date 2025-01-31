@@ -18,7 +18,7 @@ const odds_api_bet_query_params = new URLSearchParams({
     markets: 'h2h',
 });
 
-const BACKEND_SERVER_PORT = process.env.BACKEND_SERVER_PORT;
+const BACKEND_SERVER_PORT = process.env.PORT;
 const BACKEND_SERVER_HOST = process.env.BACKEND_SERVER_HOST;
 const BACKEND_SERVER_URL = `${BACKEND_SERVER_HOST}:${BACKEND_SERVER_PORT}/api/bets`;
 
