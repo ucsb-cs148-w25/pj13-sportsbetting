@@ -1,5 +1,4 @@
-/*SignIn.css*/
-/* General Styling */
+/* General Page Styling */
 body {
   margin: 0;
   font-family: 'Arial', sans-serif;
@@ -8,65 +7,108 @@ body {
   text-align: center;
 }
 
-/* Welcome Container */
-.welcome-container {
+/* Sign-In Container */
+.signin-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100vh;
+  padding: 20px;
 }
 
 /* Title Styling */
-.welcome-title {
+.signin-title {
   font-size: 3rem;
   font-weight: bold;
   color: #4caf50;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
-/* Description Styling */
-.welcome-description {
+/* Description */
+.signin-description {
   font-size: 1.2rem;
-  margin: 20px 0;
+  margin: 10px 0 25px;
   max-width: 600px;
   line-height: 1.5;
 }
-/* Input Fields (Username and Password) */
-.login-form input {
-  width: 100%; /* Matches the button's width */
-  padding: 10px;
-  margin: 10px 0;
+
+/* Sign-In Form */
+.signin-form {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 25px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Error Message */
+.error-message {
+  color: #ff4d4d;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+/* Input Fields */
+.signin-form input {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
   border: none;
   border-radius: 5px;
   font-size: 1rem;
-  box-sizing: border-box; /* Ensures padding doesn't affect width */
-  height: 50px; /* Ensures the height matches the button */
+  box-sizing: border-box;
 }
 
-.login-form input:focus {
+.signin-form input:focus {
   outline: 2px solid #4caf50;
 }
 
-/* Log In Button */
-.login-button {
-  width: 100%; /* Same width as input fields */
-  padding: 10px;
-  height: 50px; /* Matches input height */
+/* Sign-In Button */
+.signin-button {
+  width: 100%;
+  padding: 12px;
   background-color: #4caf50;
   color: white;
   border: none;
   font-size: 1rem;
   border-radius: 5px;
   cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
 }
 
-.login-button:hover {
+.signin-button:hover {
   background-color: #45a049;
 }
 
+/* Google Sign-In Button */
+.google-signin-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #4285f4;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.google-signin-button:hover {
+  background-color: #357ae8;
+}
+
+/* Create Account Button */
+.signup-prompt {
+  margin-top: 15px;
+  font-size: 0.9rem;
+}
+
 .create-account-button {
-  background-color: transparent;
+  background: none;
   color: #4caf50;
   border: none;
   font-size: 1rem;
