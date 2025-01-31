@@ -1,0 +1,810 @@
+[
+    {
+        "name": "Daeqwon Plowden",
+        "position": "G",
+        "team": "Atlanta Hawks",
+        "status": "Feb 6",
+        "details": "Day-To-Day",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Clint Capela",
+        "position": "C",
+        "team": "Atlanta Hawks",
+        "status": "Feb 5",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Bogdan Bogdanovic",
+        "position": "SG",
+        "team": "Atlanta Hawks",
+        "status": "Feb 1",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Jalen Johnson",
+        "position": "SF",
+        "team": "Atlanta Hawks",
+        "status": "Oct 1",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Cody Zeller",
+        "position": "C",
+        "team": "Atlanta Hawks",
+        "status": "Feb 7",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Kobe Bufkin",
+        "position": "G",
+        "team": "Atlanta Hawks",
+        "status": "Oct 1",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Sam Hauser",
+        "position": "SF",
+        "team": "Boston Celtics",
+        "status": "Jan 31",
+        "details": "Day-To-Day",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Al Horford",
+        "position": "C",
+        "team": "Boston Celtics",
+        "status": "Jan 31",
+        "details": "Day-To-Day",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Day'Ron Sharpe",
+        "position": "C",
+        "team": "Brooklyn Nets",
+        "status": "Feb 1",
+        "details": "Day-To-Day",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Cameron Johnson",
+        "position": "SF",
+        "team": "Brooklyn Nets",
+        "status": "Feb 1",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Noah Clowney",
+        "position": "F",
+        "team": "Brooklyn Nets",
+        "status": "Feb 20",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Cam Thomas",
+        "position": "SG",
+        "team": "Brooklyn Nets",
+        "status": "Feb 20",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Bojan Bogdanovic",
+        "position": "SF",
+        "team": "Brooklyn Nets",
+        "status": "Feb 1",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Maxwell Lewis",
+        "position": "F",
+        "team": "Brooklyn Nets",
+        "status": "Feb 20",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Mark Williams",
+        "position": "C",
+        "team": "Charlotte Hornets",
+        "status": "Feb 1",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Torrey Craig",
+        "position": "SF",
+        "team": "Chicago Bulls",
+        "status": "Feb 4",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Talen Horton-Tucker",
+        "position": "SF",
+        "team": "Chicago Bulls",
+        "status": "Jan 31",
+        "details": "Day-To-Day",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Zach LaVine",
+        "position": "SG",
+        "team": "Chicago Bulls",
+        "status": "Feb 4",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Caris LeVert",
+        "position": "SG",
+        "team": "Cleveland Cavaliers",
+        "status": "Feb 2",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Isaac Okoro",
+        "position": "SF",
+        "team": "Cleveland Cavaliers",
+        "status": "Feb 2",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Dean Wade",
+        "position": "PF",
+        "team": "Cleveland Cavaliers",
+        "status": "Feb 20",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Luke Travers",
+        "position": "G",
+        "team": "Cleveland Cavaliers",
+        "status": "Feb 4",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Maxi Kleber",
+        "position": "PF",
+        "team": "Dallas Mavericks",
+        "status": "Apr 2",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Dwight Powell",
+        "position": "C",
+        "team": "Dallas Mavericks",
+        "status": "Feb 2",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Dante Exum",
+        "position": "G",
+        "team": "Dallas Mavericks",
+        "status": "Jan 31",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Luka Doncic",
+        "position": "PG",
+        "team": "Dallas Mavericks",
+        "status": "Feb 4",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Dereck Lively II",
+        "position": "C",
+        "team": "Dallas Mavericks",
+        "status": "Apr 2",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Vlatko Cancar",
+        "position": "SF",
+        "team": "Denver Nuggets",
+        "status": "Feb 20",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "DaRon Holmes II",
+        "position": "C",
+        "team": "Denver Nuggets",
+        "status": "Jul 1",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Tolu Smith",
+        "position": "F",
+        "team": "Detroit Pistons",
+        "status": "Feb 2",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Jaden Ivey",
+        "position": "PG",
+        "team": "Detroit Pistons",
+        "status": "Mar 1",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Draymond Green",
+        "position": "PF",
+        "team": "Golden State Warriors",
+        "status": "Feb 3",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Jonathan Kuminga",
+        "position": "PF",
+        "team": "Golden State Warriors",
+        "status": "Feb 21",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Alperen Sengun",
+        "position": "C",
+        "team": "Houston Rockets",
+        "status": "Feb 1",
+        "details": "Day-To-Day",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Jabari Smith Jr.",
+        "position": "PF",
+        "team": "Houston Rockets",
+        "status": "Feb 21",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Andrew Nembhard",
+        "position": "PG",
+        "team": "Indiana Pacers",
+        "status": "Feb 1",
+        "details": "Day-To-Day",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Bennedict Mathurin",
+        "position": "SG",
+        "team": "Indiana Pacers",
+        "status": "Feb 1",
+        "details": "Day-To-Day",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Isaiah Jackson",
+        "position": "SF",
+        "team": "Indiana Pacers",
+        "status": "Oct 1",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "James Wiseman",
+        "position": "C",
+        "team": "Indiana Pacers",
+        "status": "Oct 1",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Nicolas Batum",
+        "position": "PF",
+        "team": "LA Clippers",
+        "status": "Jan 31",
+        "details": "Day-To-Day",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Kris Dunn",
+        "position": "G",
+        "team": "LA Clippers",
+        "status": "Feb 2",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Cam Christie",
+        "position": "G",
+        "team": "LA Clippers",
+        "status": "Feb 2",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "P.J. Tucker",
+        "position": "PF",
+        "team": "LA Clippers",
+        "status": "Feb 8",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Dorian Finney-Smith",
+        "position": "PF",
+        "team": "Los Angeles Lakers",
+        "status": "Feb 1",
+        "details": "Day-To-Day",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Gabe Vincent",
+        "position": "PG",
+        "team": "Los Angeles Lakers",
+        "status": "Feb 1",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Jalen Hood-Schifino",
+        "position": "G",
+        "team": "Los Angeles Lakers",
+        "status": "Feb 1",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Anthony Davis",
+        "position": "PF",
+        "team": "Los Angeles Lakers",
+        "status": "Feb 6",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Christian Wood",
+        "position": "F",
+        "team": "Los Angeles Lakers",
+        "status": "Feb 6",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Ja Morant",
+        "position": "PG",
+        "team": "Memphis Grizzlies",
+        "status": "Feb 2",
+        "details": "Day-To-Day",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Vince Williams Jr.",
+        "position": "G",
+        "team": "Memphis Grizzlies",
+        "status": "Feb 8",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Marcus Smart",
+        "position": "PG",
+        "team": "Memphis Grizzlies",
+        "status": "Feb 8",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Cam Spencer",
+        "position": "G",
+        "team": "Memphis Grizzlies",
+        "status": "Feb 8",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Josh Richardson",
+        "position": "SG",
+        "team": "Miami Heat",
+        "status": "Feb 1",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Dru Smith",
+        "position": "G",
+        "team": "Miami Heat",
+        "status": "Oct 1",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Damian Lillard",
+        "position": "PG",
+        "team": "Milwaukee Bucks",
+        "status": "Jan 31",
+        "details": "Day-To-Day",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Liam Robbins",
+        "position": "C",
+        "team": "Milwaukee Bucks",
+        "status": "Feb 2",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Khris Middleton",
+        "position": "SF",
+        "team": "Milwaukee Bucks",
+        "status": "Jan 31",
+        "details": "Day-To-Day",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Bobby Portis",
+        "position": "F",
+        "team": "Milwaukee Bucks",
+        "status": "Feb 2",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "AJ Green",
+        "position": "G",
+        "team": "Milwaukee Bucks",
+        "status": "Jan 31",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Giannis Antetokounmpo",
+        "position": "PF",
+        "team": "Milwaukee Bucks",
+        "status": "Jan 31",
+        "details": "Day-To-Day",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Mike Conley",
+        "position": "PG",
+        "team": "Minnesota Timberwolves",
+        "status": "Feb 1",
+        "details": "Day-To-Day",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Julius Randle",
+        "position": "PF",
+        "team": "Minnesota Timberwolves",
+        "status": "Feb 1",
+        "details": "Day-To-Day",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Jesse Edwards",
+        "position": "C",
+        "team": "Minnesota Timberwolves",
+        "status": "Feb 3",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Donte DiVincenzo",
+        "position": "SG",
+        "team": "Minnesota Timberwolves",
+        "status": "Feb 21",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Terrence Shannon Jr.",
+        "position": "G",
+        "team": "Minnesota Timberwolves",
+        "status": "Feb 1",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Jordan Hawkins",
+        "position": "G",
+        "team": "New Orleans Pelicans",
+        "status": "Feb 3",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Daniel Theis",
+        "position": "C",
+        "team": "New Orleans Pelicans",
+        "status": "Feb 3",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Zion Williamson",
+        "position": "PF",
+        "team": "New Orleans Pelicans",
+        "status": "Jan 31",
+        "details": "Day-To-Day",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Brandon Ingram",
+        "position": "SF",
+        "team": "New Orleans Pelicans",
+        "status": "Feb 3",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Herbert Jones",
+        "position": "SF",
+        "team": "New Orleans Pelicans",
+        "status": "Apr 2",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Pacome Dadiet",
+        "position": "G",
+        "team": "New York Knicks",
+        "status": "Feb 1",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Mitchell Robinson",
+        "position": "C",
+        "team": "New York Knicks",
+        "status": "Feb 8",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Kevin McCullar Jr.",
+        "position": "F",
+        "team": "New York Knicks",
+        "status": "Feb 3",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Alex Caruso",
+        "position": "SG",
+        "team": "Oklahoma City Thunder",
+        "status": "Feb 1",
+        "details": "Day-To-Day",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Chet Holmgren",
+        "position": "PF",
+        "team": "Oklahoma City Thunder",
+        "status": "Feb 21",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Nikola Topic",
+        "position": "G",
+        "team": "Oklahoma City Thunder",
+        "status": "Jul 1",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Ajay Mitchell",
+        "position": "G",
+        "team": "Oklahoma City Thunder",
+        "status": "Apr 2",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Jalen Suggs",
+        "position": "SG",
+        "team": "Orlando Magic",
+        "status": "Feb 1",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Moritz Wagner",
+        "position": "C",
+        "team": "Orlando Magic",
+        "status": "Oct 1",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "KJ Martin",
+        "position": "F",
+        "team": "Philadelphia 76ers",
+        "status": "Feb 2",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Caleb Martin",
+        "position": "SF",
+        "team": "Philadelphia 76ers",
+        "status": "Feb 2",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Andre Drummond",
+        "position": "C",
+        "team": "Philadelphia 76ers",
+        "status": "Feb 2",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Paul George",
+        "position": "F",
+        "team": "Philadelphia 76ers",
+        "status": "Feb 2",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Joel Embiid",
+        "position": "C",
+        "team": "Philadelphia 76ers",
+        "status": "Feb 2",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Jared McCain",
+        "position": "G",
+        "team": "Philadelphia 76ers",
+        "status": "Oct 1",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Jerami Grant",
+        "position": "SF",
+        "team": "Portland Trail Blazers",
+        "status": "Feb 1",
+        "details": "Day-To-Day",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Matisse Thybulle",
+        "position": "SG",
+        "team": "Portland Trail Blazers",
+        "status": "Feb 1",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Doug McDermott",
+        "position": "SF",
+        "team": "Sacramento Kings",
+        "status": "Feb 1",
+        "details": "Day-To-Day",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Sidy Cissoko",
+        "position": "G",
+        "team": "San Antonio Spurs",
+        "status": "Jan 31",
+        "details": "Day-To-Day",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Riley Minix",
+        "position": "F",
+        "team": "San Antonio Spurs",
+        "status": "Oct 1",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Jamal Shead",
+        "position": "G",
+        "team": "Toronto Raptors",
+        "status": "Jan 31",
+        "details": "Day-To-Day",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Gradey Dick",
+        "position": "G",
+        "team": "Toronto Raptors",
+        "status": "Jan 31",
+        "details": "Day-To-Day",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Kelly Olynyk",
+        "position": "PF",
+        "team": "Toronto Raptors",
+        "status": "Jan 31",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Immanuel Quickley",
+        "position": "SG",
+        "team": "Toronto Raptors",
+        "status": "Jan 31",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Johnny Juzang",
+        "position": "G",
+        "team": "Utah Jazz",
+        "status": "Feb 1",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Cody Williams",
+        "position": "F",
+        "team": "Utah Jazz",
+        "status": "Feb 7",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Taylor Hendricks",
+        "position": "F",
+        "team": "Utah Jazz",
+        "status": "Oct 1",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Saddiq Bey",
+        "position": "SF",
+        "team": "Washington Wizards",
+        "status": "Feb 21",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Alex Sarr",
+        "position": "PF",
+        "team": "Washington Wizards",
+        "status": "Feb 1",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Malcolm Brogdon",
+        "position": "PG",
+        "team": "Washington Wizards",
+        "status": "Feb 1",
+        "details": "Out",
+        "date": "2025-01-31"
+    },
+    {
+        "name": "Marvin Bagley III",
+        "position": "PF",
+        "team": "Washington Wizards",
+        "status": "Feb 1",
+        "details": "Out",
+        "date": "2025-01-31"
+    }
+]

@@ -5,41 +5,56 @@ const Injuries = () => {
   const [injuries, setInjuries] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [selectedTeam, setSelectedTeam] = useState("");
 
   useEffect(() => {
-    // Placeholder for API call
     const fetchInjuries = async () => {
       try {
-        // Replace with actual API call
-        const response = await fetch("YOUR_API_ENDPOINT_HERE");
+        const response = await fetch("/nba_injuries.json");
+        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
         const data = await response.json();
+        console.log("Fetched JSON Data:", data);  // Debugging log
         setInjuries(data);
       } catch (err) {
+        console.error("Fetch Error:", err);
         setError("Failed to load injury data.");
       } finally {
         setLoading(false);
       }
     };
-
+  
     fetchInjuries();
   }, []);
+  
+
+  const teams = [...new Set(injuries.map((injury) => injury.team))];
 
   if (loading) return <p>Loading injuries...</p>;
   if (error) return <p>{error}</p>;
 
   return (
     <div className="injuries-container">
-      <h2>Injuries Report</h2>
+      <h2>NBA Injuries Report</h2>
+      <label htmlFor="team-select">Select a Team:</label>
+      <select
+        id="team-select"
+        value={selectedTeam}
+        onChange={(e) => setSelectedTeam(e.target.value)}
+      >
+        <option value="">All Teams</option>
+        {teams.map((team, index) => (
+          <option key={index} value={team}>{team}</option>
+        ))}
+      </select>
       <ul>
-        {injuries.length > 0 ? (
-          injuries.map((player, index) => (
+        {injuries
+          .filter((injury) => !selectedTeam || injury.team === selectedTeam)
+          .map((player, index) => (
             <li key={index} className="injury-item">
-              <strong>{player.name}</strong> - {player.team} ({player.status})
+              <strong>{player.name}</strong> - {player.position}, <strong>{player.team}</strong> ({player.status})
+              <p>{player.details}</p>
             </li>
-          ))
-        ) : (
-          <p>No injuries reported.</p>
-        )}
+          ))}
       </ul>
     </div>
   );
