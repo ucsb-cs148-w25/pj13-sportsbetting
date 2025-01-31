@@ -6,9 +6,7 @@ import "../landing_page/styles/headerStyle.css";
 
 
 
-const BACKEND_SERVER_PORT = process.env.REACT_APP_BACKEND_SERVER_PORT;
-const BACKEND_SERVER_HOST = process.env.REACT_APP_BACKEND_SERVER_HOST;
-const API_BASE_URL = `${BACKEND_SERVER_HOST}:${BACKEND_SERVER_PORT}/api/groups`; // Update if needed
+const API_BASE_URL = process.env.REACT_APP_BACKEND_SERVER_URL + "/api/groups";
 
 // Hardcoded user data for testing
 const hardcodedUser = {
