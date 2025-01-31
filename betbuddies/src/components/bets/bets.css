@@ -1,0 +1,97 @@
+/* General Row Styling */
+.bet-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    color: #333;
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Team Info Section */
+.team-info {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Space between teams and "vs" */
+    width: 30%; /* Takes up 30% of the row width */
+    justify-content: center;
+}
+
+.team {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.team-logo {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+.team-name {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.vs-text {
+    font-size: 18px;
+    font-weight: bold;
+    color: #666;
+    text-align: center;
+    width: 50px; /* Ensure it has a consistent width */
+}
+
+/* Betting Options */
+.bet-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 70%; /* Takes up 70% of the row width */
+}
+
+.market {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    width: 30%; /* Equal width for each market */
+    text-align: center;
+}
+
+.market strong {
+    font-size: 14px;
+    color: #555;
+}
+
+.market-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.bet-button {
+    background-color: #008cba;
+    color: white;
+    border: none;
+    padding: 10px;
+    width: 70px;
+    height: 50px;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bet-button:hover {
+    background-color: #005f73;
+    transform: scale(1.05);
+    transition: 0.2s;
+}

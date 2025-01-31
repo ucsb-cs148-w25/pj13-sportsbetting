@@ -64,11 +64,21 @@ const teamLogos = {
     jazz: jazzLogo,
     wizards: wizardsLogo,
 };
-
+    
 const getTeamLogoPath = (teamFullName) => {
-    const teamName = teamFullName.split(" ").pop().toLowerCase();
+    //extracts the last word of the team, ie Cleveland Cavaliers, pulls out cavaliers to lowercase
+    let teamName = teamFullName.split(" ").pop().toLowerCase();
+
+    //this team is stupid
+    //you have to switch the name cuz it extracts 76ers
+    //only hard coded
+    if (teamName === "76ers") {
+        teamName = "sixers"; 
+    }
+
     return teamLogos[teamName] || ""; 
 };
+
 
 const formatOdds = (oddsValue) => (oddsValue > 0 ? `+${oddsValue}` : oddsValue);
 

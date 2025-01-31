@@ -1,9 +1,10 @@
-import React from 'react';
-import LandingPage from './components/landing_page/LandingPage';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import LandingPage from "./components/landing_page/LandingPage";
 import SignIn from "./components/SignIn/SignIn";
 import SignUp from "./components/SignUp/SignUp";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
+import NBA from "./pages/NBA"; // Use the correct path for NBA.js
+import Sportsbook from "./pages/Sportsbook"; // Ensure this file exists
 
 function App() {
     return (
@@ -12,6 +13,8 @@ function App() {
                 <Route path="/" element={<LandingPage />} />
                 <Route path="/signin" element={<SignIn />} />
                 <Route path="/signup" element={<SignUp />} />
+                <Route path="/nba" element={<NBA />} /> {/* Route for NBA */}
+                <Route path="/sportsbook" element={<Sportsbook />} /> {/* Route for Sportsbook */}
             </Routes>
         </Router>
     );
