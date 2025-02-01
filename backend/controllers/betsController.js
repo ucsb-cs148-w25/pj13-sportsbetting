@@ -1,4 +1,5 @@
 import { connectDB } from "../config/db.js";
+import {checkToken} from '../services/tokenAuth.js'
 
 // Initialize Firestore instance
 const db = await connectDB();
@@ -6,6 +7,7 @@ const db = await connectDB();
 // GET ALL BETS
 export async function getBets(req, res) {
   try {
+    checkToken(req);
     const betsRef = db.collection("bets");
     const snapshot = await betsRef.get();
 
@@ -20,13 +22,14 @@ export async function getBets(req, res) {
     res.status(200).json({ success: true, data: bets });
   } catch (error) {
     console.error("Error getting bets: ", error.message);
-    res.status(500).json({ success: false, message: "Server Error" });
+    res.status(500).json({ success: false, message: error.message});
   }
 }
 
 // GET BET BY ID
 export async function getBetById(req, res) {
   try {
+    checkToken(req);
     const { id } = req.params; // Bet ID from the route
 
     // Query the bets collection for the document with the given bet_id
@@ -43,13 +46,14 @@ export async function getBetById(req, res) {
     res.status(200).json({ success: true, data: { id: doc.id, ...doc.data() } });
   } catch (error) {
     console.error("Error getting bet by ID: ", error.message);
-    res.status(500).json({ success: false, message: "Server Error" });
+    res.status(500).json({ success: false, message: error.message });
   }
 }
 
 // CREATE NEW BET
 export async function postBet(req, res) {
   try {
+    checkToken(req);
     const { bet_id, team1, team2, startTime, endTime, winner, betStatus, team1_price, team2_price } = req.body;
     const id = req.params.id || db.collection("bets").doc().id; // Bet ID from the route or generate a new one
 
@@ -95,13 +99,14 @@ export async function postBet(req, res) {
     });
   } catch (error) {
     console.error("Error creating bet: ", error.message);
-    res.status(500).json({ success: false, message: "Server Error" });
+    res.status(500).json({ success: false, message: error.message });
   }
 }
 
 // UPDATE BET BY ID
 export async function putBet(req, res) {
   try {
+    checkToken(req);
     const { id } = req.params; // Bet ID from the route
     const { team1, team2, startTime, endTime, winner, betStatus } = req.body;
 
@@ -159,13 +164,14 @@ export async function putBet(req, res) {
     });
   } catch (error) {
     console.error("Error updating bet: ", error.message);
-    res.status(500).json({ success: false, message: "Server Error" });
+    res.status(500).json({ success: false, message: error.message });
   }
 }
 
 // DELETE BET BY ID
 export async function deleteBet(req, res) {
   try {
+    checkToken(req);
     const { id } = req.params; // Bet ID from the route
 
     // Query the bets collection for the document with the given bet_id
@@ -185,6 +191,6 @@ export async function deleteBet(req, res) {
     res.status(200).json({ success: true, message: "Bet deleted successfully" });
   } catch (error) {
     console.error("Error deleting bet: ", error.message);
-    res.status(500).json({ success: false, message: "Server Error" });
+    res.status(500).json({ success: false, message: error.message });
   }
 }

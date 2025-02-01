@@ -1,4 +1,5 @@
 import { connectDB } from "../config/db.js";
+import {checkToken} from '../services/tokenAuth.js'
 
 // Initialize Firestore instance
 const db = await connectDB();
@@ -6,6 +7,7 @@ const db = await connectDB();
 // GET ALL USERS
 export async function getUsers(req, res) {
   try {
+    checkToken(req);
     const usersRef = db.collection("users");
     const snapshot = await usersRef.get();
 
@@ -13,20 +15,21 @@ export async function getUsers(req, res) {
       return res.status(200).json({ success: true, data: [] });
     }
 
-    const users = snapshot.docs.map((doc) => ({ 
+    const users = snapshot.docs.map((doc) => ({
       id: doc.id,
       ...doc.data(),
     }));
     res.status(200).json({ success: true, data: users });
   } catch (error) {
     console.error("Error getting users: ", error.message);
-    res.status(500).json({ success: false, message: "Server Error" });
+    res.status(500).json({ success: false, message: error.message });
   }
 }
 
 // GET USER BY ID
 export async function getUserById(req, res) {
   try {
+    checkToken(req);
     const { id } = req.params; // User ID from the route
     const userRef = db.collection("users").doc(id);
     const doc = await userRef.get();
@@ -38,13 +41,14 @@ export async function getUserById(req, res) {
     res.status(200).json({ success: true, data: { id: doc.id, ...doc.data() } });
   } catch (error) {
     console.error("Error getting user by ID: ", error.message);
-    res.status(500).json({ success: false, message: "Server Error" });
+    res.status(500).json({ success: false, message: error.message });
   }
 }
 
 // CREATE NEW USER
 export async function postUser(req, res) {
   try {
+    checkToken(req);
     const { username, email, balance, totalWinnings, groupIds } = req.body;
     const id = req.params.id; // User ID from the route
 
@@ -77,13 +81,14 @@ export async function postUser(req, res) {
     });
   } catch (error) {
     console.error("Error creating user: ", error.message);
-    res.status(500).json({ success: false, message: "Server Error" });
+    res.status(500).json({ success: false, message: error.message });
   }
 }
 
 // UPDATE USER BY ID
 export async function putUser(req, res) {
   try {
+    checkToken(req);
     const { id } = req.params; // User ID from the route
     const { username, email, balance, totalWinnings, groupIds } = req.body;
 
@@ -133,13 +138,14 @@ export async function putUser(req, res) {
     });
   } catch (error) {
     console.error("Error updating user: ", error.message);
-    res.status(500).json({ success: false, message: "Server Error" });
+    res.status(500).json({ success: false, message: error.message });
   }
 }
 
 // DELETE USER BY ID
 export async function deleteUser(req, res) {
   try {
+    checkToken(req);
     const { id } = req.params; // User ID from the route
 
     const userRef = db.collection("users").doc(id);
@@ -154,6 +160,6 @@ export async function deleteUser(req, res) {
     res.status(200).json({ success: true, message: "User deleted successfully" });
   } catch (error) {
     console.error("Error deleting user: ", error.message);
-    res.status(500).json({ success: false, message: "Server Error" });
+    res.status(500).json({ success: false, message: error.message });
   }
 }
