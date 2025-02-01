@@ -65,42 +65,6 @@ const teamLogos = {
     wizards: wizardsLogo,
 };
 
-const matches = [
-    {
-        id: 1,
-        teamA: {
-            name: "Boston Celtics",
-            logo: celticsLogo, // Replace with the correct path or import
-        },
-        teamB: {
-            name: "Milwaukee Bucks",
-            logo: bucksLogo,
-        },
-    },
-    {
-        id: 2,
-        teamA: {
-            name: "Dallas Mavericks",
-            logo: mavericksLogo,
-        },
-        teamB: {
-            name: "Brooklyn Nets",
-            logo: netsLogo,
-        },
-    },
-    {
-        id: 3,
-        teamA: {
-            name: "Indiana Pacers",
-            logo: pacersLogo,
-        },
-        teamB: {
-            name: "San Antonio Spurs",
-            logo: spursLogo,
-        },
-    },
-];
-
 const getTeamLogoPath = (teamFullName) => {
     //extracts the last word of the team, ie Cleveland Cavaliers, pulls out cavaliers to lowercase
     let teamName = teamFullName.split(" ").pop().toLowerCase();
