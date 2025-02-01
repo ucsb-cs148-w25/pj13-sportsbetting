@@ -1,0 +1,62 @@
+.sportsbook {
+    background-color: #0047ab; /* Blue background */
+    color: white;
+    padding: 20px;
+    min-height: 100vh; /* Full-page height */
+}
+
+.sportsbook h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.bet-row {
+    background-color: white; /* White boxes */
+    color: #333; /* Dark text for contrast */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+.bet-row:hover {
+    transform: scale(1.02); /* Slight hover effect */
+    transition: 0.2s;
+}
+
+.bet-team {
+    flex: 2; /* Team section takes more space */
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.bet-options {
+    display: flex;
+    flex: 3; /* Options section takes more space */
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+.bet-button {
+    background-color: #008cba;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    min-width: 80px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15); /* Button shadow */
+}
+
+.bet-button:hover {
+    background-color: #005f73;
+    transform: translateY(-2px); /* Lift effect on hover */
+    transition: 0.2s;
+}

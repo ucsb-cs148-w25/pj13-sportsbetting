@@ -6,7 +6,6 @@ import "./styles/headerStyle.css";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { currentUser } = useContext(AuthContext);
 
   return (
       <>
@@ -36,20 +35,14 @@ const Header = () => {
               <Link to="/group" className="nav-link">
                 FriendGroup
               </Link>
-              {currentUser ? (
-                <Link to="/profile" className="nav-link">
-                  Profile
-                </Link>
-              ) : (
-                <Link to="/signin" className="sign-in-button">
-                  Sign In
-                </Link>
-              )}
+              <Link to="/signin" className="sign-in-button">
+                Sign In
+              </Link>
             </nav>
-          </div>
-        </header>
-        {isMenuOpen && <MobileMenu />}
-      </>
+        </div>
+      </header>
+      {isMenuOpen && <MobileMenu />}
+    </>
   );
 };
 
