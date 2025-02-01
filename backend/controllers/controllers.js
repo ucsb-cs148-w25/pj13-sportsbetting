@@ -6,10 +6,12 @@
 
 
 import { connectDB } from "../config/db.js"
+import {checkToken} from '../services/tokenAuth.js'
 const db = connectDB();
 export async function getList(req, res) {
     console.log("get Function")
     try {
+        checkToken(req);
         const listRef = db.collection("lists");
         console.log(listRef)
         const snapshot = await listRef.get();
@@ -29,6 +31,7 @@ export async function getList(req, res) {
 
 export const postList = async (req, res) => { // /api/(document id) -> json  into db
     try {
+        checkToken(req);
         const fields = req.body; // Exclude `id` field from the request body (if present)
         const documentId = req.params.id; // Extract the document ID from the URL
 
@@ -54,6 +57,7 @@ export const postList = async (req, res) => { // /api/(document id) -> json  int
 
 export const putList = async (req, res) => {
     try {
+        checkToken(req);
         const { id } = req.params;
         const updatedData = req.body;
 
@@ -76,6 +80,7 @@ export const putList = async (req, res) => {
 
 export const deleteList = async (req, res) => {
     try {
+        checkToken(req);
         const { id } = req.params;
 
         const docRef = db.collection("lists").doc(id);

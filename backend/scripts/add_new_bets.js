@@ -21,6 +21,7 @@ const odds_api_bet_query_params = new URLSearchParams({
 const BACKEND_SERVER_PORT = process.env.PORT;
 const BACKEND_SERVER_HOST = process.env.BACKEND_SERVER_HOST;
 const BACKEND_SERVER_URL = `${BACKEND_SERVER_HOST}:${BACKEND_SERVER_PORT}/api/bets`;
+const BACKEND_SERVER_TOKEN = process.env.BACKEND_SERVER_TOKEN;
 
 
 // Get NBA bets
@@ -80,7 +81,10 @@ async function parse_api_response(bets) {
 
 async function add_new_bet(bet) {
     try {
-        const response = await axios.post(BACKEND_SERVER_URL, bet);
+        const headers = {
+            Authorization: `${BACKEND_SERVER_TOKEN}`
+        };
+        const response = await axios.post(BACKEND_SERVER_URL, bet, { headers });
         console.log(response.data);
         return 1;
     }

@@ -19,7 +19,7 @@ const odds_api_bet_query_params = new URLSearchParams({
 const BACKEND_SERVER_PORT = process.env.PORT;
 const BACKEND_SERVER_HOST = process.env.BACKEND_SERVER_HOST;
 const BACKEND_SERVER_URL = `${BACKEND_SERVER_HOST}:${BACKEND_SERVER_PORT}/api/bets`;
-
+const BACKEND_SERVER_TOKEN = process.env.BACKEND_SERVER_TOKEN;
 
 // Get NBA scores
 async function fetchScores() {
@@ -36,10 +36,13 @@ async function fetchScores() {
 
 async function update_winner(bet_id, winner) {
     try {
+        const headers = {
+            Authorization: `${BACKEND_SERVER_TOKEN}`
+        };
         const url_with_id = `${BACKEND_SERVER_URL}/${bet_id}`;
         // prepare updated data
         const data = { 'winner' : winner, 'betStatus' : 'closed' };
-        const response = await axios.put(url_with_id, data);
+        const response = await axios.put(url_with_id, data, { headers });
         console.log(response.data);
         return 1;
     }

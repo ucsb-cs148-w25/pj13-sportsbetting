@@ -1,4 +1,5 @@
 import { connectDB } from "../config/db.js";
+import {checkToken} from '../services/tokenAuth.js'
 
 // Initialize Firestore instance
 const db = await connectDB();
@@ -6,6 +7,7 @@ const db = await connectDB();
 // GET ALL USER BETS
 export async function getUserBets(req, res) {
   try {
+    checkToken(req);
     const userBetsRef = db.collection("userBets");
     const snapshot = await userBetsRef.get();
 
@@ -20,13 +22,14 @@ export async function getUserBets(req, res) {
     res.status(200).json({ success: true, data: userBets });
   } catch (error) {
     console.error("Error getting user bets: ", error.message);
-    res.status(500).json({ success: false, message: "Server Error" });
+    res.status(500).json({ success: false, message: error.message });
   }
 }
 
 // GET USER BET BY ID
 export async function getUserBetById(req, res) {
   try {
+    checkToken(req);
     const { id } = req.params; // User Bet ID from the route
     const userBetRef = db.collection("userBets").doc(id);
     const doc = await userBetRef.get();
@@ -38,13 +41,14 @@ export async function getUserBetById(req, res) {
     res.status(200).json({ success: true, data: { id: doc.id, ...doc.data() } });
   } catch (error) {
     console.error("Error getting user bet by ID: ", error.message);
-    res.status(500).json({ success: false, message: "Server Error" });
+    res.status(500).json({ success: false, message: error.message });
   }
 }
 
 // CREATE NEW USER BET
 export async function postUserBet(req, res) {
   try {
+    checkToken(req);
     const { userId, betId, teamChosen, amount, potentialWinnings, status } = req.body;
     const id = req.params.id; // User Bet ID from the route
 
@@ -78,13 +82,14 @@ export async function postUserBet(req, res) {
     });
   } catch (error) {
     console.error("Error creating user bet: ", error.message);
-    res.status(500).json({ success: false, message: "Server Error" });
+    res.status(500).json({ success: false, message: error.message });
   }
 }
 
 // UPDATE USER BET BY ID
 export async function putUserBet(req, res) {
   try {
+    checkToken(req);
     const { id } = req.params; // User Bet ID from the route
     const { userId, betId, teamChosen, amount, potentialWinnings, status } = req.body;
 
@@ -144,13 +149,14 @@ export async function putUserBet(req, res) {
     });
   } catch (error) {
     console.error("Error updating user bet: ", error.message);
-    res.status(500).json({ success: false, message: "Server Error" });
+    res.status(500).json({ success: false, message: error.message });
   }
 }
 
 // DELETE USER BET BY ID
 export async function deleteUserBet(req, res) {
   try {
+    checkToken(req);
     const { id } = req.params; // User Bet ID from the route
 
     const userBetRef = db.collection("userBets").doc(id);
@@ -165,6 +171,6 @@ export async function deleteUserBet(req, res) {
     res.status(200).json({ success: true, message: "User bet deleted successfully" });
   } catch (error) {
     console.error("Error deleting user bet: ", error.message);
-    res.status(500).json({ success: false, message: "Server Error" });
+    res.status(500).json({ success: false, message: error.message });
   }
 }
