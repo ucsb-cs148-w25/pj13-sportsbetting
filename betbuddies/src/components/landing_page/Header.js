@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import MobileMenu from "./MobileMenu";
 import { Link } from "react-router-dom";
+import AuthContext from "../../contexts/AuthContext";
 import "./styles/headerStyle.css";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { currentUser } = useContext(AuthContext);
 
   return (
       <>
@@ -34,9 +36,15 @@ const Header = () => {
               <Link to="/group" className="nav-link">
                 FriendGroup
               </Link>
-              <Link to="/signin" className="sign-in-button">
-                Sign In
-              </Link>
+              {currentUser ? (
+                <Link to="/profile" className="nav-link">
+                  Profile
+                </Link>
+              ) : (
+                <Link to="/signin" className="sign-in-button">
+                  Sign In
+                </Link>
+              )}
             </nav>
           </div>
         </header>
