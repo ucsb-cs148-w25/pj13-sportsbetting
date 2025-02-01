@@ -20,7 +20,7 @@ function SignIn() {
   const handleEmailLogin = async (e) => {
     e.preventDefault();
     try {
-      const userCredential = await signInWithEmailAndPassword(auth, form.email, form.password);
+      await signInWithEmailAndPassword(auth, form.email, form.password);
       navigate('/');
     } catch (error) {
       setError(error.message);
@@ -35,7 +35,7 @@ function SignIn() {
       const result = await signInWithPopup(auth, provider);
       const user = result.user;
       const backendUrl = `${process.env.REACT_APP_BACKEND_SERVER_HOST}:${process.env.REACT_APP_BACKEND_SERVER_PORT}`;
-  
+
       const userExists = await axios.get(`${backendUrl}/api/users/${user.uid}`)
       .then(response => response.status === 200)
       .catch(error => {

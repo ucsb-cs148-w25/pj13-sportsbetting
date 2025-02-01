@@ -91,7 +91,7 @@ Our app will only have 2 kinds of user, sports bettors and admins to oversee the
   - Copy env templates:
     - `cp .env-template backend/.env`
     - `cp .env-frontend-template betbuddies/.env`
-    - `cd backend/config/db.js`
+    - `open backend/config/db.js`
     - comment out line 19 to `credential: admin.credential.cert('/backend/config/serviceAccountKey.json')`(for local dev)
     - Fill in the values in the `.env` file
     - [ODDS_API_KEY](https://ucsb-cs148-w25.slack.com/archives/C088RQFCDLY/p1737585688948609)
@@ -99,7 +99,7 @@ Our app will only have 2 kinds of user, sports bettors and admins to oversee the
     - For the frontend .env file, make sure that variable names are prefixed with `REACT_APP_` for example `REACT_APP_BACKEND_SERVER_PORT=5001`
     - For the frontend .env file, use these environment variables for [Firebase](https://ucsb-cs148-w25.slack.com/archives/C088RQFCDLY/p1738362617380099)
       - To use your own Firebase for local testing, navigate to the **Firebase Console** and add a new Web app to your project. Then, use the provided config variables for your Firebase setup.
-  
+
 - **Follow README in backend folder to set up Firebase**
 
 - **Navigate to the Frontend Directory**
