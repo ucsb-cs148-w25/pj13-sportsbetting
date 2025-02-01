@@ -10,6 +10,10 @@ function SignUp() {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
+  const headers = {
+    Authorization: `${process.env.REACT_APP_BACKEND_SERVER_TOKEN}`
+  };
+
   // Handle input changes
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -32,7 +36,7 @@ function SignUp() {
         groupIds: [],
       };
 
-      await axios.post(`${backendUrl}/api/users/${user.uid}`, userData);
+      await axios.post(`${backendUrl}/api/users/${user.uid}`, userData, { headers });
 
       navigate('/');
     } catch (error) {

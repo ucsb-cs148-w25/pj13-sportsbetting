@@ -98,7 +98,7 @@ Our app will only have 2 kinds of user, sports bettors and admins to oversee the
     - PORT is for the backend server.
     - For the frontend .env file, make sure that variable names are prefixed with `REACT_APP_` for example `REACT_APP_BACKEND_SERVER_PORT=5001`
     - For the frontend .env file, use these environment variables for [Firebase](https://ucsb-cs148-w25.slack.com/archives/C088RQFCDLY/p1738362617380099)
-      - To use your own Firebase for local testing, navigate to the **Firebase Console** and add a new Web app to your project. Then, use the provided config variables for your Firebase setup.
+      - To use your own Firebase for local testing, navigate to the **Firebase Console** and add a new Web app to your project. Then, use the provided config variables for your Firebase setup. Also need to enable Authentication with Google and Email/Password on Firebase Console.
 
 - **Follow README in backend folder to set up Firebase**
 

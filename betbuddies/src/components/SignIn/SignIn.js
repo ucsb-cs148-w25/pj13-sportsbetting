@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './SignIn.css';
-import { auth } from '../../firebase'; 
+import { auth } from '../../firebase';
 import { GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -31,12 +31,15 @@ function SignIn() {
   const handleGoogleLogin = async () => {
     const provider = new GoogleAuthProvider();
 
+    const headers = {
+      Authorization: `${process.env.REACT_APP_BACKEND_SERVER_TOKEN}`
+    };
+
     try {
       const result = await signInWithPopup(auth, provider);
       const user = result.user;
       const backendUrl = `${process.env.REACT_APP_BACKEND_SERVER_HOST}:${process.env.REACT_APP_BACKEND_SERVER_PORT}`;
-
-      const userExists = await axios.get(`${backendUrl}/api/users/${user.uid}`)
+      const userExists = await axios.get(`${backendUrl}/api/users/${user.uid}`, { headers })
       .then(response => response.status === 200)
       .catch(error => {
         if (error.response && error.response.status === 404) {
@@ -53,13 +56,13 @@ function SignIn() {
           totalWinnings: 0,
           groupIds: [],
         };
-  
-        await axios.post(`${backendUrl}/api/users/${user.uid}`, userData);
+
+        await axios.post(`${backendUrl}/api/users/${user.uid}`, userData, { headers });
         console.log("New user created.");
       } else {
         console.log("User already exists. Proceeding with sign-in.");
       }
-  
+
       navigate('/');
     } catch (error) {
       setError(error.message);
