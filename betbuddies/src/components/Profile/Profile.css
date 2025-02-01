@@ -1,0 +1,19 @@
+.profile-page {
+    text-align: center;
+    margin-top: 50px;
+  }
+  
+  .sign-out-button {
+    padding: 10px 20px;
+    background-color: #ff4747;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    margin-top: 20px;
+  }
+  
+  .sign-out-button:hover {
+    background-color: #ff1f1f;
+  }
