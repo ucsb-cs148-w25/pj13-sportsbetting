@@ -65,6 +65,9 @@ const teamLogos = {
     wizards: wizardsLogo,
 };
 
+const API_KEY = process.env.REACT_APP_ODDS_API_KEY;
+console.log('API_KEY:', API_KEY);
+
 const getTeamLogoPath = (teamFullName) => {
     //extracts the last word of the team, ie Cleveland Cavaliers, pulls out cavaliers to lowercase
     let teamName = teamFullName.split(" ").pop().toLowerCase();
@@ -83,7 +86,6 @@ const formatOdds = (oddsValue) => (oddsValue > 0 ? `+${oddsValue}` : oddsValue);
 
 const FeaturedBets = () => {
     const [matches, setMatches] = useState([]);
-    const API_KEY = "a860df327311794525cec5ef64a3215e";
 
     useEffect(() => {
         const fetchOdds = async () => {

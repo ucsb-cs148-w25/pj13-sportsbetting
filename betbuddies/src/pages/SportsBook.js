@@ -4,9 +4,10 @@ import BetRow from "../components/bets/BetRow";
 import "../components/landing_page/styles/sportsbook.css";
 import getTeamLogoPath from "../utils/getTeamLogoPath";
 
+const API_KEY = process.env.REACT_APP_ODDS_API_KEY;
+
 const Sportsbook = () => {
     const [games, setGames] = useState([]);
-    const API_KEY = "a860df327311794525cec5ef64a3215e";
 
     useEffect(() => {
         const fetchNBAOdds = async () => {
