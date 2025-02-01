@@ -6,7 +6,7 @@ import Profile from './components/Profile/Profile';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import GroupPage from "./components/GroupPage/GroupPage";
 import NBA from "./pages/NBA";
-import Sportsbook from "./pages/Sportsbook";
+import Sportsbook from "./pages/SportsBook";
 
 function App() {
     return (

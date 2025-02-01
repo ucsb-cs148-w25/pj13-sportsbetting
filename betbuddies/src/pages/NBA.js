@@ -1,5 +1,5 @@
 import React from "react";
-import Sportsbook from "./Sportsbook";
+import Sportsbook from "./SportsBook";
 
 const NBA = () => {
     return (

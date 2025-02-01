@@ -2,6 +2,7 @@ import axios from 'axios';
 import dotenv from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import API_BASE_URL from "../API_BASE_URL.js";
 
 // Get the directory name of the current module
 const __filename = fileURLToPath(import.meta.url);
@@ -18,9 +19,7 @@ const odds_api_bet_query_params = new URLSearchParams({
     markets: 'h2h',
 });
 
-const BACKEND_SERVER_PORT = process.env.PORT;
-const BACKEND_SERVER_HOST = process.env.BACKEND_SERVER_HOST;
-const BACKEND_SERVER_URL = `${BACKEND_SERVER_HOST}:${BACKEND_SERVER_PORT}/api/bets`;
+const BACKEND_SERVER_URL = `${API_BASE_URL}/api/bets`;
 const BACKEND_SERVER_TOKEN = process.env.BACKEND_SERVER_TOKEN;
 
 
