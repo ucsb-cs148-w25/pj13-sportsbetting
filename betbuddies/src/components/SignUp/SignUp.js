@@ -4,6 +4,7 @@ import { auth } from '../../firebase'; // assuming you have firebase set up
 import { createUserWithEmailAndPassword } from 'firebase/auth'; // for sign-up
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import FRONTEND_API_BASE_URL from '../../API_BASE_URL'
 
 function SignUp() {
   const [form, setForm] = useState({ email: '', password: '' });
@@ -26,7 +27,6 @@ function SignUp() {
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, form.email, form.password);
       const user = userCredential.user;
-      const backendUrl = `${process.env.REACT_APP_BACKEND_SERVER_HOST}:${process.env.REACT_APP_BACKEND_SERVER_PORT}`;
 
       const userData = {
         username: user.email,
@@ -36,7 +36,7 @@ function SignUp() {
         groupIds: [],
       };
 
-      await axios.post(`${backendUrl}/api/users/${user.uid}`, userData, { headers });
+      await axios.post(`${FRONTEND_API_BASE_URL}/api/users/${user.uid}`, userData, { headers });
 
       navigate('/');
     } catch (error) {

@@ -4,6 +4,7 @@ import { auth } from '../../firebase';
 import { GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import FRONTEND_API_BASE_URL from '../../API_BASE_URL'
 
 function SignIn() {
   const [form, setForm] = useState({ email: '', password: '' });
@@ -38,8 +39,7 @@ function SignIn() {
     try {
       const result = await signInWithPopup(auth, provider);
       const user = result.user;
-      const backendUrl = `${process.env.REACT_APP_BACKEND_SERVER_HOST}:${process.env.REACT_APP_BACKEND_SERVER_PORT}`;
-      const userExists = await axios.get(`${backendUrl}/api/users/${user.uid}`, { headers })
+      const userExists = await axios.get(`${FRONTEND_API_BASE_URL}/api/users/${user.uid}`, { headers })
       .then(response => response.status === 200)
       .catch(error => {
         if (error.response && error.response.status === 404) {
@@ -57,7 +57,7 @@ function SignIn() {
           groupIds: [],
         };
 
-        await axios.post(`${backendUrl}/api/users/${user.uid}`, userData, { headers });
+        await axios.post(`${FRONTEND_API_BASE_URL}/api/users/${user.uid}`, userData, { headers });
         console.log("New user created.");
       } else {
         console.log("User already exists. Proceeding with sign-in.");
