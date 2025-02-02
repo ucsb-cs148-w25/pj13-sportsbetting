@@ -91,8 +91,6 @@ Our app will only have 2 kinds of user, sports bettors and admins to oversee the
   - Copy env templates:
     - `cp .env-template backend/.env`
     - `cp .env-frontend-template betbuddies/.env`
-    - `open backend/config/db.js`
-    - comment out line 19 to `credential: admin.credential.cert('/backend/config/serviceAccountKey.json')`(for local dev)
     - Fill in the values in the `.env` file
     - [ODDS_API_KEY](https://ucsb-cs148-w25.slack.com/archives/C088RQFCDLY/p1737585688948609)
     - PORT is for the backend server.
