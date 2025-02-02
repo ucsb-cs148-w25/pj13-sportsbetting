@@ -1,10 +1,3 @@
-// CONNECT TO FIRESTORE using string link
-
-// CONNECT TO FIRESTORE using string link
-// npm install firebase-admin
-// you must create firestore and add config/serviceAccountKey.json
-// dont push to main, sensitive info
-// config/db.js
 import admin from 'firebase-admin';
 import dotenv from 'dotenv';
 
@@ -14,13 +7,14 @@ let db;
 export async function connectDB() {
     if (!db) {
         try {
+            // Determine the path based on the environment
+            const serviceAccountPath = process.env.NODE_ENV === 'production'
+                ? '/etc/secrets/serviceAccountKey.json'
+                : 'backend/config/serviceAccountKey.json';
+
             // Initialize Firestore
             admin.initializeApp({
-                // production path:
-                credential: admin.credential.cert('/etc/secrets/serviceAccountKey.json'),
-
-                // local dev path:
-                // credential: admin.credential.cert('backend/config/serviceAccountKey.json')
+                credential: admin.credential.cert(serviceAccountPath)
             });
 
             db = admin.firestore(); // Create a Firestore instance
@@ -32,5 +26,3 @@ export async function connectDB() {
     }
     return db; // Return the existing Firestore instance
 }
-
-

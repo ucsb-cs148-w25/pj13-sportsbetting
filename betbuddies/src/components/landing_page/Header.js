@@ -1,8 +1,8 @@
 import React, { useState, useContext } from "react";
 import MobileMenu from "./MobileMenu";
 import { Link } from "react-router-dom";
-import AuthContext from "../../contexts/AuthContext";
 import "./styles/headerStyle.css";
+import AuthContext from "../../contexts/AuthContext";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -46,10 +46,10 @@ const Header = () => {
                 </Link>
               )}
             </nav>
-          </div>
-        </header>
-        {isMenuOpen && <MobileMenu />}
-      </>
+        </div>
+      </header>
+      {isMenuOpen && <MobileMenu />}
+    </>
   );
 };
 
