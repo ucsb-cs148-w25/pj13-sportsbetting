@@ -66,7 +66,6 @@ const teamLogos = {
 };
 
 const API_KEY = process.env.REACT_APP_ODDS_API_KEY;
-console.log('API_KEY:', API_KEY);
 
 const getTeamLogoPath = (teamFullName) => {
     //extracts the last word of the team, ie Cleveland Cavaliers, pulls out cavaliers to lowercase
