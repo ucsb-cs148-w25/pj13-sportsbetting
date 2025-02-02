@@ -4,10 +4,10 @@ import Header from "../landing_page/Header";
 import MobileMenu from "../landing_page/MobileMenu";
 import "../landing_page/styles/headerStyle.css";
 import AuthContext from '../../contexts/AuthContext';
+import FRONTEND_API_BASE_URL from '../../API_BASE_URL'
 
-const REACT_APP_BACKEND_SERVER_HOST = process.env.REACT_APP_BACKEND_SERVER_HOST;
-const REACT_APP_BACKEND_SERVER_PORT = process.env.REACT_APP_BACKEND_SERVER_PORT;
-const API_BASE_URL = `${REACT_APP_BACKEND_SERVER_HOST}:${REACT_APP_BACKEND_SERVER_PORT}/api/groups`;
+
+const API_BASE_URL = `${FRONTEND_API_BASE_URL}/api/groups`;
 
 const headers = {
     Authorization: `${process.env.REACT_APP_BACKEND_SERVER_TOKEN}`

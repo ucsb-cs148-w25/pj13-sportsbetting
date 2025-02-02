@@ -7,8 +7,10 @@ import API_BASE_URL from "../API_BASE_URL.js";
 // Get the directory name of the current module
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-// Load environment variables from the .env file
-dotenv.config({ path: path.resolve(__dirname, '../.env') });
+// Load environment variables from the .env file for local development
+if (process.env.NODE_ENV !== 'production') {
+    dotenv.config({ path: path.resolve(__dirname, '../.env') });
+}
 
 // 'https://api.the-odds-api.com/v4/sports/basketball_nba/odds/?apiKey=${PUT-KEY-HERE}&regions=us&markets=h2h'
 const ODDS_API_URL_NBA = 'https://api.the-odds-api.com/v4/sports/basketball_nba/odds/'

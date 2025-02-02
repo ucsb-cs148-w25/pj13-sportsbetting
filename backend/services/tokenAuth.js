@@ -1,6 +1,8 @@
 import dotenv from 'dotenv';
 
-dotenv.config({ path: './backend/.env' }); // Explicitly load from backend directory
+if (process.env.NODE_ENV !== 'production') {
+    dotenv.config({ path: './backend/.env' }); // Explicitly load from backend directory
+}
 
 const checkToken = (req) => {
     try {
