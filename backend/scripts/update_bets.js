@@ -8,7 +8,9 @@ import API_BASE_URL from "../API_BASE_URL.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 // Load environment variables from the .env file
-dotenv.config({ path: path.resolve(__dirname, '../.env') });
+if (process.env.NODE_ENV !== 'production') {
+    dotenv.config({ path: path.resolve(__dirname, '../.env') });
+}
 
 const ODDS_API_URL_NBA = 'https://api.the-odds-api.com/v4/sports/basketball_nba/scores/'
 const ODDS_API_KEY = process.env.ODDS_API_KEY;
@@ -78,14 +80,17 @@ async function parse_api_response(scores) {
 async function script() {
     const scores = await fetchScores();
     const new_bet_winner_pairs = await parse_api_response(scores);
-    let total_updated = 0;
-    for (const pair of new_bet_winner_pairs) {
-        total_updated += await update_winner(pair.bet_id, pair.winner);
-    }
+
     console.log("Number of fetched bets: ", new_bet_winner_pairs.length);
     console.log(new_bet_winner_pairs);
-    console.log('Updated ', total_updated, ' bets');
-    return new_bet_winner_pairs;
+
+    const results = await Promise.allSettled(
+        new_bet_winner_pairs.map(pair => update_winner(pair.bet_id, pair.winner))
+    );
+
+    const total_updated = results.filter(result => result.status === "fulfilled" && result.value === 1).length;
+
+    console.log('Updated', total_updated, 'bets');
 }
 
 const new_bet_winner_pairs = script();
