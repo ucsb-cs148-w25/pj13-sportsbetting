@@ -163,3 +163,37 @@ export async function deleteUser(req, res) {
     res.status(500).json({ success: false, message: error.message });
   }
 }
+
+// UPDATE USER BALANCE AND TOTAL WINNINGS
+export async function awardUser(req, res) {
+  try {
+    checkToken(req);
+    const { id } = req.params;
+    const { amount } = req.body;
+
+    const userRef = db.collection("users").doc(id);
+    const doc = await userRef.get();
+
+    if (!doc.exists) {
+      return res.status(404).json({ success: false, message: "User not found" });
+    }
+
+    const userData = doc.data();
+    const newBalance = userData.balance + amount;
+    const newTotalWinnings = userData.totalWinnings + amount;
+
+    await userRef.update({
+      balance: newBalance,
+      totalWinnings: newTotalWinnings,
+    });
+
+    res.status(200).json({
+      success: true,
+      message: "User balance and total winnings updated successfully",
+      data: { balance: newBalance, totalWinnings: newTotalWinnings },
+    });
+  } catch (error) {
+    console.error("Error updating user balance: ", error.message);
+    res.status(500).json({ success: false, message: error.message });
+  }
+}
