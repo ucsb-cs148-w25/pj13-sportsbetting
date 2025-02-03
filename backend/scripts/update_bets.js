@@ -85,6 +85,9 @@ async function script() {
     console.log("Number of fetched bets: ", new_bet_winner_pairs.length);
     console.log(new_bet_winner_pairs);
     console.log('Updated ', total_updated, ' bets');
+    return new_bet_winner_pairs;
 }
 
-script();
+const new_bet_winner_pairs = script();
+
+export { new_bet_winner_pairs };
