@@ -67,12 +67,13 @@ async function award_users_on_bet(users_list, winner, bet_id) {
 
 }
 
-async function award_user(user_id, award) {
+async function award_user(user_id, amount) {
     // TODO
     console.log('Awarding users...');
     try {
         // Need endpoint to update totalWinnings and balance
-        const response = await axios.patch(`${BACKEND_SERVER_URL}/users/`, { user_id, award }, { headers });
+        const body = { amount: amount };
+        const response = await axios.patch(`${BACKEND_SERVER_URL}/api/users/${user_id}/balance`, body, { headers });
         return response.data;
     } catch (error) {
         console.error('Error awarding users:', error);
@@ -88,3 +89,5 @@ async function script() {
         await award_users_on_bet(users_list, winner, bet_id);
     }
 }
+
+console.log(await award_user("tuJ8P4y8RYXCt48poph7Nb9UhZD2", 123));
