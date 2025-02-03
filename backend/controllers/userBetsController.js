@@ -174,3 +174,26 @@ export async function deleteUserBet(req, res) {
     res.status(500).json({ success: false, message: error.message });
   }
 }
+
+// GET ALL USERS BY BET ID
+export async function getUsersThatBetOnBetId(req, res) {
+  try {
+    checkToken(req);
+    const { bet_id } = req.params; // Bet ID from the route
+    const userBetsRef = db.collection("userBets").where("betId", "==", bet_id);
+    const snapshot = await userBetsRef.get();
+
+    if (snapshot.empty) {
+      return res.status(200).json({ success: true, data: [] });
+    }
+
+    const users = snapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+    res.status(200).json({ success: true, data: users });
+  } catch (error) {
+    console.error("Error getting users by bet_id: ", error.message);
+    res.status(500).json({ success: false, message: error.message });
+  }
+}

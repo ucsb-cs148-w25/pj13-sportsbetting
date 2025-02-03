@@ -99,11 +99,12 @@ async function script() {
     const bets = await fetchBets();
     const new_bets = await parse_api_response(bets);
     console.log(new_bets);
-    let total_added = 0;
-    for (const bet of new_bets) {
-        total_added += await add_new_bet(bet);
-    }
-    console.log('Added ', total_added, ' new bets');
+
+    const results = await Promise.allSettled(new_bets.map(add_new_bet));
+
+    const total_added = results.filter(result => result.status === "fulfilled" && result.value === 1).length;
+    console.log('Added', total_added, 'new bets');
 }
+
 
 script();
