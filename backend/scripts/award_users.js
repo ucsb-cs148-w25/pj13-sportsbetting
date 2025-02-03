@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import API_BASE_URL from "../API_BASE_URL.js";
-import { new_bet_winner_pairs} from './update_bets.js';
+// import { new_bet_winner_pairs} from './update_bets.js';
 
 // Get the directory name of the current module
 const __filename = fileURLToPath(import.meta.url);
@@ -13,6 +13,7 @@ if (process.env.NODE_ENV !== 'production') {
     dotenv.config({ path: path.resolve(__dirname, '../.env') });
 }
 
+const BACKEND_SERVER_URL = API_BASE_URL;
 const BACKEND_SERVER_TOKEN = process.env.BACKEND_SERVER_TOKEN;
 const headers = {
     Authorization: `${BACKEND_SERVER_TOKEN}`
@@ -24,11 +25,10 @@ const headers = {
 // 3. Award the users that have won their bets
 
 async function get_users_on_bet(bet_id) {
-    // TODO
+    // Returns a list of users that have bet on a specific bet id
     console.log('Getting users on bet...');
     try {
-        // NEED NEW ENDPOINT TO GET USERBETS {USERID, AMOUNT, TEAM} ON BET
-        const response = await axios.get(`${BACKEND_SERVER_URL}/${bet_id}/NEED NEW ENDPOINT`, { headers });
+        const response = await axios.get(`${BACKEND_SERVER_URL}/api/userbets/bet_id/${bet_id}`, { headers });
         return response.data;
     } catch (error) {
         console.error('Error getting users on bet:', error);
@@ -37,13 +37,12 @@ async function get_users_on_bet(bet_id) {
 
 async function get_bet_info(bet_id) {
     try {
-        const response = await axios.get(`${API_BASE_URL}/api/bets/${bet_id}`, { headers });
+        const response = await axios.get(`${BACKEND_SERVER_URL}/api/bets/${bet_id}`, { headers });
         return response.data;
     } catch (error) {
         console.error('Error getting bet info:', error);
     }
 }
-
 
 async function award_users_on_bet(users_list, winner, bet_id) {
     console.log('Awarding users on bet...');
@@ -73,7 +72,7 @@ async function award_user(user_id, award) {
     console.log('Awarding users...');
     try {
         // Need endpoint to update totalWinnings and balance
-        const response = await axios.post(`${BACKEND_SERVER_URL}/NEED NEW ENDPOINT`, { user_id, award }, { headers });
+        const response = await axios.patch(`${BACKEND_SERVER_URL}/users/`, { user_id, award }, { headers });
         return response.data;
     } catch (error) {
         console.error('Error awarding users:', error);
