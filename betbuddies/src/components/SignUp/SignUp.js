@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './SignUp.css';
-import { auth } from '../../firebase'; // assuming you have firebase set up
-import { createUserWithEmailAndPassword } from 'firebase/auth'; // for sign-up
+import { auth } from '../../firebase';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import FRONTEND_API_BASE_URL from '../../API_BASE_URL'

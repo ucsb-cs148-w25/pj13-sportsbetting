@@ -4,7 +4,8 @@ import { auth } from '../../firebase';
 import { GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import FRONTEND_API_BASE_URL from '../../API_BASE_URL'
+import FRONTEND_API_BASE_URL from '../../API_BASE_URL';
+import { FcGoogle } from 'react-icons/fc';
 
 function SignIn() {
   const [form, setForm] = useState({ email: '', password: '' });
@@ -43,7 +44,7 @@ function SignIn() {
       .then(response => response.status === 200)
       .catch(error => {
         if (error.response && error.response.status === 404) {
-          return false; // User does not exist
+          return false;
         }
         throw error;
       });
@@ -76,49 +77,35 @@ function SignIn() {
 
   return (
     <div className="signin-container">
-      <h1 className="signin-title">BetBuddies</h1>
-      <p className="signin-description">
-        Compete with your friends to see who's the ultimate sports bettor! Place bets with virtual money and climb the leaderboard.
-      </p>
+      <div className="signin-box">
+        <h1 className="signin-title">BetBuddies</h1>
+  
+        <div className="signin-form">
+          {error && <p className="error-message">{error}</p>}
+  
+          <form onSubmit={handleEmailLogin}>
+            <input type="email" name="email" placeholder="Email" value={form.email} onChange={handleInputChange} required />
+            <input type="password" name="password" placeholder="Password" value={form.password} onChange={handleInputChange} required />
+            <button type="submit" className="signin-button">Log In</button>
+          </form>
 
-      <div className="signin-form">
-        <h2>Sign In</h2>
+          {/* Divider Line */}
+          <div className="divider">
+            <span>OR</span>
+          </div>
 
-        {error && <p className="error-message">{error}</p>}
-
-        <form onSubmit={handleEmailLogin}>
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            value={form.email}
-            onChange={handleInputChange}
-            required
-          />
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            value={form.password}
-            onChange={handleInputChange}
-            required
-          />
-          <button type="submit" className="signin-button">Log In</button>
-        </form>
-
-        <button onClick={handleGoogleLogin} className="google-signin-button">
-          Sign In with Google
-        </button>
-
-        <p className="signup-prompt">
-          Don't have an account?{' '}
-          <button onClick={handleCreateAccount} className="create-account-button">
-            Create Account
+          {/* Google Sign-In Button */}
+          <button onClick={handleGoogleLogin} className="google-signin-button">
+            <FcGoogle className="google-icon" /> Sign in with Google
           </button>
-        </p>
+  
+          <p className="signup-prompt">
+            Don't have an account? <button onClick={handleCreateAccount} className="create-account-button">Create Account</button>
+          </p>
+        </div>
       </div>
     </div>
-  );
+  );  
 }
 
 export default SignIn;
