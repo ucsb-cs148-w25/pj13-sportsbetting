@@ -51,7 +51,7 @@ const Injuries = () => {
           .filter((injury) => !selectedTeam || injury.team === selectedTeam)
           .map((player, index) => (
             <li key={index} className="injury-item">
-              <strong>{player.name}</strong> - {player.position}, <strong>{player.team}</strong> ({player.status})
+              <strong>{player.name}</strong> - {player.position}, <span className="team-name">{player.team}</span> ({player.status})
               <p>{player.details}</p>
             </li>
           ))}

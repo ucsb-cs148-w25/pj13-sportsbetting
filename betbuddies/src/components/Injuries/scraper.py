@@ -42,6 +42,11 @@ def fetch_nba_injuries():
 
 def save_injuries_to_json():
     injuries = fetch_nba_injuries()
+    output_dir = "public"  # Change this to your desired directory
+    os.makedirs(output_dir, exist_ok=True)  # Create directory if it doesn't exist
+
+    file_path = os.path.join(output_dir, "nba_injuries.json")
+    
     if injuries:
         with open("nba_injuries.json", "w") as file:
             json.dump(injuries, file, indent=4)
