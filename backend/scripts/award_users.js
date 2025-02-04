@@ -3,7 +3,6 @@ import dotenv from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import API_BASE_URL from "../API_BASE_URL.js";
-import { updateBets } from './update_bets.js';
 
 // Get the directory name of the current module
 const __filename = fileURLToPath(import.meta.url);
@@ -37,7 +36,7 @@ async function get_users_on_bet(bet_id) {
 
 async function get_bet_info(bet_id) {
     try {
-        const response = await axios.get(`${BACKEND_SERVER_URL}/api/bets/bet_id/${bet_id}`, { headers });
+        const response = await axios.get(`${BACKEND_SERVER_URL}/api/bets/${bet_id}`, { headers });
         return response.data;
     } catch (error) {
         console.error('Error getting bet info:', error);
