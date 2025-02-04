@@ -6,6 +6,8 @@
 
 - `node script.js`
 
+Each run costs 3 tokens
+
 #### `add_new_bets.js`
 
 - Adds new bets to the database by querying odds-api for bets, then adds to our firebase.
