@@ -51,7 +51,7 @@ async function award_users_on_bet(users_list, winner, bet_id) {
     const team2_price = bet_info.team2_price;
 
     for (const user of users_list) {
-        const user_id = user.user_id;
+        const user_id = user.userId;
         const amount = user.amount;
         const team = user.team;
         const userBetId = user.id;
@@ -90,3 +90,5 @@ async function script() {
         await award_users_on_bet(users_list, winner, bet_id);
     }
 }
+
+console.log(await get_users_on_bet('wasd'));
