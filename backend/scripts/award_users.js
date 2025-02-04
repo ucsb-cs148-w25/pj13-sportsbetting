@@ -45,11 +45,12 @@ async function get_bet_info(bet_id) {
 }
 
 async function award_users_on_bet(users_list, winner, bet_id) {
-    console.log('Awarding users on bet: ', bet_id);
+    console.log('Awarding ', users_list.data.length, 'users on bet: ', bet_id);
     const bet_info = (await get_bet_info(bet_id)).data;
     const team1_price = bet_info.team1_price;
     const team2_price = bet_info.team2_price;
-    for (const user of users_list.data) {
+
+    const awardPromises = users_list.data.map(async (user) => {
         const user_id = user.userId;
         const amount = user.amount;
         const team = user.teamChosen;
@@ -63,8 +64,9 @@ async function award_users_on_bet(users_list, winner, bet_id) {
             }
         }
         await award_user(user_id, award, userBetId);
-    }
+    });
 
+    await Promise.allSettled(awardPromises);
 }
 
 async function award_user(user_id, amount, userBetId) {
@@ -81,22 +83,14 @@ async function award_user(user_id, amount, userBetId) {
 }
 
 async function script(bet_pairs) {
-    for (const pair of bet_pairs) {
+    const awardPromises = bet_pairs.map(async (pair) => {
         const bet_id = pair.bet_id;
         const winner = pair.winner;
         const users_list = await get_users_on_bet(bet_id);
-        await award_users_on_bet(users_list, winner, bet_id);
-    }
+        return award_users_on_bet(users_list, winner, bet_id);
+    });
+
+    await Promise.allSettled(awardPromises);
 }
 
-// const bet_pairs = [
-//     {
-//         bet_id: 'e15ff567c82a8612fcd3c64613fa271f',
-//         winner: 'Indiana Pacers'
-//     },
-// ]
-
-// script(bet_pairs);
-
-// script(await new_bet_winner_pairs);
-console.log(await updateBets());
+script(await updateBets());
