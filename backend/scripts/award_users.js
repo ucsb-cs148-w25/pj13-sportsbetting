@@ -54,6 +54,7 @@ async function award_users_on_bet(users_list, winner, bet_id) {
         const user_id = user.user_id;
         const amount = user.amount;
         const team = user.team;
+        const userBetId = user.id;
         let award = 0;
         if (team === winner) {
             if (winner === bet_info.team1) {
@@ -62,17 +63,17 @@ async function award_users_on_bet(users_list, winner, bet_id) {
                 award = amount * team2_price;
             }
         }
-        await award_user(user_id, award);
+        await award_user(user_id, award, userBetId);
     }
 
 }
 
-async function award_user(user_id, amount) {
+async function award_user(user_id, amount, userBetId) {
     // TODO
     console.log('Awarding users...');
     try {
         // Need endpoint to update totalWinnings and balance
-        const body = { amount: amount };
+        const body = { amount: amount, userBetId: userBetId };
         const response = await axios.patch(`${BACKEND_SERVER_URL}/api/users/${user_id}/balance`, body, { headers });
         return response.data;
     } catch (error) {
@@ -89,5 +90,3 @@ async function script() {
         await award_users_on_bet(users_list, winner, bet_id);
     }
 }
-
-console.log(await award_user("tuJ8P4y8RYXCt48poph7Nb9UhZD2", 123));

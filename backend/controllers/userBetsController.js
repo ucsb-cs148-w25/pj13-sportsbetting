@@ -197,3 +197,9 @@ export async function getUsersThatBetOnBetId(req, res) {
     res.status(500).json({ success: false, message: error.message });
   }
 }
+
+// helper func
+export async function updateStatus(userBetId, status) {
+  const userBetRef = db.collection("userBets").doc(userBetId);
+  await userBetRef.update({ status });
+}
