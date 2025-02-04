@@ -78,6 +78,8 @@ async function parse_api_response(scores) {
 }
 
 async function updateBets() {
+    // Returns a list of bet_id and winner pairs
+    // Format: [{bet_id: '123', winner: 'team1'}, {bet_id: '124', winner: 'team2'}]
     const scores = await fetchScores();
     const new_bet_winner_pairs = await parse_api_response(scores);
 

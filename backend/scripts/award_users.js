@@ -25,8 +25,8 @@ const headers = {
 // 3. Award the users that have won their bets
 
 async function get_users_on_bet(bet_id) {
-    // Returns a list of users that have bet on a specific bet id
-    console.log('Getting users on bet: ', bet_id);
+    // Returns a list of userbets that have bet on a specific bet id
+    // Format: {userId, betId, teamChosen, amount, potentialWinnings, status}
     try {
         const response = await axios.get(`${BACKEND_SERVER_URL}/api/userbets/bet_id/${bet_id}`, { headers });
         return response.data;
@@ -45,11 +45,11 @@ async function get_bet_info(bet_id) {
 }
 
 async function award_users_on_bet(users_list, winner, bet_id) {
-    console.log('Awarding ', users_list.data.length, 'users on bet: ', bet_id);
+    // Award users that have bet on a specific bet
     const bet_info = (await get_bet_info(bet_id)).data;
     const team1_price = bet_info.team1_price;
     const team2_price = bet_info.team2_price;
-
+    console.log('Awarding ', users_list.data.length, 'users on bet: ', bet_id, ' ', winner);
     const awardPromises = users_list.data.map(async (user) => {
         const user_id = user.userId;
         const amount = user.amount;
@@ -71,7 +71,7 @@ async function award_users_on_bet(users_list, winner, bet_id) {
 
 async function award_user(user_id, amount, userBetId) {
     // TODO
-    console.log('Awarding user: ', user_id, ' amount: ', amount);
+    console.log('Awarding user: ', user_id, ' amount: ', amount, ' userBetId: ', userBetId);
     try {
         // Need endpoint to update totalWinnings and balance
         const body = { amount: amount, userBetId: userBetId };
@@ -82,7 +82,8 @@ async function award_user(user_id, amount, userBetId) {
     }
 }
 
-async function script(bet_pairs) {
+async function award(bet_pairs) {
+    // Takes in a list of bet pairs: {bet_id, winner} and awards the users that have bet on these bets
     const awardPromises = bet_pairs.map(async (pair) => {
         const bet_id = pair.bet_id;
         const winner = pair.winner;
@@ -93,4 +94,4 @@ async function script(bet_pairs) {
     await Promise.allSettled(awardPromises);
 }
 
-script(await updateBets());
+export { award };
