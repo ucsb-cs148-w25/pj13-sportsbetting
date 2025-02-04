@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import API_BASE_URL from "../API_BASE_URL.js";
-// import { new_bet_winner_pairs} from './update_bets.js';
+import { updateBets } from './update_bets.js';
 
 // Get the directory name of the current module
 const __filename = fileURLToPath(import.meta.url);
@@ -89,11 +89,14 @@ async function script(bet_pairs) {
     }
 }
 
-const bet_pairs = [
-    {
-        bet_id: 'e15ff567c82a8612fcd3c64613fa271f',
-        winner: 'Indiana Pacers'
-    },
-]
+// const bet_pairs = [
+//     {
+//         bet_id: 'e15ff567c82a8612fcd3c64613fa271f',
+//         winner: 'Indiana Pacers'
+//     },
+// ]
 
-script(bet_pairs);
+// script(bet_pairs);
+
+// script(await new_bet_winner_pairs);
+console.log(await updateBets());
