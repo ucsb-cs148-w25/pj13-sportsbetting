@@ -95,7 +95,7 @@ async function add_new_bet(bet) {
     }
 }
 
-async function script() {
+async function add() {
     const bets = await fetchBets();
     const new_bets = await parse_api_response(bets);
     console.log(new_bets);
@@ -107,4 +107,4 @@ async function script() {
 }
 
 
-script();
+export { add };

@@ -1,5 +1,6 @@
 import { connectDB } from "../config/db.js";
 import {checkToken} from '../services/tokenAuth.js'
+import { updateStatus } from "./userBetsController.js";
 
 // Initialize Firestore instance
 const db = await connectDB();
@@ -169,7 +170,7 @@ export async function awardUser(req, res) {
   try {
     checkToken(req);
     const { id } = req.params;
-    const { amount } = req.body;
+    const { amount, userBetId } = req.body;
 
     const userRef = db.collection("users").doc(id);
     const doc = await userRef.get();
@@ -186,6 +187,12 @@ export async function awardUser(req, res) {
       balance: newBalance,
       totalWinnings: newTotalWinnings,
     });
+
+    let status = 'won';
+    if (amount == 0){
+      status = 'lost';
+    }
+    await updateStatus(userBetId, status);
 
     res.status(200).json({
       success: true,
