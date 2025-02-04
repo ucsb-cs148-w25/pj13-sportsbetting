@@ -26,7 +26,7 @@ const headers = {
 
 async function get_users_on_bet(bet_id) {
     // Returns a list of users that have bet on a specific bet id
-    console.log('Getting users on bet...');
+    console.log('Getting users on bet: ', bet_id);
     try {
         const response = await axios.get(`${BACKEND_SERVER_URL}/api/userbets/bet_id/${bet_id}`, { headers });
         return response.data;
@@ -37,7 +37,7 @@ async function get_users_on_bet(bet_id) {
 
 async function get_bet_info(bet_id) {
     try {
-        const response = await axios.get(`${BACKEND_SERVER_URL}/api/bets/${bet_id}`, { headers });
+        const response = await axios.get(`${BACKEND_SERVER_URL}/api/bets/bet_id/${bet_id}`, { headers });
         return response.data;
     } catch (error) {
         console.error('Error getting bet info:', error);
@@ -45,15 +45,14 @@ async function get_bet_info(bet_id) {
 }
 
 async function award_users_on_bet(users_list, winner, bet_id) {
-    console.log('Awarding users on bet...');
-    const bet_info = await get_bet_info(bet_id);
+    console.log('Awarding users on bet: ', bet_id);
+    const bet_info = (await get_bet_info(bet_id)).data;
     const team1_price = bet_info.team1_price;
     const team2_price = bet_info.team2_price;
-
-    for (const user of users_list) {
+    for (const user of users_list.data) {
         const user_id = user.userId;
         const amount = user.amount;
-        const team = user.team;
+        const team = user.teamChosen;
         const userBetId = user.id;
         let award = 0;
         if (team === winner) {
@@ -70,7 +69,7 @@ async function award_users_on_bet(users_list, winner, bet_id) {
 
 async function award_user(user_id, amount, userBetId) {
     // TODO
-    console.log('Awarding users...');
+    console.log('Awarding user: ', user_id, ' amount: ', amount);
     try {
         // Need endpoint to update totalWinnings and balance
         const body = { amount: amount, userBetId: userBetId };
@@ -81,9 +80,8 @@ async function award_user(user_id, amount, userBetId) {
     }
 }
 
-async function script() {
-    console.log('Awarding users...');
-    for (const pair of new_bet_winner_pairs) {
+async function script(bet_pairs) {
+    for (const pair of bet_pairs) {
         const bet_id = pair.bet_id;
         const winner = pair.winner;
         const users_list = await get_users_on_bet(bet_id);
@@ -91,4 +89,11 @@ async function script() {
     }
 }
 
-console.log(await get_users_on_bet('wasd'));
+const bet_pairs = [
+    {
+        bet_id: 'e15ff567c82a8612fcd3c64613fa271f',
+        winner: 'Indiana Pacers'
+    },
+]
+
+script(bet_pairs);

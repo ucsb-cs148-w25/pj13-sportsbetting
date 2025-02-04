@@ -194,3 +194,26 @@ export async function deleteBet(req, res) {
     res.status(500).json({ success: false, message: error.message });
   }
 }
+
+export async function getBetByBetId(req, res) {
+  try {
+    checkToken(req);
+    const { bet_id } = req.params; // Bet ID from the route
+
+    // Query the bets collection for the document with the given bet_id
+    const betsRef = db.collection("bets").where("bet_id", "==", bet_id);
+    const snapshot = await betsRef.get();
+
+    if (snapshot.empty) {
+      return res.status(404).json({ success: false, message: "Bet not found" });
+    }
+
+    // Assuming bet_id is unique, we take the first document
+    const doc = snapshot.docs[0];
+
+    res.status(200).json({ success: true, data: { id: doc.id, ...doc.data() } });
+  } catch (error) {
+    console.error("Error getting bet by bet_id: ", error.message);
+    res.status(500).json({ success: false, message: error.message });
+  }
+}
