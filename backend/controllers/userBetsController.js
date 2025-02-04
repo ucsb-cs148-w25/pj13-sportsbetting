@@ -180,7 +180,9 @@ export async function getUsersThatBetOnBetId(req, res) {
   try {
     checkToken(req);
     const { bet_id } = req.params; // Bet ID from the route
-    const userBetsRef = db.collection("userBets").where("betId", "==", bet_id);
+    const userBetsRef = db.collection("userBets")
+      .where("betId", "==", bet_id)
+      .where("status", "in", ["pending"]);
     const snapshot = await userBetsRef.get();
 
     if (snapshot.empty) {
