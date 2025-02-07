@@ -15,5 +15,4 @@ router.get("/:id", getBetById); // Get a specific bet by ID
 router.post("/", postBet); // Create a new bet
 router.put("/:id", putBet); // Update a bet by ID
 router.delete("/:id", deleteBet); // Delete a bet by ID
-
 export default router;

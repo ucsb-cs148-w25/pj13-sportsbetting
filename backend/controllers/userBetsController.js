@@ -180,7 +180,9 @@ export async function getUsersThatBetOnBetId(req, res) {
   try {
     checkToken(req);
     const { bet_id } = req.params; // Bet ID from the route
-    const userBetsRef = db.collection("userBets").where("betId", "==", bet_id);
+    const userBetsRef = db.collection("userBets")
+      .where("betId", "==", bet_id)
+      .where("status", "in", ["pending"]);
     const snapshot = await userBetsRef.get();
 
     if (snapshot.empty) {
@@ -196,4 +198,10 @@ export async function getUsersThatBetOnBetId(req, res) {
     console.error("Error getting users by bet_id: ", error.message);
     res.status(500).json({ success: false, message: error.message });
   }
+}
+
+// helper func
+export async function updateStatus(userBetId, status) {
+  const userBetRef = db.collection("userBets").doc(userBetId);
+  await userBetRef.update({ status });
 }
