@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useContext, useCallback } from "react";
 import axios from "axios";
-import Header from "../landing_page/Header";
-import MobileMenu from "../landing_page/MobileMenu";
 import "../landing_page/styles/headerStyle.css";
 import AuthContext from '../../contexts/AuthContext';
 import FRONTEND_API_BASE_URL from '../../API_BASE_URL'
@@ -14,7 +12,6 @@ const headers = {
 };
 
 const GroupPage = () => {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [groups, setGroups] = useState([]); // Store user's groups
     const [groupName, setGroupName] = useState("");
     const [joinGroupId, setJoinGroupId] = useState("");
@@ -123,8 +120,6 @@ const GroupPage = () => {
     if (!currentUser) {
         return (
             <div className="min-h-screen flex flex-col bg-gray-100">
-                <Header isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
-                <MobileMenu isMenuOpen={isMenuOpen} />
                 <main className="flex flex-col items-center justify-center p-6">
                     <h2 className="nav-link2">FriendGroups</h2>
                     <p className="text-gray-600 mt-4">Please log in to view your groups.</p>
@@ -135,8 +130,6 @@ const GroupPage = () => {
 
     return (
         <div className="min-h-screen flex flex-col bg-gray-100">
-            <Header isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
-            <MobileMenu isMenuOpen={isMenuOpen} />
             <main className="flex flex-col items-center justify-center p-6">
                 <h2 className="nav-link2">FriendGroups</h2>
 
