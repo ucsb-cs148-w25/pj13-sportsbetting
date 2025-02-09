@@ -18,6 +18,7 @@ if (args.length === 0) {
     });
 } else if (args[0] === 'run') {
     // Every morning at 6am
+    console.log('Scheduling script to run every morning at 6am...');
     cron.schedule('0 6 * * *', async () => {
         try {
             console.log('Running script...');
