@@ -21,11 +21,8 @@ const BettingPage = () => {
             Authorization: `${process.env.REACT_APP_BACKEND_SERVER_TOKEN}`,
           },
         });
-        // console.log(response.data.data);
-        // Convert the returned object into an array
 
-        const betsArray = response.data.data
-        // console.log(betsArray)
+        const betsArray = response.data.data.filter(bet => new Date(bet.endTime) > new Date());
         setBets(betsArray);
       } catch (err) {
         console.error("Error fetching bets:", err);
@@ -135,6 +132,7 @@ const BettingPage = () => {
               }}>
                 <div>{bet.team1}: {bet.team1_price > 0 ? `+${bet.team1_price}` : bet.team1_price}</div>
                 <div>{bet.team2}: {bet.team2_price > 0 ? `+${bet.team2_price}` : bet.team2_price}</div>
+                <div>End Time: {new Date(bet.endTime).toLocaleString()}</div>
               </div>
 
               <input
