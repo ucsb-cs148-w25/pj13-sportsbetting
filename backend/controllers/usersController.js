@@ -173,31 +173,32 @@ export async function awardUser(req, res) {
     const { amount, userBetId } = req.body;
 
     const userRef = db.collection("users").doc(id);
-    const doc = await userRef.get();
 
-    if (!doc.exists) {
-      return res.status(404).json({ success: false, message: "User not found" });
-    }
+    await db.runTransaction(async (transaction) => {
+      const doc = await transaction.get(userRef);
 
-    const userData = doc.data();
-    const newBalance = userData.balance + amount;
-    const newTotalWinnings = userData.totalWinnings + amount;
+      if (!doc.exists) {
+        throw new Error("User not found");
+      }
 
-    await userRef.update({
-      balance: newBalance,
-      totalWinnings: newTotalWinnings,
+      const userData = doc.data();
+      const newBalance = (userData.balance || 0) + amount;
+      const newTotalWinnings = (userData.totalWinnings || 0) + amount;
+
+      transaction.update(userRef, {
+        balance: newBalance,
+        totalWinnings: newTotalWinnings,
+      });
+
+      console.log(`Updated balance: ${newBalance}, Total winnings: ${newTotalWinnings}`);
     });
 
-    let status = 'won';
-    if (amount == 0){
-      status = 'lost';
-    }
+    let status = amount === 0 ? "lost" : "won";
     await updateStatus(userBetId, status);
 
     res.status(200).json({
       success: true,
       message: "User balance and total winnings updated successfully",
-      data: { balance: newBalance, totalWinnings: newTotalWinnings },
     });
   } catch (error) {
     console.error("Error updating user balance: ", error.message);
