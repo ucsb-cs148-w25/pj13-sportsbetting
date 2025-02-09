@@ -11,7 +11,7 @@ const LandingPage = () => {
 
   return (
       <div className="min-h-screen flex flex-col bg-gray-100">
-        <Header isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
+        {/* <Header isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} /> */}
           <MobileMenu isMenuOpen={isMenuOpen} />
           {/* Main Content */}
           <main className="flex-grow">
