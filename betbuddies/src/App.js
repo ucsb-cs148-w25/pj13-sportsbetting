@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import GroupPage from "./components/GroupPage/GroupPage";
 import NBA from "./pages/NBA";
 import Sportsbook from "./pages/SportsBook";
+import BettingPage from "./pages/BettingPage";
 
 function App() {
     return (
@@ -19,6 +20,7 @@ function App() {
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/nba" element={<NBA />} />
                 <Route path="/sportsbook" element={<Sportsbook />} />
+                <Route path="/betting" element={<BettingPage />} />
             </Routes>
         </Router>
     );
