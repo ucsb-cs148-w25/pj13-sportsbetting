@@ -1,9 +1,9 @@
 "use client";
-import React from "react";
+import React, { useContext } from "react";
 import axios from "axios";
 import { auth } from './../firebase';
 import FRONTEND_API_BASE_URL from '../API_BASE_URL'
-
+import AuthContext from '../contexts/AuthContext';
 
 
 const BettingPage = () => {
@@ -11,6 +11,7 @@ const BettingPage = () => {
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState(null);
   const [betAmounts, setBetAmounts] = React.useState({});
+  const { currentUser } = useContext(AuthContext);
 
   React.useEffect(() => {
     const fetchBets = async () => {
@@ -85,6 +86,18 @@ const BettingPage = () => {
 
   if (bets.length === 0) {
     return <div>No bets available at the moment.</div>;
+  }
+
+  // If user is not logged in, show a message
+  if (!currentUser) {
+    return (
+        <div className="min-h-screen flex flex-col bg-gray-100">
+            <main className="flex flex-col items-center justify-center p-6">
+                <h2 className="nav-link2">Betting</h2>
+                <p className="text-gray-600 mt-4">Please log in to make your bets.</p>
+            </main>
+        </div>
+    );
   }
 
   return (
