@@ -56,7 +56,7 @@ export async function postUserBet(req, res) {
     if (
       !userId ||
       !betId ||
-      !["team1", "team2"].includes(teamChosen) ||
+      !teamChosen || // assume frontend code passes in correct team name
       typeof amount !== "number" ||
       typeof potentialWinnings !== "number" ||
       !["pending", "won", "lost"].includes(status)
@@ -71,8 +71,8 @@ export async function postUserBet(req, res) {
     // Prepare the user bet data
     const newUserBet = { userId, betId, teamChosen, amount, potentialWinnings, status };
 
-    // Create or overwrite the user bet document
-    const userBetRef = db.collection("userBets").doc(id);
+    // Create a new user bet document with an auto-generated ID
+    const userBetRef = await db.collection("userBets").add(newUserBet);
     await userBetRef.set(newUserBet);
 
     res.status(201).json({

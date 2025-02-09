@@ -2,7 +2,7 @@
 import React from "react";
 import axios from "axios";
 import { auth } from './../firebase';
-
+import FRONTEND_API_BASE_URL from '../API_BASE_URL'
 
 
 
@@ -15,14 +15,15 @@ const BettingPage = () => {
   React.useEffect(() => {
     const fetchBets = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/bets", {
+        const url = `${FRONTEND_API_BASE_URL}/api/bets`;
+        const response = await axios.get(url, {
           headers: {
             Authorization: `${process.env.REACT_APP_BACKEND_SERVER_TOKEN}`,
           },
         });
         // console.log(response.data.data);
         // Convert the returned object into an array
-       
+
         const betsArray = response.data.data
         // console.log(betsArray)
         setBets(betsArray);
@@ -53,14 +54,15 @@ const BettingPage = () => {
 
     try {
         console.log(auth.currentUser.uid)
+        const url = `${FRONTEND_API_BASE_URL}/api/userbets/${auth.currentUser.uid}`
       const response = await axios.post(
-        `http://localhost:5000/api/userbets/${auth.currentUser.uid}`,
+        url,
         {
           userId: auth.currentUser.uid,
           betId: bet.bet_id,
-          teamChosen: "team1", // THIS IS HARDCODED FOR NOW, outcome should be either "team1" or "team2" # TODO: change to outcome
+          teamChosen: outcome,
           amount: parseFloat(amount),
-          potentialWinnings: 0, // Replace 0 with your winnings calculation if applicable
+          potentialWinnings: 0, // This field is not used, fine to leave it as 0
           status: "pending"
         },
         {
