@@ -9,11 +9,14 @@ import NBA from "./pages/NBA";
 import Sportsbook from "./pages/SportsBook";
 import Header from "./components/landing_page/Header";
 import BettingPage from "./pages/BettingPage";
+import MobileMenu from "./components/landing_page/MobileMenu";
 
 function App() {
+    const [isMenuOpen, setIsMenuOpen] = React.useState(false);
     return (
         <Router>
-            <Header />
+        <Header isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
+        <MobileMenu isMenuOpen={isMenuOpen} />
             <Routes>
                 <Route path="/" element={<LandingPage />} />
                 <Route path="/group" element={<GroupPage />} />
