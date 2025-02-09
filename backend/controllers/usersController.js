@@ -189,8 +189,6 @@ export async function awardUser(req, res) {
         balance: newBalance,
         totalWinnings: newTotalWinnings,
       });
-
-      console.log(`Updated balance: ${newBalance}, Total winnings: ${newTotalWinnings}`);
     });
 
     let status = amount === 0 ? "lost" : "won";
