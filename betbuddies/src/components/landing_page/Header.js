@@ -24,7 +24,11 @@ const Header = () => {
               </Link>
             </div>
             <nav className={`navbar ${!isMenuOpen ? "md-visible" : ""}`}>
+              <Link to="/betting" className="nav-link">
+                Betting
+              </Link>
               <Link to="/sportsbook" className="nav-link">
+
                 Sportsbook
               </Link>
               <Link to="/live" className="nav-link">

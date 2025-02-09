@@ -77,7 +77,9 @@ async function parse_api_response(scores) {
     return new_bet_winner_pairs;
 }
 
-async function script() {
+async function updateBets() {
+    // Returns a list of bet_id and winner pairs
+    // Format: [{bet_id: '123', winner: 'team1'}, {bet_id: '124', winner: 'team2'}]
     const scores = await fetchScores();
     const new_bet_winner_pairs = await parse_api_response(scores);
 
@@ -91,6 +93,8 @@ async function script() {
     const total_updated = results.filter(result => result.status === "fulfilled" && result.value === 1).length;
 
     console.log('Updated', total_updated, 'bets');
+    return new_bet_winner_pairs;
 }
 
-script();
+
+export { updateBets };
