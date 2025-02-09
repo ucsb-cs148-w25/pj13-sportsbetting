@@ -31,7 +31,7 @@ import spursLogo from "../resources/nba_teams/spurs.png";
 import raptorsLogo from "../resources/nba_teams/raptors.png";
 import jazzLogo from "../resources/nba_teams/jazz.png";
 import wizardsLogo from "../resources/nba_teams/wizards.png";
-
+import { useNavigate } from "react-router-dom";
 const teamLogos = {
     hawks: hawksLogo,
     celtics: celticsLogo,
@@ -85,6 +85,7 @@ const formatOdds = (oddsValue) => (oddsValue > 0 ? `+${oddsValue}` : oddsValue);
 
 const FeaturedBets = () => {
     const [matches, setMatches] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchOdds = async () => {
@@ -167,8 +168,9 @@ const FeaturedBets = () => {
                                     ))}
                                 </div>
                             </div>
-                            <button className="view-odds-button">Place Bet &gt;</button>
+                            <button className="view-odds-button" onClick={() => navigate("/betting")}>Place Bet &gt;</button>
                         </div>
+
                     ))}
                 </div>
             </div>
