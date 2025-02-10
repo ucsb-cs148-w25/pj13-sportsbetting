@@ -1,0 +1,31 @@
+name: Build, Test, and Deploy
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout the repository code
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      # 5. Deploy the backend using the secret deploy hook
+      - name: Deploy Backend to Render
+        env:
+          BACKEND_HOOK: ${{ secrets.RENDER_BACKEND_DEPLOY_HOOK }}
+        run: |
+          echo "Deploying backend..."
+          curl -X POST "$BACKEND_HOOK"
+
+      # 6. Deploy the frontend using the secret deploy hook
+      - name: Deploy Frontend to Render
+        env:
+          FRONTEND_HOOK: ${{ secrets.RENDER_FRONTEND_DEPLOY_HOOK }}
+        run: |
+          echo "Deploying frontend..."
+          curl -X POST "$FRONTEND_HOOK"
