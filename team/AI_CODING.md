@@ -24,3 +24,18 @@ Future Potential:
 - Debug complex issues
 - Explore alternative implementation approaches
 - Document AI usage
+
+
+### Thomas - I used Github Copilot in VScode
+
+Uses:
+
+- Helped generate front-end code through prompting
+- Refactored code based on my needs
+- Kept track of patterns in different files
+
+Verify:
+
+- Manually tested each code change
+- Made sure to read docs and understand each line
+- Github Copilot also explains each code generation
