@@ -30,7 +30,11 @@ async function get_users_on_bet(bet_id) {
         const response = await axios.get(`${BACKEND_SERVER_URL}/api/userbets/bet_id/${bet_id}`, { headers });
         return response.data;
     } catch (error) {
-        console.error('Error getting users on bet:', error);
+        if (error.response) {
+            console.error('Error getting users on bet:', error.response.status);
+        } else {
+            console.error('Error getting users on bet');
+        }
     }
 }
 
@@ -39,7 +43,11 @@ async function get_bet_info(bet_id) {
         const response = await axios.get(`${BACKEND_SERVER_URL}/api/bets/${bet_id}`, { headers });
         return response.data;
     } catch (error) {
-        console.error('Error getting bet info:', error);
+        if (error.response) {
+            console.error('Error getting bet info:', error.response.status);
+        } else {
+            console.error('Error getting bet info');
+        }
     }
 }
 

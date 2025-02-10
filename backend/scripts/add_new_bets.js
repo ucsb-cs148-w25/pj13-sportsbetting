@@ -90,7 +90,11 @@ async function add_new_bet(bet) {
         return 1;
     }
     catch (error) {
-        console.error('Error adding new bet:', error);
+        if (error.response) {
+            console.error('Error adding new bet:', error.response.status);
+        } else {
+            console.error('Error adding new bet');
+        }
         return 0;
     }
 }

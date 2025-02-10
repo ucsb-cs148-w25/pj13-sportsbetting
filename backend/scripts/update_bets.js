@@ -48,7 +48,11 @@ async function update_winner(bet_id, winner) {
         return 1;
     }
     catch (error) {
-        console.error('Error updated bet:', error);
+        if (error.response) {
+            console.error('Error updated bet:', error.response.status);
+        } else {
+            console.error('Error updated bet');
+        }
         return 0;
     }
 
