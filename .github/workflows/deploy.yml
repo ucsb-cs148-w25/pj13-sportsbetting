@@ -1,0 +1,55 @@
+name: Build, Test, and Deploy
+
+on:
+  push:
+    branches:
+      - main  # or your chosen branch
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout the repository code
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      # 2. Setup Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'  # Adjust the Node.js version as needed
+
+      # 3. Build and test the backend
+      - name: Build Backend
+        working-directory: ./backend
+        run: |
+          echo "Installing backend dependencies..."
+          npm install
+          echo "Building backend..."
+          npm run build
+
+      # 4. Build and test the frontend
+      - name: Build Frontend
+        working-directory: ./frontend
+        run: |
+          echo "Installing frontend dependencies..."
+          npm install
+          echo "Building frontend..."
+          npm run build
+
+      # 5. Deploy the backend using the secret deploy hook
+      - name: Deploy Backend to Render
+        env:
+          BACKEND_HOOK: ${{ secrets.RENDER_BACKEND_DEPLOY_HOOK }}
+        run: |
+          echo "Deploying backend..."
+          curl -X POST "$BACKEND_HOOK"
+
+      # 6. Deploy the frontend using the secret deploy hook
+      - name: Deploy Frontend to Render
+        env:
+          FRONTEND_HOOK: ${{ secrets.RENDER_FRONTEND_DEPLOY_HOOK }}
+        run: |
+          echo "Deploying frontend..."
+          curl -X POST "$FRONTEND_HOOK"
