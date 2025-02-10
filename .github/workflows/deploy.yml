@@ -14,30 +14,6 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      # 2. Setup Node.js
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '16'  # Adjust the Node.js version as needed
-
-      # 3. Build and test the backend
-      - name: Build Backend
-        working-directory: ./backend
-        run: |
-          echo "Installing backend dependencies..."
-          npm install
-          echo "Building backend..."
-          npm run build
-
-      # 4. Build and test the frontend
-      - name: Build Frontend
-        working-directory: ./frontend
-        run: |
-          echo "Installing frontend dependencies..."
-          npm install
-          echo "Building frontend..."
-          npm run build
-
       # 5. Deploy the backend using the secret deploy hook
       - name: Deploy Backend to Render
         env:
