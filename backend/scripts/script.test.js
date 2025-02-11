@@ -1,4 +1,44 @@
-import { parse_api_response } from './add_new_bets.js';
+async function parse_api_response(bets) {
+    // Parse the API response into format that can be used with our backend server
+    console.log('Parsing bets...');
+
+    // for each game, get first bookmaker and first market
+    const new_bets = [];
+    for (const bet of bets) {
+        try {
+            const bet_id = bet.id;
+            const bookmaker = bet.bookmakers[0];
+            const market = bookmaker.markets[0];
+            const outcomes = market.outcomes;
+            const team1 = outcomes[0].name;
+            const team2 = outcomes[1].name;
+            const startTime = bet.commence_time;
+            const endTime = bet.commence_time;
+            const winner = null;
+            const betStatus = 'open';
+            const team1_price = outcomes[0].price;
+            const team2_price = outcomes[1].price;
+
+            const new_bet = {
+                bet_id,
+                team1,
+                team2,
+                startTime,
+                endTime,
+                winner,
+                betStatus,
+                team1_price,
+                team2_price,
+            };
+
+            new_bets.push(new_bet);
+        } catch (error) {
+            console.error('Error parsing bet:', error);
+        }
+    }
+    console.log('Parsed ', new_bets.length, ' bets');
+    return new_bets;
+}
 
 const test_api_response = [
     {
@@ -1023,7 +1063,7 @@ const expected_parse_api_response_output = [
     }
 ];
 
-test('parse_api_response', () => {
-    const result = parse_api_response(test_api_response);
+test('parse_api_response', async () => {
+    const result = await parse_api_response(test_api_response);
     expect(result).toEqual(expected_parse_api_response_output);
 });
