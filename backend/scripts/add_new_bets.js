@@ -111,4 +111,4 @@ async function add() {
 }
 
 
-export { add };
+export { add, parse_api_response };
