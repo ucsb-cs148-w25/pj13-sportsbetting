@@ -5,7 +5,7 @@
   "description": "### Project Description **BetBuddies** is a competitive sports betting app where users compete against friends using *fake money* to see who’s the best sports bettor. This app simulates real-world sports betting scenarios while keeping it fun and risk-free. The goal is to create an engaging platform where friends can enjoy sports events and friendly competition without financial stakes.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "dev": "nodemon backend/server.js"
   },
   "repository": {
@@ -28,5 +28,11 @@
     "node-cron": "^3.0.3",
     "nodemon": "^3.1.9",
     "punycode": "^2.3.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.26.8",
+    "@babel/preset-env": "^7.26.8",
+    "babel-jest": "^29.7.0",
+    "jest": "^29.7.0"
   }
 }
