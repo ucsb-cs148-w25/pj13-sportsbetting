@@ -31,7 +31,7 @@ function SignUp() {
       const userData = {
         username: user.email,
         email: user.email,
-        balance: 0,
+        balance: 1000,
         totalWinnings: 0,
         groupIds: [],
       };

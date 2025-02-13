@@ -52,15 +52,12 @@ function SignIn() {
         const userData = {
           username: user.displayName || "Anonymous",
           email: user.email,
-          balance: 0,
+          balance: 1000,
           totalWinnings: 0,
           groupIds: [],
         };
 
         await axios.post(`${FRONTEND_API_BASE_URL}/api/users/${user.uid}`, userData, { headers });
-        console.log("New user created.");
-      } else {
-        console.log("User already exists. Proceeding with sign-in.");
       }
 
       navigate('/');
