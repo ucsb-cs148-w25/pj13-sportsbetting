@@ -39,3 +39,13 @@ Verify:
 - Manually tested each code change
 - Made sure to read docs and understand each line
 - Github Copilot also explains each code generation
+
+### Andy - Used GPT4o in creating a working CI/CD pipeline
+- I used chatgpt's state of the art model to create a github action workflow.
+- Chatgpt is very useful in creating simple scripts like the github workflow yaml file. Chatgpt will also be very useful when coding with little experience on the tech stack.
+- The first couple of workflows did not work because chatgpt doesn't have my entire project configuration. Therefore, it was necessary for me to fix the pipeline a few times for it to properly work.
+- 
+### Daniel - Used GPT-4o creating foundational UI
+- I used OpenAI's GPT-4o model to help create the UI of the sportsbook.css page
+- Honestly, with the correct descriptions, GPT can defintely provide a foundational format of what you want your page to look like. From there, I added in my personal taste to help tailor the website to the vision I have.
+- I verified the code it gave me by testing each snippet of code, and asking GPT to provide comments to understand what it did. 
