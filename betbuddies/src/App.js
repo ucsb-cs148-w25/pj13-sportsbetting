@@ -9,6 +9,7 @@ import NBA from "./pages/NBA";
 import Sportsbook from "./pages/SportsBook";
 import Header from "./components/landing_page/Header";
 import BettingPage from "./pages/BettingPage";
+import Leaderboard from "./pages/Leaderboard";
 import MobileMenu from "./components/landing_page/MobileMenu";
 
 function App() {
@@ -26,7 +27,8 @@ function App() {
                 <Route path="/nba" element={<NBA />} />
                 <Route path="/sportsbook" element={<Sportsbook />} />
                 <Route path="/betting" element={<BettingPage />} />
-            </Routes>
+                <Route path="/leaderboard" element={<Leaderboard />} />
+</Routes>
         </Router>
     );
 }

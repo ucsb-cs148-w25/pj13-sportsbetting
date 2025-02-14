@@ -9,7 +9,7 @@ const db = await connectDB();
 export async function getUsers(req, res) {
   try {
     checkToken(req);
-    const usersRef = db.collection("users");
+    const usersRef = db.collection("users").orderBy("balance", "desc");
     const snapshot = await usersRef.get();
 
     if (snapshot.empty) {
