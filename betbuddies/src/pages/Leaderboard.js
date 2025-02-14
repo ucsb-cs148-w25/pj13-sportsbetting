@@ -5,11 +5,11 @@ import FRONTEND_API_BASE_URL from '../API_BASE_URL';
 const Leaderboard = () => {
   const [users, setUsers] = useState([]);
 
-  const headers = {
-    Authorization: `${process.env.REACT_APP_BACKEND_SERVER_TOKEN}`
-  };
-
   useEffect(() => {
+    const headers = {
+      Authorization: `${process.env.REACT_APP_BACKEND_SERVER_TOKEN}`
+    };
+
     const fetchLeaderboard = async () => {
       try {
         const response = await axios.get(`${FRONTEND_API_BASE_URL}/api/users`, { headers });
