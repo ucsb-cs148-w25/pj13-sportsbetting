@@ -61,3 +61,8 @@ Verify:
 - The UI it created helped to make the page look much nicer by giving me several options for designs that I could choose and select from.
 - This tool was very helpful since I find it hard to make the UI look good.
 - All I had to do to make sure that the code was correct was run each design and see if it matched the description it gave me. If there was anything that didn't look how it was supposed to, I could just describe the visual differences and it would fix it.
+
+### Ryan - Used DeepSeek to help generate an HTML data scraper 
+- used DeepSeek in order to develop a script that will scrape data from ESPN's injury page daily
+- The script worked locally but it became an issue when trying to query the data onto our database consistently using a CRON job.
+- I believe that this AI tool is extremely useful to ask for guidance on a specific topic, but will struggle on understanding the large scope of a full stack project
