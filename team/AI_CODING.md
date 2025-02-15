@@ -48,4 +48,10 @@ Verify:
 ### Daniel - Used GPT-4o creating foundational UI
 - I used OpenAI's GPT-4o model to help create the UI of the sportsbook.css page
 - Honestly, with the correct descriptions, GPT can defintely provide a foundational format of what you want your page to look like. From there, I added in my personal taste to help tailor the website to the vision I have.
-- I verified the code it gave me by testing each snippet of code, and asking GPT to provide comments to understand what it did. 
+- I verified the code it gave me by testing each snippet of code, and asking GPT to provide comments to understand what it did.
+
+### Bryce - Used Claude for designing UI
+- I used Claude to help me design the leaderboard page to make it look better.
+- The UI it created helped to make the page look much nicer by giving me several options for designs that I could choose and select from.
+- This tool was very helpful since I find it hard to make the UI look good.
+- All I had to do to make sure that the code was correct was run each design and see if it matched the description it gave me. If there was anything that didn't look how it was supposed to, I could just describe the visual differences and it would fix it.
