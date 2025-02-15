@@ -17,7 +17,7 @@ app.use(cors({
             "http://localhost:3000",
             "https://pj13-sportsbetting-1-frontend.onrender.com",
             "pj13-sportsbetting-tommy-scripts.vercel.app"], // Allow frontend URLs
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
 }));
 
 app.use(express.json());
