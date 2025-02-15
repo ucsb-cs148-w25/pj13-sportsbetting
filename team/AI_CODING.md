@@ -55,3 +55,9 @@ Verify:
 - GPT helped extend existing functionality by suggesting best practices for API validation and error handling and sped up implementation of new features.
 - Ensuring Correctness & Fair Use
 - I looked through and manually reviewed the AI-generated code looking and evaluated how acurate it was. I then tested with different edge cases like missing group name, and made changes as necessary.
+
+### Bryce - Used Claude for designing UI
+- I used Claude to help me design the leaderboard page to make it look better.
+- The UI it created helped to make the page look much nicer by giving me several options for designs that I could choose and select from.
+- This tool was very helpful since I find it hard to make the UI look good.
+- All I had to do to make sure that the code was correct was run each design and see if it matched the description it gave me. If there was anything that didn't look how it was supposed to, I could just describe the visual differences and it would fix it.
