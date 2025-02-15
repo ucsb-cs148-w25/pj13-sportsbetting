@@ -51,23 +51,37 @@ const BettingPage = () => {
     }
 
     try {
-        console.log(auth.currentUser.uid)
-        const url = `${FRONTEND_API_BASE_URL}/api/userbets/${auth.currentUser.uid}`
-      const response = await axios.post(
-        url,
-        {
-          userId: auth.currentUser.uid,
-          betId: bet.bet_id,
-          teamChosen: outcome,
-          amount: parseFloat(amount),
-          potentialWinnings: 0, // This field is not used, fine to leave it as 0
-          status: "pending"
-        },
-        {
-          headers: { Authorization: `${process.env.REACT_APP_BACKEND_SERVER_TOKEN}` },
+        const url1 = `${FRONTEND_API_BASE_URL}/api/users/${auth.currentUser.uid}/bet`;
+        const response1 = await axios.patch(
+          url1,
+          { betAmount: parseFloat(amount) },
+          {
+            headers: { Authorization: `${process.env.REACT_APP_BACKEND_SERVER_TOKEN}` },
+          }
+        );
+        // check if status=true
+        if (!response1.data.success) {
+          alert(response1.data.message);
+          return;
         }
+        
+        console.log(auth.currentUser.uid);
+        const url = `${FRONTEND_API_BASE_URL}/api/userbets/${auth.currentUser.uid}`;
+        const response = await axios.post(
+          url,
+          {
+            userId: auth.currentUser.uid,
+            betId: bet.bet_id,
+            teamChosen: outcome,
+            amount: parseFloat(amount),
+            potentialWinnings: 0, // This field is not used, fine to leave it as 0
+            status: "pending"
+          },
+          {
+            headers: { Authorization: `${process.env.REACT_APP_BACKEND_SERVER_TOKEN}` },
+          }
 
-      );
+        );
 
       alert(`Bet placed successfully! ${response.data.message}`);
     } catch (err) {
