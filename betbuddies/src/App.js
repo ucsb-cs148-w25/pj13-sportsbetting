@@ -28,7 +28,7 @@ function App() {
                 <Route path="/sportsbook" element={<Sportsbook />} />
                 <Route path="/betting" element={<BettingPage />} />
                 <Route path="/leaderboard" element={<Leaderboard />} />
-</Routes>
+            </Routes>
         </Router>
     );
 }
