@@ -35,6 +35,7 @@ Our app will only have 2 kinds of user, sports bettors and admins to oversee the
 | Thomas So      | Tommygithubaccount123 |
 | Bryce Wang     | brycewangg            |
 | Ryan Vo        | ryanvo504             |
+| Justin Suboc   | mungbeam              | 
 
 # 📌 **Setup Guide**
 
