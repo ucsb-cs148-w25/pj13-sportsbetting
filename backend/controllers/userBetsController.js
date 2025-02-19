@@ -205,3 +205,37 @@ export async function updateStatus(userBetId, status) {
   const userBetRef = db.collection("userBets").doc(userBetId);
   await userBetRef.update({ status });
 }
+
+// GET ALL BETS BY USER ID
+export async function getUserBetsByUserId(req, res) {
+  try {
+    checkToken(req);
+    const { user_id } = req.params; // User ID from the route
+    const userBetsRef = db.collection("userBets").where("userId", "==", user_id);
+    const snapshot = await userBetsRef.get();
+
+    if (snapshot.empty) {
+      return res.status(200).json({ success: true, data: [] });
+    }
+
+    const userBets = snapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+
+    const userBetsDict = {};
+    for (let i = 0; i < userBets.length; i++) {
+      const userBet = userBets[i];
+      const betId = userBet.betId;
+      const betsRef = db.collection("bets").where("bet_id", "==", betId);
+      const snapshot = await betsRef.get();
+      const betDoc = snapshot.docs[0];
+      const betData = betDoc.data();
+      userBetsDict[userBet.id] = { ...userBet, betData };
+    }
+    res.status(200).json({ success: true, data: userBetsDict });
+  } catch (error) {
+    console.error("Error getting user bets by user_id: ", error.message);
+    res.status(500).json({ success: false, message: error.message });
+  }
+}
