@@ -115,6 +115,9 @@ Our app will only have 2 kinds of user, sports bettors and admins to oversee the
 
 - Follow the instructions provided in the README located in the `backend/config` folder.
 
+## Cronjobs
+- Run backend/scripts/script.js, this file fetches and updates the bets into firebase
+
 ## Functionality
 
 This sportsbetting web app provides a user-friendly interface to view, analyze, and place bets on various NBA games. Below is a walkthrough of the main features:
