@@ -10,6 +10,8 @@ import Sportsbook from "./pages/SportsBook";
 import Header from "./components/landing_page/Header";
 import BettingPage from "./pages/BettingPage";
 import MobileMenu from "./components/landing_page/MobileMenu";
+import Injury from './components/Injuries/Injury';
+
 
 function App() {
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -26,6 +28,7 @@ function App() {
                 <Route path="/nba" element={<NBA />} />
                 <Route path="/sportsbook" element={<Sportsbook />} />
                 <Route path="/betting" element={<BettingPage />} />
+                <Route path="/Injuries" element={<Injury />} />
             </Routes>
         </Router>
     );

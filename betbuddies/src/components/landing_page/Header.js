@@ -34,6 +34,12 @@ const Header = () => {
               <Link to="/live" className="nav-link">
                 Live
               </Link>
+              <Link 
+                  to="/injuries" 
+                  className="nav-link"
+                  >
+              Injuries
+              </Link>
               <Link to="/leaderboard" className="nav-link">
                 Leaderboard
               </Link>

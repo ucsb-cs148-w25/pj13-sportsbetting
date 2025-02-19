@@ -1,0 +1,144 @@
+.injuries-container {
+    max-width: 64rem;
+    margin: 0 auto;
+    padding: 1.5rem;
+  }
+  
+  .injuries-header {
+    margin-bottom: 1.5rem;
+  }
+  
+  .injuries-title {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 0.5rem;
+  }
+  
+  .last-updated {
+    font-size: 0.875rem;
+    color: #6B7280;
+  }
+  
+  .team-select-container {
+    margin-bottom: 1.5rem;
+  }
+  
+  .team-select-label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #374151;
+    margin-bottom: 0.5rem;
+  }
+  
+  .team-select {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #D1D5DB;
+    border-radius: 0.375rem;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  }
+  
+  .team-select:focus {
+    outline: none;
+    ring: 2px solid #6366F1;
+    border-color: #6366F1;
+  }
+  
+  .loading-spinner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 16rem;
+  }
+  
+  .spinner {
+    animation: spin 1s linear infinite;
+    height: 3rem;
+    width: 3rem;
+    border: 2px solid #E5E7EB;
+    border-bottom-color: #111827;
+    border-radius: 50%;
+  }
+  
+  .error-container {
+    background-color: #FEE2E2;
+    border: 1px solid #F87171;
+    color: #B91C1C;
+    padding: 0.75rem 1rem;
+    border-radius: 0.375rem;
+    position: relative;
+  }
+  
+  .error-text {
+    font-weight: 700;
+    margin-right: 0.5rem;
+  }
+  
+  .team-card {
+    background-color: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .team-name {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 1rem;
+  }
+  
+  .player-card {
+    border-left: 4px solid #EF4444;
+    padding-left: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .player-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  
+  .player-info {
+    margin-bottom: 0.25rem;
+  }
+  
+  .player-name {
+    font-weight: 600;
+    color: #111827;
+  }
+  
+  .player-position {
+    font-size: 0.875rem;
+    color: #6B7280;
+  }
+  
+  .injury-status {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    background-color: #FEE2E2;
+    color: #991B1B;
+  }
+  
+  .injury-details {
+    margin-top: 0.25rem;
+    font-size: 0.875rem;
+    color: #4B5563;
+  }
+  
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
