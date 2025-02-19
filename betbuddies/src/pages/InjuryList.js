@@ -9,7 +9,7 @@ const Injuries = () => {
     useEffect(() => {
         const fetchInjuries = async () => {
             try {
-                const response = await axios.get("http://localhost:5000/api/injuries");
+                const response = await axios.get("http://localhost:4000/api/injuries");
                 setInjuries(response.data);
             } catch (error) {
                 console.error("Error fetching injury data:", error);

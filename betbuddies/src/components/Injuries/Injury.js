@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { db } from '../../firebase';
 import { doc, onSnapshot } from 'firebase/firestore';
 import { useAuth } from '../../contexts/AuthContext';
+import getTeamLogoPath from '../../utils/getTeamLogoPath';
 import './Injury.css';
 
 const Injury = () => {
@@ -177,6 +178,11 @@ const Injury = () => {
           .filter(injury => !selectedTeam || injury.teamName === selectedTeam)
           .map((injury, index) => (
             <div key={index} className="team-card">
+              <img 
+                  src={getTeamLogoPath(injury.teamName)} 
+                  alt={`${injury.teamName} logo`} 
+                  className="team-logo"
+                />
               <h3 className="team-name">{injury.teamName}</h3>
               <div className="players-list">
                 {injury.players?.map((player, playerIndex) => (
