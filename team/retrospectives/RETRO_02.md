@@ -30,3 +30,9 @@
 * We will begin implementing async daily check-ins using messages.  
 * This should help us track progress more effectively and address roadblocks faster.  
 * We will assess in the next retro if this has improved workflow efficiency.  
+
+## Experiment/Change
+
+* We introduced async daily check-ins via messages to improve progress tracking and address roadblocks faster.
+* This change helped keep track of task status and allowed team members to raise problems sooner, reducing delays.
+* Moving forward, we will continue with async daily check-ins as they have improved workflow efficiency and sprint completion rates.
