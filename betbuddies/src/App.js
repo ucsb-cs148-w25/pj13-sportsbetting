@@ -9,16 +9,13 @@ import NBA from "./pages/NBA";
 import Sportsbook from "./pages/SportsBook";
 import Header from "./components/landing_page/Header";
 import BettingPage from "./pages/BettingPage";
-import MobileMenu from "./components/landing_page/MobileMenu";
 import Injury from './components/Injuries/Injury';
-
+import Leaderboard from "./pages/Leaderboard";
 
 function App() {
-    const [isMenuOpen, setIsMenuOpen] = React.useState(false);
     return (
         <Router>
-        <Header isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
-        <MobileMenu isMenuOpen={isMenuOpen} />
+        <Header />
             <Routes>
                 <Route path="/" element={<LandingPage />} />
                 <Route path="/group" element={<GroupPage />} />
@@ -29,6 +26,7 @@ function App() {
                 <Route path="/sportsbook" element={<Sportsbook />} />
                 <Route path="/betting" element={<BettingPage />} />
                 <Route path="/Injuries" element={<Injury />} />
+                <Route path="/leaderboard" element={<Leaderboard />} />
             </Routes>
         </Router>
     );

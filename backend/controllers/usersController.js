@@ -9,7 +9,7 @@ const db = await connectDB();
 export async function getUsers(req, res) {
   try {
     checkToken(req);
-    const usersRef = db.collection("users");
+    const usersRef = db.collection("users").orderBy("balance", "desc");
     const snapshot = await usersRef.get();
 
     if (snapshot.empty) {
@@ -200,6 +200,52 @@ export async function awardUser(req, res) {
     });
   } catch (error) {
     console.error("Error updating user balance: ", error.message);
+    res.status(500).json({ success: false, message: error.message });
+  }
+}
+
+// PLACE USER BET
+export async function placeBet(req, res) {
+  try {
+    checkToken(req);
+    const { id } = req.params;
+    const { betAmount } = req.body;
+
+    const userRef = db.collection("users").doc(id);
+  
+    await db.runTransaction(async (transaction) => {
+      const doc = await userRef.get();
+
+      if (!doc.exists) {
+        throw new Error("User not found");
+      }
+
+      const userData = doc.data();
+      const newBalance = (userData.balance || 0) - betAmount;
+
+      if (newBalance < 0) {
+        throw new Error("Insufficient balance");
+      }
+
+      transaction.update(userRef, {
+        balance: newBalance,
+      });
+    });
+
+    res.status(200).json({
+      success: true,
+      message: "Bet placed successfully",
+    });
+  } catch (error) {
+    console.error("Error placing bet: ", error.message);
+
+    if (error.message === "Insufficient balance") {
+      return res.status(400).json({
+        success: false,
+        message: "Your bet amount exceeds your available balance. Please reduce the bet amount.",
+      });
+    }
+
     res.status(500).json({ success: false, message: error.message });
   }
 }

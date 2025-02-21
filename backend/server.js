@@ -20,7 +20,7 @@ app.use(cors({
         "https://pj13-sportsbetting-1-frontend.onrender.com",
         "pj13-sportsbetting-tommy-scripts.vercel.app"
     ],
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
     allowedHeaders: ["Content-Type", "Authorization"]  // Add this line
 }));
 
