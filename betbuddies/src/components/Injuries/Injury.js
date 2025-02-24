@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { db } from '../../firebase';
-import { doc, onSnapshot } from 'firebase/firestore';
 import getTeamLogoPath from '../../utils/getTeamLogoPath';
 import FRONTEND_API_BASE_URL from '../../API_BASE_URL'
 import './Injury.css';
@@ -41,55 +39,43 @@ const Injury = () => {
 };
 
   useEffect(() => {
-    let unsubscribe;
-    
     const fetchData = async () => {
       try {
-        const docRef = doc(db, 'nba-injuries', 'latest');
-        
-        unsubscribe = onSnapshot(docRef, (snapshot) => {
-          if (snapshot.exists()) {
-            const data = snapshot.data();
-            console.log('Received Firestore data:', data);
-            
-            // Handle injuries array
-            if (data?.injuries) {
-              setInjuries(data.injuries);
-            } else {
-              setInjuries([]);
-            }
-            
-            // Handle lastUpdated with better type checking
-            if (data?.lastUpdated) {
-              if (typeof data.lastUpdated.toDate === 'function') {
-                setLastUpdated(data.lastUpdated.toDate());
-              } else if (data.lastUpdated instanceof Date) {
-                setLastUpdated(data.lastUpdated);
-              } else {
-                setLastUpdated(new Date(data.lastUpdated));
-              }
-            } else {
-              setLastUpdated(null);
-            }
+        const response = await fetch(`${FRONTEND_API_BASE_URL}/api/injuries/`);
+        if (!response.ok) {
+          throw new Error(`Server responded with status: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        // Handle injuries array
+        if (data?.data) {
+          setInjuries(data.data);
+        } else {
+          setInjuries([]);
+        }
+
+        // Handle lastUpdated with better type checking
+        if (data?.lastUpdated) {
+          if (typeof data.lastUpdated.toDate === 'function') {
+            setLastUpdated(data.lastUpdated.toDate());
+          } else if (data.lastUpdated instanceof Date) {
+            setLastUpdated(data.lastUpdated);
           } else {
-            setInjuries([]);
-            setLastUpdated(null);
+            setLastUpdated(new Date(data.lastUpdated));
           }
-          setLoading(false);
-        });
+        } else {
+          setLastUpdated(null);
+        }
       } catch (error) {
-        console.error('Setup error:', error);
-        setError('Failed to set up data connection');
+        console.error('Fetch error:', error);
+        setError('Failed to fetch injury data');
+      } finally {
         setLoading(false);
       }
     };
-  
+
     fetchData();
-    return () => {
-      if (unsubscribe) {
-        unsubscribe();
-      }
-    };
   }, []);
 
   // Loading state
