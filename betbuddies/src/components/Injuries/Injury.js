@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import getTeamLogoPath from '../../utils/getTeamLogoPath';
-import FRONTEND_API_BASE_URL from '../../API_BASE_URL'
+import FRONTEND_API_BASE_URL from '../../API_BASE_URL';
 import './Injury.css';
 
 const Injury = () => {
@@ -10,71 +10,68 @@ const Injury = () => {
   const [selectedTeam, setSelectedTeam] = useState('');
   const [lastUpdated, setLastUpdated] = useState(null);
 
+  const fetchData = async () => {
+    try {
+      const response = await fetch(`${FRONTEND_API_BASE_URL}/api/injuries/`);
+      if (!response.ok) {
+        throw new Error(`Server responded with status: ${response.status}`);
+      }
+
+      const data = await response.json();
+
+      // Handle injuries array
+      if (data?.data) {
+        setInjuries(data.data);
+      } else {
+        setInjuries([]);
+      }
+
+      // Handle lastUpdated with better type checking
+      if (data?.lastUpdated) {
+        if (typeof data.lastUpdated.toDate === 'function') {
+          setLastUpdated(data.lastUpdated.toDate());
+        } else if (data.lastUpdated instanceof Date) {
+          setLastUpdated(data.lastUpdated);
+        } else {
+          setLastUpdated(new Date(data.lastUpdated));
+        }
+      } else {
+        setLastUpdated(null);
+      }
+    } catch (error) {
+      console.error('Fetch error:', error);
+      setError('Failed to fetch injury data');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const triggerScrape = async () => {
     try {
-        setLoading(true);
-        const response = await fetch(`${FRONTEND_API_BASE_URL}/api/injuries/scrape`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-        
-        if (!response.ok) {
-            const errorText = await response.text();
-            throw new Error(`Server responded with status: ${response.status}, ${errorText}`);
+      setLoading(true);
+      const response = await fetch(`${FRONTEND_API_BASE_URL}/api/injuries/scrape`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
         }
-        
-        const data = await response.json();
-        console.log('Scrape response:', data);
-        
-        // Optionally, refresh the injuries data after scraping
-        // You might want to call your GET injuries method here
+      });
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Server responded with status: ${response.status}, ${errorText}`);
+      }
+
+      // Refresh the injuries data after scraping
+      await fetchData();
     } catch (error) {
-        console.error('Error triggering scrape:', error);
-        setError('Failed to refresh injury data');
+      console.error('Error triggering scrape:', error);
+      setError('Failed to refresh injury data');
     } finally {
-        setLoading(false);
+      setLoading(false);
     }
-};
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(`${FRONTEND_API_BASE_URL}/api/injuries/`);
-        if (!response.ok) {
-          throw new Error(`Server responded with status: ${response.status}`);
-        }
-
-        const data = await response.json();
-
-        // Handle injuries array
-        if (data?.data) {
-          setInjuries(data.data);
-        } else {
-          setInjuries([]);
-        }
-
-        // Handle lastUpdated with better type checking
-        if (data?.lastUpdated) {
-          if (typeof data.lastUpdated.toDate === 'function') {
-            setLastUpdated(data.lastUpdated.toDate());
-          } else if (data.lastUpdated instanceof Date) {
-            setLastUpdated(data.lastUpdated);
-          } else {
-            setLastUpdated(new Date(data.lastUpdated));
-          }
-        } else {
-          setLastUpdated(null);
-        }
-      } catch (error) {
-        console.error('Fetch error:', error);
-        setError('Failed to fetch injury data');
-      } finally {
-        setLoading(false);
-      }
-    };
-
     fetchData();
   }, []);
 
