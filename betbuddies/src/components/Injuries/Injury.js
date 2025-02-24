@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { db } from '../../firebase';
 import { doc, onSnapshot } from 'firebase/firestore';
-import { useAuth } from '../../contexts/AuthContext';
 import getTeamLogoPath from '../../utils/getTeamLogoPath';
-import FRONTEND_API_BASE_URL from '../API_BASE_URL'
+import FRONTEND_API_BASE_URL from '../../API_BASE_URL'
 import './Injury.css';
 
 const Injury = () => {
-  const { currentUser } = useAuth();
   const [injuries, setInjuries] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -17,7 +15,7 @@ const Injury = () => {
   const triggerScrape = async () => {
     try {
         setLoading(true);
-        const response = await fetch('${FRONTEND_API_BASE_URL}/api/injuries/scrape', {
+        const response = await fetch(`${FRONTEND_API_BASE_URL}/api/injuries/scrape`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
