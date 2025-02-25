@@ -316,7 +316,6 @@ const BettingPage = () => {
                         $
                       </div>
                       <input
-                        type="number"
                         placeholder="Bet amount"
                         value={betAmounts[bet.id] || ""}
                         onChange={(e) => handleBetAmountChange(bet.id, e.target.value)}
