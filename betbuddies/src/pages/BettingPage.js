@@ -5,7 +5,6 @@ import { auth } from './../firebase';
 import FRONTEND_API_BASE_URL from '../API_BASE_URL'
 import AuthContext from '../contexts/AuthContext';
 
-
 const BettingPage = () => {
   const [bets, setBets] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
@@ -46,7 +45,21 @@ const BettingPage = () => {
   const handlePlaceBet = async (bet, outcome) => {
     const amount = betAmounts[bet.id];
     if (!amount || amount <= 0) {
-      alert("Please enter a valid bet amount.");
+      const notification = document.createElement('div');
+      notification.className = 'toast-notification error';
+      notification.textContent = "Please enter a valid bet amount.";
+      document.body.appendChild(notification);
+
+      setTimeout(() => {
+      notification.classList.add('show');
+      }, 100);
+
+      setTimeout(() => {
+      notification.classList.remove('show');
+      setTimeout(() => {
+        document.body.removeChild(notification);
+      }, 300);
+      }, 3000);
       return;
     }
 
@@ -59,158 +72,279 @@ const BettingPage = () => {
             headers: { Authorization: `${process.env.REACT_APP_BACKEND_SERVER_TOKEN}` },
           }
         );
-        // check if status=true
+
         if (!response1.data.success) {
           alert(response1.data.message);
           return;
         }
-        
+
         console.log(auth.currentUser.uid);
         const url = `${FRONTEND_API_BASE_URL}/api/userbets/${auth.currentUser.uid}`;
-        const response = await axios.post(
+        await axios.post(
           url,
           {
             userId: auth.currentUser.uid,
             betId: bet.bet_id,
             teamChosen: outcome,
             amount: parseFloat(amount),
-            potentialWinnings: 0, // This field is not used, fine to leave it as 0
+            potentialWinnings: 0,
             status: "pending"
           },
           {
             headers: { Authorization: `${process.env.REACT_APP_BACKEND_SERVER_TOKEN}` },
           }
-
         );
 
-      alert(`Bet placed successfully! ${response.data.message}`);
+      // Toast notification instead of alert
+      const notification = document.createElement('div');
+      notification.className = 'toast-notification success';
+      notification.textContent = `Bet placed successfully!`;
+      document.body.appendChild(notification);
+
+      setTimeout(() => {
+        notification.classList.add('show');
+      }, 100);
+
+      setTimeout(() => {
+        notification.classList.remove('show');
+        setTimeout(() => {
+          document.body.removeChild(notification);
+        }, 300);
+      }, 3000);
+
     } catch (err) {
       console.error("Error placing bet:", err);
-      alert(err.response?.data?.message || "Failed to place bet");
+
+      // Error toast notification
+      const notification = document.createElement('div');
+      notification.className = 'toast-notification error';
+      notification.textContent = err.response?.data?.message || "Failed to place bet";
+      document.body.appendChild(notification);
+
+      setTimeout(() => {
+        notification.classList.add('show');
+      }, 100);
+
+      setTimeout(() => {
+        notification.classList.remove('show');
+        setTimeout(() => {
+          document.body.removeChild(notification);
+        }, 300);
+      }, 3000);
     }
   };
 
   if (loading) {
-    return <div>Loading bets...</div>;
+    return (
+      <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 flex items-center justify-center text-white">
+        <div className="flex flex-col items-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500 mb-4"></div>
+          <p className="text-xl font-medium">Loading available bets...</p>
+        </div>
+      </div>
+    );
   }
-//   console.log(bets);
+
   if (error) {
-    return <div>Error: {error}</div>;
+    return (
+      <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 flex items-center justify-center text-white p-6">
+        <div className="bg-red-900 bg-opacity-50 max-w-md w-full p-6 rounded-lg border border-red-700">
+          <h2 className="text-2xl font-bold mb-4">Error</h2>
+          <p className="text-red-200">{error}</p>
+          <button 
+            onClick={() => window.location.reload()}
+            className="mt-4 bg-red-700 hover:bg-red-600 transition-colors px-4 py-2 rounded-md font-medium"
+          >
+            Try Again
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  if (!currentUser) {
+    return (
+      <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 flex items-center justify-center text-white p-6">
+        <div className="bg-gray-800 bg-opacity-70 max-w-md w-full p-8 rounded-lg border border-gray-700 text-center">
+          <h2 className="text-3xl font-bold mb-4 text-blue-400">Sports Betting</h2>
+          <p className="text-gray-300 text-lg mb-6">Please log in to access the betting platform.</p>
+          <button 
+            onClick={() => window.location.href = '/signin'}
+            className="bg-blue-600 hover:bg-blue-500 transition-colors px-6 py-3 rounded-md font-semibold text-white"
+          >
+            Sign In
+          </button>
+        </div>
+      </div>
+    );
   }
 
   if (bets.length === 0) {
-    return <div>No bets available at the moment.</div>;
-  }
-
-  // If user is not logged in, show a message
-  if (!currentUser) {
     return (
-        <div className="min-h-screen flex flex-col bg-gray-100">
-            <main className="flex flex-col items-center justify-center p-6">
-                <h2 className="nav-link2">Betting</h2>
-                <p className="text-gray-600 mt-4">Please log in to make your bets.</p>
-            </main>
+      <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 flex items-center justify-center text-white p-6">
+        <div className="bg-gray-800 bg-opacity-70 max-w-md w-full p-8 rounded-lg border border-gray-700 text-center">
+          <h2 className="text-3xl font-bold mb-4 text-blue-400">No Active Bets</h2>
+          <p className="text-gray-300 text-lg mb-6">There are no available bets at the moment. Please check back later.</p>
+          <div className="flex justify-center">
+            <button 
+              onClick={() => window.location.reload()}
+              className="bg-blue-600 hover:bg-blue-500 transition-colors px-6 py-3 rounded-md font-semibold"
+            >
+              Refresh
+            </button>
+          </div>
         </div>
+      </div>
     );
   }
 
   return (
-    <div style={{ 
-      padding: "20px",
-      backgroundColor: "#1a237e", // Dark blue background
-      minHeight: "100vh",
-      color: "white"
-    }}>
-      <h1 style={{ textAlign: "center", marginBottom: "40px", fontSize: "2.5rem" }}>
-        Place Your Bets
-      </h1>
-      
-      <div style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
-        gap: "20px",
-        maxWidth: "1200px",
-        margin: "0 auto"
-      }}>
-        {bets.map((bet) => (
-          bet.betStatus === "closed" ? null : (
-            <div
-              key={bet.id}
-              style={{
-                backgroundColor: "white",
-                padding: "20px",
-                borderRadius: "10px",
-                boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
-                color: "#333"
-              }}
-            >
-              <h2 style={{ 
-                margin: "0 0 15px 0",
-                fontSize: "1.4rem",
-                color: "#1a237e"
-              }}>
-                {bet.team1} vs {bet.team2}
-              </h2>
-              
-              <div style={{ 
-                marginBottom: "15px",
-                fontSize: "0.9rem",
-                color: "#666"
-              }}>
-                <div>{bet.team1}: {bet.team1_price > 0 ? `+${bet.team1_price}` : bet.team1_price}</div>
-                <div>{bet.team2}: {bet.team2_price > 0 ? `+${bet.team2_price}` : bet.team2_price}</div>
-                <div>End Time: {new Date(bet.endTime).toLocaleString()}</div>
-              </div>
+    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 p-6 text-white">
+      <style jsx global>{`
+        .toast-notification {
+          position: fixed;
+          bottom: 30px;
+          left: 50%;
+          transform: translateX(-50%) translateY(100px);
+          padding: 12px 24px;
+          border-radius: 8px;
+          color: white;
+          font-weight: 500;
+          z-index: 1000;
+          opacity: 0;
+          transition: transform 0.3s ease, opacity 0.3s ease;
+          max-width: 90%;
+          text-align: center;
+        }
 
-              <input
-                type="number"
-                placeholder="Bet amount ($)"
-                value={betAmounts[bet.id] || ""}
-                onChange={(e) => handleBetAmountChange(bet.id, e.target.value)}
-                style={{
-                  width: "100%",
-                  padding: "10px",
-                  marginBottom: "15px",
-                  border: "2px solid #ddd",
-                  borderRadius: "5px"
-                }}
-              />
+        .toast-notification.show {
+          transform: translateX(-50%) translateY(0);
+          opacity: 1;
+        }
 
-              <div style={{ display: "flex", gap: "10px" }}>
-                <button
-                  onClick={() => handlePlaceBet(bet, bet.team1)}
-                  style={{
-                    flex: 1,
-                    padding: "12px",
-                    backgroundColor: "#1976d2",
-                    color: "white",
-                    border: "none",
-                    borderRadius: "5px",
-                    cursor: "pointer",
-                    fontWeight: "bold"
-                  }}
-                >
-                  {bet.team1}
-                </button>
-                <button
-                  onClick={() => handlePlaceBet(bet, bet.team2)}
-                  style={{
-                    flex: 1,
-                    padding: "12px",
-                    backgroundColor: "#ff6f00",
-                    color: "white",
-                    border: "none",
-                    borderRadius: "5px",
-                    cursor: "pointer",
-                    fontWeight: "bold"
-                  }}
-                >
-                  {bet.team2}
-                </button>
+        .toast-notification.success {
+          background-color: rgba(16, 185, 129, 0.9);
+          box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        }
+
+        .toast-notification.error {
+          background-color: rgba(239, 68, 68, 0.9);
+          box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+        }
+
+        .bet-card {
+          transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .bet-card:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+        }
+
+        .bet-button {
+          transition: all 0.2s ease;
+          min-height: 56px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 12px 8px;
+          line-height: 1.2;
+        }
+
+        .bet-button:hover {
+          transform: translateY(-2px);
+        }
+
+        .bet-button:active {
+          transform: translateY(1px);
+        }
+      `}</style>
+
+      <div className="max-w-7xl mx-auto">
+        <header className="text-center mb-12">
+          <h1 className="text-5xl font-bold mb-3 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
+            Sports Betting
+          </h1>
+          <p className="text-gray-300 text-xl max-w-2xl mx-auto">
+            Place your bets on upcoming matches and test your prediction skills
+          </p>
+        </header>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {bets.map((bet) => (
+            bet.betStatus === "closed" ? null : (
+              <div
+                key={bet.id}
+                className="bg-gray-800 rounded-xl overflow-hidden border border-gray-700 shadow-lg bet-card"
+              >
+                <div className="p-6">
+                  <div className="flex justify-between items-center mb-4">
+                    <h2 className="text-xl font-bold text-white">
+                      {bet.team1} vs {bet.team2}
+                    </h2>
+                    <span className="bg-blue-900 text-blue-200 text-xs font-medium px-2.5 py-1 rounded-full">
+                      Active
+                    </span>
+                  </div>
+
+                  <div className="bg-gray-700 bg-opacity-50 rounded-lg p-4 mb-5">
+                    <div className="flex justify-between items-center mb-2">
+                      <span className="text-gray-200">{bet.team1}</span>
+                      <span className={`text-sm font-semibold ${bet.team1_price > 0 ? 'text-green-400' : 'text-red-400'}`}>
+                        {bet.team1_price > 0 ? `+${bet.team1_price}` : bet.team1_price}
+                      </span>
+                    </div>
+                    <div className="flex justify-between items-center mb-3">
+                      <span className="text-gray-200">{bet.team2}</span>
+                      <span className={`text-sm font-semibold ${bet.team2_price > 0 ? 'text-green-400' : 'text-red-400'}`}>
+                        {bet.team2_price > 0 ? `+${bet.team2_price}` : bet.team2_price}
+                      </span>
+                    </div>
+                    <div className="text-gray-400 text-sm">
+                      <div className="flex items-center">
+                        <svg className="w-4 h-4 mr-1 opacity-70" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd"></path>
+                        </svg>
+                        Ends: {new Date(bet.endTime).toLocaleString()}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="relative mb-4">
+                    <div className="flex items-center border border-gray-600 rounded-md bg-gray-700 focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-transparent">
+                      <div className="flex items-center justify-center pl-4 pr-2 text-gray-400">
+                        $
+                      </div>
+                      <input
+                        type="number"
+                        placeholder="Bet amount"
+                        value={betAmounts[bet.id] || ""}
+                        onChange={(e) => handleBetAmountChange(bet.id, e.target.value)}
+                        className="w-full py-3 pr-3 bg-transparent border-0 focus:outline-none text-white"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="flex justify-center gap-3 mt-2">
+                  <button
+                      onClick={() => handlePlaceBet(bet, bet.team1)}
+                      className="bet-button flex-1 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 text-white font-medium rounded-lg focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 focus:ring-opacity-50"
+                    >
+                      {bet.team1}
+                    </button>
+                    <button
+                      onClick={() => handlePlaceBet(bet, bet.team2)}
+                      className="bet-button flex-1 bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-500 hover:to-purple-600 text-white font-medium rounded-lg focus:outline-none focus:ring-2 focus:ring-inset focus:ring-purple-500 focus:ring-opacity-50"
+                    >
+                      {bet.team2}
+                  </button>
+
+                  </div>
+                </div>
               </div>
-            </div>
-          )
-        ))}
+            )
+          ))}
+        </div>
       </div>
     </div>
   );
