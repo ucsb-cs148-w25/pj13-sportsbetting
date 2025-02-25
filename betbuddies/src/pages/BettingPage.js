@@ -44,56 +44,56 @@ const BettingPage = () => {
 
   const handlePlaceBet = async (bet, outcome) => {
     const amount = betAmounts[bet.id];
-    if (!amount || amount <= 0) {
+    if (!amount || amount <= 0 || isNaN(amount)) {
       const notification = document.createElement('div');
       notification.className = 'toast-notification error';
       notification.textContent = "Please enter a valid bet amount.";
       document.body.appendChild(notification);
 
       setTimeout(() => {
-      notification.classList.add('show');
+        notification.classList.add('show');
       }, 100);
 
       setTimeout(() => {
-      notification.classList.remove('show');
-      setTimeout(() => {
-        document.body.removeChild(notification);
-      }, 300);
+        notification.classList.remove('show');
+        setTimeout(() => {
+          document.body.removeChild(notification);
+        }, 300);
       }, 3000);
       return;
     }
 
     try {
-        const url1 = `${FRONTEND_API_BASE_URL}/api/users/${auth.currentUser.uid}/bet`;
-        const response1 = await axios.patch(
-          url1,
-          { betAmount: parseFloat(amount) },
-          {
-            headers: { Authorization: `${process.env.REACT_APP_BACKEND_SERVER_TOKEN}` },
-          }
-        );
-
-        if (!response1.data.success) {
-          alert(response1.data.message);
-          return;
+      const url1 = `${FRONTEND_API_BASE_URL}/api/users/${auth.currentUser.uid}/bet`;
+      const response1 = await axios.patch(
+        url1,
+        { betAmount: parseFloat(amount) },
+        {
+          headers: { Authorization: `${process.env.REACT_APP_BACKEND_SERVER_TOKEN}` },
         }
+      );
 
-        console.log(auth.currentUser.uid);
-        const url = `${FRONTEND_API_BASE_URL}/api/userbets/${auth.currentUser.uid}`;
-        await axios.post(
-          url,
-          {
-            userId: auth.currentUser.uid,
-            betId: bet.bet_id,
-            teamChosen: outcome,
-            amount: parseFloat(amount),
-            potentialWinnings: 0,
-            status: "pending"
-          },
-          {
-            headers: { Authorization: `${process.env.REACT_APP_BACKEND_SERVER_TOKEN}` },
-          }
-        );
+      if (!response1.data.success) {
+        alert(response1.data.message);
+        return;
+      }
+
+      console.log(auth.currentUser.uid);
+      const url = `${FRONTEND_API_BASE_URL}/api/userbets/${auth.currentUser.uid}`;
+      await axios.post(
+        url,
+        {
+          userId: auth.currentUser.uid,
+          betId: bet.bet_id,
+          teamChosen: outcome,
+          amount: parseFloat(amount),
+          potentialWinnings: 0,
+          status: "pending"
+        },
+        {
+          headers: { Authorization: `${process.env.REACT_APP_BACKEND_SERVER_TOKEN}` },
+        }
+      );
 
       // Toast notification instead of alert
       const notification = document.createElement('div');
