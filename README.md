@@ -20,7 +20,7 @@ Our app will only have 2 kinds of user, sports bettors and admins to oversee the
 
 ### Documentation
 
-[Link](https://docs.google.com/document/d/11tE5cdFQMYGccgxjDcKdH57ia8Lq5kfZL-AACeqZlQw/edit?usp=sharing)
+See Slack 
 
 ---
 
