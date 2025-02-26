@@ -24,6 +24,9 @@ const Header = () => {
             <Link to="/leaderboard" className="nav-link">
               Leaderboard
             </Link>
+            <Link to="/injuries" className="nav-link">
+              Injuries
+              </Link>
             <Link to="/group" className="nav-link">
               FriendGroup
             </Link>
