@@ -1,0 +1,63 @@
+@startuml bet
+
+actor User
+
+boundary FrontEnd
+control BackendServer
+database Firebase
+
+control CronJob
+entity OddsAPI as "Odds API"
+control Scraper
+entity ESPN as "ESPN"
+
+' ------------------------------- User Authentication -------------------------------
+group "User Authentication"
+    User -> FrontEnd : Logs in / Signs up
+    FrontEnd -> BackendServer : Send credentials
+    BackendServer -> Firebase : Authenticate / Create user
+end group
+
+' ------------------------------- Leaderboard Retrieval -------------------------------
+group "Leaderboard Retrieval"
+    User -> FrontEnd : Visits Leaderboard Page
+    FrontEnd -> BackendServer : Fetch leaderboard data
+    BackendServer -> Firebase : Retrieve leaderboard info
+end group
+
+' ------------------------------- Bet Placement -------------------------------
+group "Bet Placement"
+    User -> FrontEnd : Places a bet
+    FrontEnd -> BackendServer : Request bet placement
+    BackendServer -> Firebase : Store bet details
+end group
+
+' ------------------------------- Betting Page -------------------------------
+group "Betting Page"
+    User -> FrontEnd : Visits Betting Page
+    FrontEnd -> BackendServer : Fetch available bets
+    BackendServer -> Firebase : Retrieve bets
+end group
+
+' ------------------------------- Injury Scraper -------------------------------
+group "Injury Scraper"
+    User -> FrontEnd : Visits Injury Page
+    FrontEnd -> BackendServer : Start injury scraper
+    BackendServer -> Scraper : Scrape ESPN injuries
+    Scraper -> ESPN : Get injury data
+    Scraper -> Firebase : Store injury data
+end group
+
+' ------------------------------- Cron Job Updates (DAILY) -------------------------------
+group "Cron Job Updates (DAILY)"
+    note left of CronJob
+        CronJob runs daily
+    end note
+    CronJob -> OddsAPI : Fetch latest odds
+    CronJob -> BackendServer : Store fetched odds
+    BackendServer -> Firebase : Save odds data
+    CronJob -> BackendServer : Update user bets
+    BackendServer -> Firebase : Update awarded bets
+end group
+
+@enduml
