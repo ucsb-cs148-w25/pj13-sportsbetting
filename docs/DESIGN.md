@@ -41,7 +41,7 @@ Our design process involved multiple team discussions documented in our GitHub r
 - **Scraping Injuries:** Decided to scrape ESPN because it provides reliable and up-to-date injury reports.
 - **Automating Bet Updates:** Implemented a daily cron job to fetch and update odds automatically.
 
-## **4.2 UX Considerations**
+## **4. UX Considerations**
 ### **High-Level User Flow**
 1. **User Authentication:**
    - The user signs up or logs in to access the platform.
