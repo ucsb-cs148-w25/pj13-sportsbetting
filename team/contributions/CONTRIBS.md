@@ -30,9 +30,9 @@
 
 ## Andy Jin (andyjin1) 
 **Contributions:**  
-- TODO: Summarize your contributions in code development, design decisions, and debugging.  
-- TODO: Include information on any non-coding contributions such as team discussions or documentation improvements.
-
+- I set up the CI/CD pipeline for the team. Each push to DEV will trigger a deployment of our app.
+- The main is sandboxed from the dev branch, if the DEV branch is compromised, our deployment will automatically rollback to main which is the previous working branch.
+- Added the group feature. 
 ---
 
 ## Thomas So (Tommygithubaccount123)  
