@@ -48,8 +48,10 @@
 ## Bryce Wang (brycewangg)
 **Role:** TODO  
 **Contributions:**  
-- TODO: List your main coding contributions, enhancements, and any collaborative efforts.  
-- TODO: Include details on any significant non-code contributions, such as organizing team meetings or updating documentation.
+- Connected sign in and sign up page to use Firebase authentication and add user to database  
+- Created leaderboard page to display ranking of all users
+- Added endpoint to get bet history for user
+- Helped with documenting discussions
 
 ---
 
