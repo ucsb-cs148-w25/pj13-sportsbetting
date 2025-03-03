@@ -35,12 +35,14 @@
 
 ---
 
-## Thomas So (Tommygithubaccount123)
-**Role:** TODO  
+## Thomas So (Tommygithubaccount123)  
 **Contributions:**  
-- TODO: Provide details on your code development contributions, problem-solving tasks, and feature implementations.  
-- TODO: Mention additional roles such as reviewing code or contributing to project documentation.
-
+- Set up cron-job scripts for bet updating and awarding users
+- Added back-end endpoints
+- Created landing page UI
+- Improved betting page UI
+- Code-review + code fixes for most PR's, set up version control
+- Detailed documentation for set-up and database design
 ---
 
 ## Bryce Wang (brycewangg)
