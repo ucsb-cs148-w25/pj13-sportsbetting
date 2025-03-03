@@ -46,7 +46,6 @@
 ---
 
 ## Bryce Wang (brycewangg)
-**Role:** TODO  
 **Contributions:**  
 - Connected sign in and sign up page to use Firebase authentication and add user to database  
 - Created leaderboard page to display ranking of all users
