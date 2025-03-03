@@ -53,7 +53,7 @@
 
 ## Ryan Vo (ryanvo504) 
 **Contributions:**  
-- TODO: Describe your contributions to the project, including coding, debugging, and feature development.  
-- TODO: Add any other responsibilities such as testing, documentation, or team support activities.
+-   Created an API endpoint to call an HTML scraper on ESPN's daily list of injured NBA players and store the list of injured players as a JSON file in our Firebase
+-   Created the frontend of the Injury page in React to display the data obtained from the JSON file and making it organizable and easily searchable for users
 
 ---
