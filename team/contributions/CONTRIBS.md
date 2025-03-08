@@ -11,9 +11,9 @@
 
 ## Colin Baylis (colinbaylis)
 **Contributions:**  
-- TODO: Outline your involvement in the development process, including major commits, code reviews, and feature enhancements.  
-- TODO: Add any additional responsibilities or collaborative efforts you participated in.
-
+- Worked with Andy to build out the Group Tab, making sure it works smoothly for users.
+- Currently working on the Profile Page, adding features to track user bets.
+- Helped out with discussions, reviews, and improving features along the way.
 ---
 
 ## Jonathan Zhang (jonathanzhang2027)
