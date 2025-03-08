@@ -19,6 +19,7 @@ const odds_api_bet_query_params = new URLSearchParams({
     apiKey: ODDS_API_KEY, // Use the API key from the environment variables
     regions: 'us',
     markets: 'h2h',
+    oddsFormat: 'american',
 });
 
 const BACKEND_SERVER_URL = `${API_BASE_URL}/api/bets`;
