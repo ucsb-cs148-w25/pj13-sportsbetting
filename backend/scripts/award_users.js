@@ -64,11 +64,10 @@ async function award_users_on_bet(users_list, winner, bet_id) {
         const userBetId = user.id;
         let award = 0;
         if (team === winner) {
-            if (winner === bet_info.team1) {
-                award = amount * team1_price;
-            } else {
-                award = amount * team2_price;
-            }
+            const odds = (team === bet_info.team1) ? team1_price : team2_price;
+            award = (odds < 0) 
+                ? amount * (1 + 100 / Math.abs(odds))
+                : amount * (1 + odds / 100);
         }
         await award_user(user_id, award, userBetId);
     });
