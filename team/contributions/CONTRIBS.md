@@ -4,8 +4,9 @@
 
 ## Daniel Hwang (dhwang154)
 **Contributions:**  
-- TODO: Describe your specific coding contributions, feature implementations, and any bug fixes.  
-- TODO: Include details of non-code contributions such as documentation, design input, or team coordination.
+- Implemented the front-end interface for the BetBuddies app's landing page with Tommy 
+-  Developed the sportsbook page, which displays dynamic betting odds. Integrated real-time data fetching to ensure that the displayed odds are always current
+-  Modified the existing codebase to integrate with Tommy's endpoint for retrieving live odds
 
 ---
 
