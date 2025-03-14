@@ -32,6 +32,7 @@ import raptorsLogo from "../resources/nba_teams/raptors.png";
 import jazzLogo from "../resources/nba_teams/jazz.png";
 import wizardsLogo from "../resources/nba_teams/wizards.png";
 import { useNavigate } from "react-router-dom";
+import FRONTEND_API_BASE_URL from "../../API_BASE_URL";
 const teamLogos = {
     hawks: hawksLogo,
     celtics: celticsLogo,
@@ -91,24 +92,33 @@ const FeaturedBets = () => {
         const fetchBets = async () => {
             setLoading(true);
             try {
-                const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/bets`);
-                if (response.data && response.data.length > 0) {
-                    const formattedMatches = response.data
-                        .sort(() => 0.5 - Math.random()) // Randomizing matches if needed
-                        .map((match) => ({
-                            id: match.id,
-                            teamA: {
-                                name: match.team1, // Assuming 'team1' is how data is stored in Firestore
-                                logo: getTeamLogoPath(match.team1),
-                            },
-                            teamB: {
-                                name: match.team2, // Assuming 'team2' is how data is stored in Firestore
-                                logo: getTeamLogoPath(match.team2),
-                            },
-                            odds: match.bookmakers[0]?.markets[0]?.outcomes || [],
-                        }));
-                    setMatches(formattedMatches);
-                }
+                const headers = {
+                    Authorization: `${process.env.REACT_APP_BACKEND_SERVER_TOKEN}`
+                };
+                
+                const response = await axios.get(`${FRONTEND_API_BASE_URL}/api/bets`, { headers });
+                const betsArray = response.data.data.filter(bet => new Date(bet.endTime) > new Date());
+                
+                const randomizedBets = betsArray.sort(() => 0.5 - Math.random()).slice(0, 3);
+
+                const formattedMatches = randomizedBets.map((match) => ({
+                    id: match.id,
+                    teamA: {
+                        name: match.team1,
+                        logo: getTeamLogoPath(match.team1),
+                    },
+                    teamB: {
+                        name: match.team2,
+                        logo: getTeamLogoPath(match.team2),
+                    },
+                    odds: [
+                        { name: match.team1, price: match.team1_price },
+                        { name: match.team2, price: match.team2_price },
+                    ],
+                }));
+                
+                setMatches(formattedMatches);
+                
             } catch (error) {
                 console.error("Error fetching bets:", error);
                 setError("Failed to fetch bets, please try again later.");
