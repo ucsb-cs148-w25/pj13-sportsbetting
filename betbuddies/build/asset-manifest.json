@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/static/css/main.ff254a89.css",
+    "main.js": "/static/js/main.f286e155.js",
+    "static/js/488.d60486fd.chunk.js": "/static/js/488.d60486fd.chunk.js",
+    "static/media/celtics.png": "/static/media/celtics.a051dff3ce949b77481c.png",
+    "static/media/sixers.png": "/static/media/sixers.fe529fdee80bbdecdfba.png",
+    "static/media/nuggets.png": "/static/media/nuggets.78e3bd34f88e680ae7b5.png",
+    "static/media/knicks.png": "/static/media/knicks.fb12722133706ca767c2.png",
+    "static/media/mavericks.png": "/static/media/mavericks.f6a8f6e2c266f0a3f27e.png",
+    "static/media/raptors.png": "/static/media/raptors.a243a7783265915188f5.png",
+    "static/media/pistons.png": "/static/media/pistons.ee1fc9c0136b91387210.png",
+    "static/media/hornets.png": "/static/media/hornets.30a4aae22e4aa4681fc0.png",
+    "index.html": "/index.html",
+    "main.ff254a89.css.map": "/static/css/main.ff254a89.css.map",
+    "main.f286e155.js.map": "/static/js/main.f286e155.js.map",
+    "488.d60486fd.chunk.js.map": "/static/js/488.d60486fd.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ff254a89.css",
+    "static/js/main.f286e155.js"
+  ]
+}
