@@ -18,9 +18,6 @@ const Header = () => {
             <Link to="/betting" className="nav-link">
               Betting
             </Link>
-            <Link to="/sportsbook" className="nav-link">
-              Sportsbook
-            </Link>
             <Link to="/leaderboard" className="nav-link">
               Leaderboard
             </Link>
