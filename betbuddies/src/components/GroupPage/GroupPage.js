@@ -3,7 +3,7 @@ import axios from "axios";
 import "../landing_page/styles/headerStyle.css";
 import AuthContext from '../../contexts/AuthContext';
 import FRONTEND_API_BASE_URL from '../../API_BASE_URL'
-
+import { useNavigate } from "react-router-dom";
 
 const API_BASE_URL = `${FRONTEND_API_BASE_URL}/api/groups`;
 
@@ -16,6 +16,7 @@ const GroupPage = () => {
     const [groupName, setGroupName] = useState("");
     const [joinGroupId, setJoinGroupId] = useState("");
     const { currentUser } = useContext(AuthContext); // Access currentUser from context
+    const navigate = useNavigate();
 
     // Memoize fetchGroups with useCallback
     const fetchGroups = useCallback(async () => {
@@ -136,8 +137,8 @@ const GroupPage = () => {
                 {groups.length > 0 ? (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full max-w-4xl">
                         {groups.map((group) => (
-                            <div key={group.id} className="bg-white shadow-md rounded-lg p-4">
-                                <button onClick={() => handleLeaveGroup(group.id, currentUser.uid)} className="text-red-500">Leave Group</button>
+                            <div onClick={() => navigate(`/group/${group.id}`)} key={group.id} className="p-4 bg-white rounded-lg shadow-md border border-gray-200 hover:shadow-lg transition duration-300 cursor-pointer">
+                                <button onClick={(e) => { e.stopPropagation(); handleLeaveGroup(group.id, currentUser.uid); }} className="text-red-500">Leave Group</button>
                                 <h3 className="text-lg font-semibold text-gray-800">{group.groupName}</h3>
                                 <p className="text-gray-600">Group ID: {group.id}</p>
                             </div>
