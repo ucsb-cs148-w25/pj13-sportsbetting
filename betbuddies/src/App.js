@@ -5,6 +5,7 @@ import SignUp from './components/SignUp/SignUp';
 import Profile from './components/Profile/Profile';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import GroupPage from "./components/GroupPage/GroupPage";
+import GroupDetailPage from './pages/GroupDetailPage';
 import NBA from "./pages/NBA";
 import Sportsbook from "./pages/SportsBook";
 import Header from "./components/landing_page/Header";
@@ -19,6 +20,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<LandingPage />} />
                 <Route path="/group" element={<GroupPage />} />
+                <Route path="/group/:id" element={<GroupDetailPage />} />
                 <Route path="/signin" element={<SignIn />} />
                 <Route path="/signup" element={<SignUp />} />
                 <Route path="/profile" element={<Profile />} />
