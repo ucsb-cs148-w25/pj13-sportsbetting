@@ -74,15 +74,20 @@ const Profile = () => {
   };
 
   const getPotentialWinnings = (amount, odds) => {
-    if (!amount || !odds) return 0; // Prevent NaN if values are missing
+    if (!amount || !odds) return 0; // Prevent errors if values are missing
   
     if (Number.isInteger(odds)) {
-      return odds > 0 
-        ? (amount * 100) / (odds + 100) 
-        : (amount * Math.abs(odds)) / (Math.abs(odds) + 100);
+      if (odds > 0) {
+        // Positive odds: (Amount * Odds) / 100
+        return amount * (odds / 100);
+      } else {
+        // Negative odds: (Amount / Absolute(Odds)) * 100
+        return (amount / Math.abs(odds)) * 100;
+      }
     }
-    return amount * odds; // For decimal odds
+    return amount * odds; // If already decimal odds
   };
+  
   
 
   const roundToTwo = (num) => Math.round(num * 100) / 100;
@@ -134,12 +139,12 @@ const Profile = () => {
                   <p className="text-sm text-gray-600">Amount: ${bet.amount}</p>
                   <p className="text-sm text-gray-600">Odds: {bet.teamChosen === bet.betData.team1 ? bet.betData.team1_price : bet.betData.team2_price}</p>
                   <p className="text-sm text-gray-600">
-                    Potential Winnings: 
+                    Potential Payout: 
                     ${Math.abs(roundToTwo(
                       getPotentialWinnings(
                         bet.amount, 
                         bet.teamChosen === bet.betData?.team1 ? bet.betData?.team1_price : bet.betData?.team2_price
-                      )
+                      ) + bet.amount
                     ))}
                   </p>
                   <p className="text-sm text-gray-500">
