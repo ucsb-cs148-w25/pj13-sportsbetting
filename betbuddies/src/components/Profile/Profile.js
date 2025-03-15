@@ -11,8 +11,8 @@ const Profile = () => {
   const { currentUser } = useContext(AuthContext);
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
-  const [betHistory, setBetHistory] = useState([{status: "pending", amount: 0, betData: {team1: "", team2: ""}}]);
+  const [betHistory, setBetHistory] = useState([]);
+  // {status: "pending", amount: 0, betData: {team1: "", team2: ""}}
   
   useEffect(() => {
     const fetchBetHistory = async () => {
@@ -23,14 +23,13 @@ const Profile = () => {
           },
         });
 
-        console.log("🟢 API Response:", response.data.data);
+        let sortedBetHistory = Object.values(response.data.data)
+          .sort((a, b) => new Date(b.betData.startTime) - new Date(a.betData.startTime));
+        setBetHistory(sortedBetHistory);
         
-        if (response.data.data) {
-          setBetHistory(Object.values(response.data.data)); 
-        }
+        // setBetHistory(Object.values(response.data.data)); 
       } catch (error) {
         console.error("🔥 Error fetching bet history:", error);
-        setError("Failed to load bet history.");
       }
     };
 
@@ -46,13 +45,11 @@ const Profile = () => {
   // Handle user sign-out
   const handleSignOut = async () => {
     setIsLoading(true);
-    setError('');
     try {
       await auth.signOut();
       navigate('/');
     } catch (err) {
       console.error('Error signing out:', err);
-      setError('Failed to sign out. Please try again.');
     } finally {
       setIsLoading(false);
     }
@@ -76,6 +73,20 @@ const Profile = () => {
     }
   };
 
+  const getPotentialWinnings = (amount, odds) => {
+    if (!amount || !odds) return 0; // Prevent NaN if values are missing
+  
+    if (Number.isInteger(odds)) {
+      return odds > 0 
+        ? (amount * 100) / (odds + 100) 
+        : (amount * Math.abs(odds)) / (Math.abs(odds) + 100);
+    }
+    return amount * odds; // For decimal odds
+  };
+  
+
+  const roundToTwo = (num) => Math.round(num * 100) / 100;
+
   return (
     <div className="w-full max-w-3xl mx-auto p-6">
       <div className="mb-8 text-center">
@@ -96,12 +107,9 @@ const Profile = () => {
       {/* BET HISTORY */}
       <div className="mb-8">
         <h2 className="text-3xl font-bold text-center text-gray-900">
-          Bet History
-          ${betHistory.length}
+          You have made {betHistory.length} bets!
         </h2>
       </div>
-
-      {error && <p className="text-red-500 text-center">{error}</p>}
 
       {isLoading ? (
         <p className="text-center">Loading bet history...</p>
@@ -126,10 +134,16 @@ const Profile = () => {
                   <p className="text-sm text-gray-600">Amount: ${bet.amount}</p>
                   <p className="text-sm text-gray-600">Odds: {bet.teamChosen === bet.betData.team1 ? bet.betData.team1_price : bet.betData.team2_price}</p>
                   <p className="text-sm text-gray-600">
-                    Potential Winnings: ${bet.amount * bet.odds}
+                    Potential Winnings: 
+                    ${Math.abs(roundToTwo(
+                      getPotentialWinnings(
+                        bet.amount, 
+                        bet.teamChosen === bet.betData?.team1 ? bet.betData?.team1_price : bet.betData?.team2_price
+                      )
+                    ))}
                   </p>
                   <p className="text-sm text-gray-500">
-                    Date: {bet.date ? new Date(bet.date).toLocaleString() : "N/A"}
+                    Date: {bet.betData?.startTime ? new Date(bet.betData.startTime).toLocaleString() : "N/A"}
                   </p>
                 </div>
 
