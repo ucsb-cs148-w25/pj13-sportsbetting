@@ -20,7 +20,7 @@ Our app will only have 2 kinds of user, sports bettors and admins to oversee the
 
 ### Documentation
 
-[Link](https://docs.google.com/document/d/11tE5cdFQMYGccgxjDcKdH57ia8Lq5kfZL-AACeqZlQw/edit?usp=sharing)
+See Slack 
 
 ---
 
@@ -114,6 +114,9 @@ Our app will only have 2 kinds of user, sports bettors and admins to oversee the
 ## Database Setup
 
 - Follow the instructions provided in the README located in the `backend/config` folder.
+
+## Cronjobs
+- Run backend/scripts/script.js, this file fetches and updates the bets into firebase
 
 ## Functionality
 

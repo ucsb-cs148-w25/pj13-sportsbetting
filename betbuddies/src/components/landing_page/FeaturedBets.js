@@ -32,6 +32,7 @@ import raptorsLogo from "../resources/nba_teams/raptors.png";
 import jazzLogo from "../resources/nba_teams/jazz.png";
 import wizardsLogo from "../resources/nba_teams/wizards.png";
 import { useNavigate } from "react-router-dom";
+import FRONTEND_API_BASE_URL from "../../API_BASE_URL";
 const teamLogos = {
     hawks: hawksLogo,
     celtics: celticsLogo,
@@ -65,8 +66,6 @@ const teamLogos = {
     wizards: wizardsLogo,
 };
 
-const API_KEY = process.env.REACT_APP_ODDS_API_KEY;
-
 const getTeamLogoPath = (teamFullName) => {
     //extracts the last word of the team, ie Cleveland Cavaliers, pulls out cavaliers to lowercase
     let teamName = teamFullName.split(" ").pop().toLowerCase();
@@ -85,49 +84,59 @@ const formatOdds = (oddsValue) => (oddsValue > 0 ? `+${oddsValue}` : oddsValue);
 
 const FeaturedBets = () => {
     const [matches, setMatches] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
     const navigate = useNavigate();
 
     useEffect(() => {
-        const fetchOdds = async () => {
+        const fetchBets = async () => {
+            setLoading(true);
             try {
-                const response = await axios.get(
-                    "https://api.the-odds-api.com/v4/sports/basketball_nba/odds",
-                    {
-                        params: {
-                            api_key: API_KEY,
-                            regions: "us",
-                            markets: "h2h",
-                            oddsFormat: "american",
-                        },
-                    }
-                );
+                const headers = {
+                    Authorization: `${process.env.REACT_APP_BACKEND_SERVER_TOKEN}`
+                };
+                
+                const response = await axios.get(`${FRONTEND_API_BASE_URL}/api/bets`, { headers });
+                const betsArray = response.data.data.filter(bet => new Date(bet.endTime) > new Date());
+                
+                const randomizedBets = betsArray.sort(() => 0.5 - Math.random()).slice(0, 3);
 
-                if (response.data && response.data.length > 0) {
-                    const randomMatches = response.data
-                        .sort(() => 0.5 - Math.random())
-                        .slice(0, 3)
-                        .map((match) => ({
-                            id: match.id,
-                            teamA: {
-                                name: match.home_team,
-                                logo: getTeamLogoPath(match.home_team),
-                            },
-                            teamB: {
-                                name: match.away_team,
-                                logo: getTeamLogoPath(match.away_team),
-                            },
-                            odds: match.bookmakers[0]?.markets[0]?.outcomes || [],
-                        }));
-
-                    setMatches(randomMatches);
-                }
+                const formattedMatches = randomizedBets.map((match) => ({
+                    id: match.id,
+                    teamA: {
+                        name: match.team1,
+                        logo: getTeamLogoPath(match.team1),
+                    },
+                    teamB: {
+                        name: match.team2,
+                        logo: getTeamLogoPath(match.team2),
+                    },
+                    odds: [
+                        { name: match.team1, price: match.team1_price },
+                        { name: match.team2, price: match.team2_price },
+                    ],
+                }));
+                
+                setMatches(formattedMatches);
+                
             } catch (error) {
-                console.error("Error fetching odds:", error);
+                console.error("Error fetching bets:", error);
+                setError("Failed to fetch bets, please try again later.");
+            } finally {
+                setLoading(false);
             }
         };
 
-        fetchOdds();
+        fetchBets();
     }, []);
+
+    if (loading) {
+        return <div>Loading bets...</div>;
+    }
+
+    if (error) {
+        return <div>{error}</div>;
+    }
 
     return (
         <section className="featured-bets-section">
@@ -170,7 +179,6 @@ const FeaturedBets = () => {
                             </div>
                             <button className="view-odds-button" onClick={() => navigate("/betting")}>Place Bet &gt;</button>
                         </div>
-
                     ))}
                 </div>
             </div>
