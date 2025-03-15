@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../../contexts/AuthContext";
 import { auth } from "../../firebase";
-import { CheckCircle, XCircle, Hourglass, LogOut, User, Wallet, History } from "lucide-react";
+import { LogOut, User, Wallet, History } from "lucide-react";
 import axios from "axios";
 import FRONTEND_API_BASE_URL from '../../API_BASE_URL';
 import "./Profile.css";
@@ -65,18 +65,6 @@ const Profile = () => {
     return null;
   }
 
-  // Get appropriate status icon
-  const getStatusIcon = (status) => {
-    switch (status) {
-      case "won":
-        return <CheckCircle className="h-6 w-6 text-green-600" />;
-      case "lost":
-        return <XCircle className="h-6 w-6 text-red-600" />;
-      case "pending":
-      default:
-        return <Hourglass className="h-6 w-6 text-yellow-600" />;
-    }
-  };
 
   const getStatusBadge = (status) => {
     switch (status) {
