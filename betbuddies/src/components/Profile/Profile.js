@@ -11,6 +11,7 @@ const Profile = () => {
   const { currentUser } = useContext(AuthContext);
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
+  const [user, setUser] = useState({balance: 0});
   const [betHistory, setBetHistory] = useState([]);
   // {status: "pending", amount: 0, betData: {team1: "", team2: ""}}
   
@@ -27,7 +28,13 @@ const Profile = () => {
           .sort((a, b) => new Date(b.betData.startTime) - new Date(a.betData.startTime));
         setBetHistory(sortedBetHistory);
         
-        // setBetHistory(Object.values(response.data.data)); 
+        const userReponse = await axios.get(`${FRONTEND_API_BASE_URL}/api/users/${currentUser.uid}`, {
+          headers: {
+            Authorization: process.env.REACT_APP_BACKEND_SERVER_TOKEN,
+          },
+        });
+        setUser(userReponse.data.data);
+
       } catch (error) {
       }
     };
@@ -91,12 +98,19 @@ const Profile = () => {
           {currentUser?.displayName || "User"}'s Profile
         </h2>
         <p className="text-lg text-gray-600">{currentUser?.email}</p>
+        {/* User Balance */}
+        <div className="text-lg text-gray-600">
+          <h3 className="text-xl font-semibold text-gray-800">Current Balance</h3>
+          <p className="text-3xl font-bold text-green-600">${user.balance.toLocaleString()}</p>
+        </div>
+        
         <button
           onClick={handleSignOut}
           className="sign-out-button"
           aria-label="Sign Out"
           disabled={isLoading}
         >
+
           {isLoading ? 'Signing Out...' : 'Sign Out'}
         </button>
       </div>
