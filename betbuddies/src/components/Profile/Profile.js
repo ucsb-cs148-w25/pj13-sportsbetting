@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../../contexts/AuthContext";
 import { auth } from "../../firebase";
-import { Trophy, CheckCircle, XCircle, Hourglass } from "lucide-react";
+import { CheckCircle, XCircle, Hourglass } from "lucide-react";
 import axios from "axios";
 import FRONTEND_API_BASE_URL from '../../API_BASE_URL';
 import "./Profile.css";
