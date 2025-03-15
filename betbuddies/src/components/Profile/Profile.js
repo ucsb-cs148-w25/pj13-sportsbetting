@@ -29,18 +29,11 @@ const Profile = () => {
         
         // setBetHistory(Object.values(response.data.data)); 
       } catch (error) {
-        console.error("🔥 Error fetching bet history:", error);
       }
     };
 
     fetchBetHistory();
   }, [currentUser]); 
-
-  useEffect(() => {
-    console.log("🟢 Bet History Updated:", betHistory);
-    // console.log("PRINTING HERE")
-    // console.log("ODDDDDDS:", betHistory[0].betData.team1_price);
-  }, [betHistory]); 
 
   // Handle user sign-out
   const handleSignOut = async () => {
@@ -49,7 +42,6 @@ const Profile = () => {
       await auth.signOut();
       navigate('/');
     } catch (err) {
-      console.error('Error signing out:', err);
     } finally {
       setIsLoading(false);
     }
