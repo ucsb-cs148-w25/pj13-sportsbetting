@@ -8,7 +8,8 @@ const db = await connectDB();
 export async function getBets(req, res) {
   try {
     checkToken(req);
-    const betsRef = db.collection("bets");
+    const nowString = new Date().toISOString();
+    const betsRef = db.collection("bets").where("startTime" , ">", nowString);
     const snapshot = await betsRef.get();
 
     if (snapshot.empty) {
