@@ -1,19 +1,58 @@
 .profile-page {
-    text-align: center;
-    margin-top: 50px;
-  }
-  
-  .sign-out-button {
-    padding: 10px 20px;
-    background-color: #ff4747;
-    color: white;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    border-radius: 5px;
-    margin-top: 20px;
-  }
-  
-  .sign-out-button:hover {
-    background-color: #ff1f1f;
-  }
+  text-align: center;
+  margin-top: 50px;
+  font-family: Arial, sans-serif;
+}
+
+.sign-out-button {
+  padding: 10px 20px;
+  background-color: #ff4747;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+  margin-top: 20px;
+  transition: background-color 0.3s;
+}
+
+.sign-out-button:hover {
+  background-color: #ff1f1f;
+}
+
+.sign-out-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.error-message {
+  color: #ff4747;
+  margin-top: 10px;
+}
+
+.bet-history-list {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 20px;
+  text-align: left;
+  display: inline-block;
+}
+
+.bet-history-item {
+  background: #f9f9f9;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 15px;
+  width: 300px;
+}
+
+.bet-history-item p {
+  margin: 5px 0;
+  color: #333;
+}
+
+.bet-history-item hr {
+  border: 0;
+  border-top: 1px solid #eee;
+}
