@@ -78,10 +78,10 @@ const Profile = () => {
     if (Number.isInteger(odds)) {
       if (odds > 0) {
         // Positive odds: (Amount * Odds) / 100
-        return amount * (odds / 100);
+        return amount * (odds / 100) + amount;
       } else {
         // Negative odds: (Amount / Absolute(Odds)) * 100
-        return (amount / Math.abs(odds)) * 100;
+        return (amount / Math.abs(odds)) * 100 + amount;
       }
     }
     return amount * odds; // If already decimal odds
@@ -152,7 +152,7 @@ const Profile = () => {
                       getPotentialWinnings(
                         bet.amount, 
                         bet.teamChosen === bet.betData?.team1 ? bet.betData?.team1_price : bet.betData?.team2_price
-                      ) + bet.amount
+                      )
                     ))}
                   </p>
                   <p className="text-sm text-gray-500">
