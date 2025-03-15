@@ -133,9 +133,11 @@ const Profile = () => {
 
                 {/* Bet Details */}
                 <div className="col-span-6 text-left">
-                  <h3 className="font-semibold text-lg text-gray-900">
-                    Bet on {bet.teamChosen}
-                  </h3>
+                <h3 className="font-semibold text-lg text-gray-900">
+                  <span className="font-bold">{bet.teamChosen}</span> vs.{" "}
+                  {bet.betData?.team1 === bet.teamChosen ? bet.betData?.team2 : bet.betData?.team1}
+                </h3>
+
                   <p className="text-sm text-gray-600">Amount: ${bet.amount}</p>
                   <p className="text-sm text-gray-600">Odds: {bet.teamChosen === bet.betData.team1 ? bet.betData.team1_price : bet.betData.team2_price}</p>
                   <p className="text-sm text-gray-600">
