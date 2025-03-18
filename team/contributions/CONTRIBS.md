@@ -13,8 +13,8 @@
 ## Colin Baylis (colinbaylis)
 **Contributions:**  
 - Worked with Andy to build out the Group Tab, making sure it works smoothly for users.
-- Currently working on the Profile Page, adding features to track user bets.
-- Helped out with discussions, reviews, and improving features along the way.
+- Completed the Profile Page, adding feature to track user bets and display the bets won, lost, and still pending. Displayed the bets by game date, and included the amount wagered, the odds, and the possible gross profit.
+- Helped out with discussions, retros, final video and improving features along the way.
 ---
 
 ## Jonathan Zhang (jonathanzhang2027)
